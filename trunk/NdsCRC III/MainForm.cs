@@ -14,7 +14,7 @@ namespace NdsCRC_III
     public partial class MainForm : Form
     {
         private MFControler _controler;
-        
+
         private BindingSource bsCollection = new BindingSource();
         private BindingSource bsAdvanScene = new BindingSource();
         private BindingSource bsMissing = new BindingSource();
@@ -25,7 +25,7 @@ namespace NdsCRC_III
         {
             InitializeComponent();
             _controler = new MFControler(Application.StartupPath);
-            
+
             bsAdvanScene.DataSource = _controler.GetDataBase();
             GridDataBase.DataSource = bsAdvanScene;
             bsCollection.DataSource = _controler.GetCollection();
@@ -42,10 +42,10 @@ namespace NdsCRC_III
             cbxLanguages.ValueMember = "Key";
 
             setLblNbRom();
-            
+
             this.Text = string.Format("NdsCRC III v{0} - AdvanceSceneDat v{1} ({2})", ProductVersion, _controler.DatVersion, _controler.DatCreationDate);
         }
-        
+
         /*
         private void Grid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -190,6 +190,7 @@ namespace NdsCRC_III
         private void f_FormClosed(object sender, FormClosedEventArgs e)
         {
             btnGetNewRom.Enabled = true;
+            _controler.ReloadAdvanSceneDataBase();
         }
 
         private void InitDataGrid(DataGridView Grid)
@@ -236,9 +237,9 @@ namespace NdsCRC_III
             Grid.Columns["RomNumber"].Width = 40;
 
             Grid.Columns["Title"].Visible = true;
-            Grid.Columns["Title"].DisplayIndex = 2; 
+            Grid.Columns["Title"].DisplayIndex = 2;
             Grid.Columns["Title"].Width = 390;
-            
+
             Grid.ClearSelection();
 
             Grid.GridColor = Color.White;
@@ -258,14 +259,14 @@ namespace NdsCRC_III
             //    dtv.RowFilter = strFiltre.ToString();
             //    dtv.Sort = "RomNumber";
             //    GridDataBase.DataSource = dtv.ToTable();
-                
+
             //}
         }
-        
+
         private void Grid_CurrentCellChanged(object sender, EventArgs e)
         {
             if ((sender as DataGridView).SelectedRows.Count == 1)
-	        {
+            {
                 //Grid_CellClick(sender, new DataGridViewCellEventArgs(1, GridCollection.SelectedRows[0].Index));
                 DataGridView dgv = (DataGridView)sender;
                 //lblLanguage.Text = (sender as DataGridView)["language", e.RowIndex].Value.ToString();
@@ -387,7 +388,7 @@ namespace NdsCRC_III
                 richTextBox1.Clear();
                 lblReleaseNumber.Text = null;
             }
-            
+
         }
 
         private void UpdateDatabase()
@@ -406,9 +407,10 @@ namespace NdsCRC_III
             //DLXml.Show("http://www.advanscene.com/offline/datas/ADVANsCEne_NDScrc.zip", "ADVANsCEne_NDScrc.zip", "Downloading Database ...");
             DLXml.ShowHidden(_controler.datVersionURL, string.Format("{0}\\ADVANsCEne_NDScrc_Version.txt", Application.StartupPath), "Downloading Version ...");
         }
+        
         private void CheckDatVersion(object sender, EventArgs e)
         {
-            if (File.Exists(string.Format("{0}\\ADVANsCEne_NDScrc_Version.txt",Application.StartupPath)))
+            if (File.Exists(string.Format("{0}\\ADVANsCEne_NDScrc_Version.txt", Application.StartupPath)))
             {
                 string[] version = File.ReadAllLines("ADVANsCEne_NDScrc_Version.txt");
                 if (version[0] == _controler.DatVersion)
@@ -425,8 +427,9 @@ namespace NdsCRC_III
             {
                 DownloadDatVersion();
             }
-            
+
         }
+        
         void DLXml_Disposed(object sender, EventArgs e)
         {
             _controler.ExtractNewDataBase();
@@ -437,6 +440,7 @@ namespace NdsCRC_III
             bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
             bw.RunWorkerAsync();
         }
+        
         void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             File.Delete(Directory.GetParent(_controler.PathXmlDB) + "\\ADVANsCEne_NDScrc.xml.old");
@@ -445,12 +449,12 @@ namespace NdsCRC_III
             this.Text = string.Format("NdsCRC III v{0} - AdvanceSceneDat v{1} ({2})", ProductVersion, _controler.DatVersion, _controler.DatCreationDate);
 
             _controler.ReloadAdvanSceneDataBase();
-            
+
             MAJ_Img_Nfo maj = new MAJ_Img_Nfo();
             maj.Show();
             maj.Start();
 
-            MessageBox.Show("Update Complete.","DataBase Update",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show("Update Complete.", "DataBase Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
             tabControl1.SelectedIndex = 4;
 
         }
@@ -458,13 +462,15 @@ namespace NdsCRC_III
         void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar1.Value = e.ProgressPercentage;
-            labelUpdatePercent.Text = string.Format("{0}%",e.ProgressPercentage.ToString("00"));
+            labelUpdatePercent.Text = string.Format("{0}%", e.ProgressPercentage.ToString("00"));
             if (e.UserState != null)
             {
                 string s = (string)e.UserState;
                 string[] split = s.Split('|');
                 ListboxDataBaseUpdate.Items.Add(split[0]);
-                ListboxDataBaseUpdate.Items.Add(split[1]);
+                File.AppendAllText(NDSDirectories.PathUpdateDataBaseLogFile, string.Format("{0}{1}", split[0], Environment.NewLine));
+                // ListboxDataBaseUpdate.Items.Add(split[1]);
+                // File.AppendAllText(NDSDirectories.PathUpdateDataBaseLogFile, split[1]);
             }
         }
 
@@ -489,7 +495,7 @@ namespace NdsCRC_III
         private void btnRecherche_Click(object sender, EventArgs e)
         {
             _controler.SetTitleFilter(txtRecherche.Text);
-            SetDataSource();   
+            SetDataSource();
         }
         private void SetDataSource()
         {
@@ -529,12 +535,12 @@ namespace NdsCRC_III
             }
             else
             {
-                MessageBox.Show("Fichier non présent","Erreur",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Fichier non présent", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         void bw_Extract_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Copie Fini","Copie Rom",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show("Copie Fini", "Copie Rom", MessageBoxButtons.OK, MessageBoxIcon.Information);
             progressBarExtract.Value = 0;
             labelExtractPercent.Text = "00%";
             btnUnzip.Enabled = true;
@@ -549,7 +555,7 @@ namespace NdsCRC_III
         private void cbxLanguages_SelectedIndexChanged(object sender, EventArgs e)
         {
             int code = -10;
-            if (int.TryParse(cbxLanguages.SelectedValue.ToString(),out code))
+            if (int.TryParse(cbxLanguages.SelectedValue.ToString(), out code))
             {
                 if (code == -1)
                 {

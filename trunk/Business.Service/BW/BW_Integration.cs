@@ -302,8 +302,11 @@ namespace NdsCRC_III.BusinessService.BW
                         {
                             File.Delete(badDump);
                         }
-
-                        File.Move(romBadDump.RomPath, badDump);
+                        if (File.Exists(romBadDump.RomPath))
+                        {
+                            File.Move(romBadDump.RomPath, badDump);
+                        }
+                        
                         AdvanSceneDataBaseXML.Collection.Remove(romBadDump);
                         infoAvancement = TypeAvancement.RomIntegratedBadDump;
                     }
