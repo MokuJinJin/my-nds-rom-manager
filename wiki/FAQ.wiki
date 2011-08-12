@@ -1,0 +1,8 @@
+#summary FAQ & Help
+
+= FAQ & Help =
+
+
+== Reviewing the code ==
+
+After getting a working copy, you must download the latest release, and unzip it under NdsCRC III/bin/debug.
