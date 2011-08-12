@@ -105,29 +105,29 @@ namespace NdsCRC_III.BusinessService.BW
             {
                 switch (Path.GetExtension(file))
                 {
-                    case ".7z":
-                    case ".zip":
-                    case ".rar":
-                        SevenZipExtractor ex = new SevenZipExtractor(file);
-                        foreach (ArchiveFileInfo adata in ex.ArchiveFileData)
-                        {
-                            if (adata.FileName.EndsWith(".rar"))
-                            {
-                                MemoryStream ms = new MemoryStream();
-                                ex.ExtractFile(adata.Index, ms);
-                                SevenZipExtractor ex2 = new SevenZipExtractor(ms);
-                                foreach (ArchiveFileInfo adata2 in ex2.ArchiveFileData)
-                                {
-                                    if (adata.FileName == ".nds")
-                                    {
+                    //case ".7z":
+                    //case ".zip":
+                    //case ".rar":
+                    //    SevenZipExtractor ex = new SevenZipExtractor(file);
+                    //    foreach (ArchiveFileInfo adata in ex.ArchiveFileData)
+                    //    {
+                    //        if (adata.FileName.EndsWith(".rar"))
+                    //        {
+                    //            MemoryStream ms = new MemoryStream();
+                    //            ex.ExtractFile(adata.Index, ms);
+                    //            SevenZipExtractor ex2 = new SevenZipExtractor(ms);
+                    //            foreach (ArchiveFileInfo adata2 in ex2.ArchiveFileData)
+                    //            {
+                    //                if (adata.FileName == ".nds")
+                    //                {
 
-                                    }
-                                }
-                            }
-                        }
-                        LocateFirstVolume(file);
-                        SearchNdsInArchive(file);
-                        break;
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //    LocateFirstVolume(file);
+                    //    SearchNdsInArchive(file);
+                    //    break;
                     case ".nds":
                     case ".nd5":
                         string crc = GetCRC32FromFile(file);
