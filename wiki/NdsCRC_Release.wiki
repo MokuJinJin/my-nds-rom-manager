@@ -4,6 +4,7 @@
 
 == Features ==
 
+  * Multi-threaded
   * [http://www.advanscene.com ADVANsCEne] database
     * One Click Update
     * dat-version 1631 from 09 august 2011 included
