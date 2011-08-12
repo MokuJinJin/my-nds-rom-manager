@@ -102,6 +102,9 @@ namespace NdsCRC_III.DAL
             xmlread.Close();
         }
 
+        /// <summary>
+        /// Reload the Class
+        /// </summary>
         public static void Reload()
         {
             Load(NDSDirectories.StartupPath);
@@ -302,10 +305,18 @@ namespace NdsCRC_III.DAL
         /// <returns>Founded NDS Rom or null</returns>
         public static NDS_Rom FindCRCDataBase(string crc)
         {
-            List<NDS_Rom> roms =
-                (from rom in AdvanSceneDataBase
-                 where rom.RomCRC == crc
-                 select rom).ToList();
+            return FindCRC(crc, AdvanSceneDataBase);
+        }
+
+        /// <summary>
+        /// Search in a dataBase for a crc
+        /// </summary>
+        /// <param name="crc">Searched rom CRC32</param>
+        /// <param name="dataBase">A dataBase</param>
+        /// <returns>Founded NDS Rom or null</returns>
+        private static NDS_Rom FindCRC(string crc, List<NDS_Rom> dataBase)
+        {
+            List<NDS_Rom> roms = dataBase.Where(rom => rom.RomCRC == crc).ToList();
             switch (roms.Count)
             {
                 case 1:
@@ -331,18 +342,13 @@ namespace NdsCRC_III.DAL
         /// <returns>true if founded, false otherwise</returns>
         public static bool IsCRCInCollection(string crc)
         {
-            List<NDS_Rom> roms =
-                (from rom in Collection
-                 where rom.RomCRC == crc
-                 select rom).ToList();
-            switch (roms.Count)
+            if (FindCRC(crc, Collection) != null)
             {
-                case 1:
-                    return true;
-                case 0:
-                    return false;
-                default:
-                    return false;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -353,16 +359,23 @@ namespace NdsCRC_III.DAL
         /// <returns>Founded NDS Rom, null otherwise</returns>
         public static NDS_Rom GetCollectionRom(string romNumber)
         {
-            List<NDS_Rom> roms =
-                (from rom in Collection
-                 where rom.RomNumber == romNumber
-                 select rom).ToList();
+            return GetRomByRomNumber(romNumber, Collection);
+        }
+
+        /// <summary>
+        /// Search for a rom by RomNumber
+        /// </summary>
+        /// <param name="romNumber">RomNumber searched</param>
+        /// <param name="dataBase">a DataBase</param>
+        /// <returns>Founded NDS Rom, null otherwise</returns>
+        private static NDS_Rom GetRomByRomNumber(string romNumber, List<NDS_Rom> dataBase)
+        {
+            List<NDS_Rom> roms = dataBase.Where(rom => rom.RomNumber == romNumber).ToList();
             switch (roms.Count)
             {
                 case 1:
                     return roms[0];
                 case 0:
-                    return null;
                 default:
                     return null;
             }
@@ -375,18 +388,13 @@ namespace NdsCRC_III.DAL
         /// <returns>True if founded, false otherwise</returns>
         public static bool IsRomNumberInCollection(string romNumber)
         {
-            List<NDS_Rom> roms =
-                (from rom in Collection
-                 where rom.RomNumber == romNumber
-                 select rom).ToList();
-            switch (roms.Count)
+            if (GetRomByRomNumber(romNumber, Collection) != null)
             {
-                case 1:
-                    return true;
-                case 0:
-                    return false;
-                default:
-                    return false;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -396,14 +404,15 @@ namespace NdsCRC_III.DAL
         public static void SaveCollectionXML()
         {
             XmlSerializer xs = new XmlSerializer(typeof(List<NDS_Rom>));
-            XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
-            ns.Add("", "");
             using (StreamWriter wr = new StreamWriter(NDSDirectories.PathXmlHaveDB))
             {
-                xs.Serialize(wr, Collection, ns);
+                xs.Serialize(wr, Collection);
             }
         }
 
+        /// <summary>
+        /// Recalculate the collection and write it
+        /// </summary>
         public static void RepairCollection()
         {
             foreach (NDS_Rom rom in Collection)
@@ -415,44 +424,66 @@ namespace NdsCRC_III.DAL
                     rom.languageCode = romDB.languageCode;
                 }
             }
+
             SaveCollectionXML();
         }
 
         #region Filtres
+
+        /// <summary>
+        /// Filter a database with the title
+        /// </summary>
+        /// <param name="titre">the title</param>
+        /// <param name="dataBase">the database</param>
+        /// <returns>DataBase filtered</returns>
         public static List<NDS_Rom> DataBaseFiltreParTitre(string titre, EnumBase dataBase)
         {
-            List<NDS_Rom> Base = getDataBase(dataBase);
+            List<NDS_Rom> database = GetDataBase(dataBase);
             List<NDS_Rom> roms =
-                (from rom in Base
+                (from rom in database
                  where rom.title.ToLower().Contains(titre.ToLower())
                  select rom).ToList();
             return roms;
         }
-        public static List<NDS_Rom> DataBaseFiltreParLangue(int languageCode,EnumBase dataBase)
+
+        /// <summary>
+        /// Get database filtered by single language
+        /// </summary>
+        /// <param name="languageCode">language's code</param>
+        /// <param name="dataBase">the database</param>
+        /// <returns>filtered database</returns>
+        public static List<NDS_Rom> DataBaseFiltreParLangue(int languageCode, EnumBase dataBase)
         {
-            List<NDS_Rom> Base = getDataBase(dataBase);
+            List<NDS_Rom> database = GetDataBase(dataBase);
             List<NDS_Rom> roms =
-                (from rom in Base
+                (from rom in database
                  where rom.languageCode.Contains(languageCode)
                  select rom).ToList();
             return roms;
         }
-        private static List<NDS_Rom> getDataBase(EnumBase dataBase)
+
+        /// <summary>
+        /// Get specific dataBase
+        /// </summary>
+        /// <param name="dataBase">Wich dataBase</param>
+        /// <returns>The database you ask for</returns>
+        private static List<NDS_Rom> GetDataBase(EnumBase dataBase)
         {
-            List<NDS_Rom> Base = new List<NDS_Rom>();
+            List<NDS_Rom> database = new List<NDS_Rom>();
             switch (dataBase)
             {
                 case EnumBase.AdvanScene:
-                    Base = AdvanSceneDataBase;
+                    database = AdvanSceneDataBase;
                     break;
                 case EnumBase.Collection:
-                    Base = Collection;
+                    database = Collection;
                     break;
                 case EnumBase.CollectionMissing:
-                    Base = CollectionMissing;
+                    database = CollectionMissing;
                     break;
             }
-            return Base;
+
+            return database;
         }
         #endregion
     }

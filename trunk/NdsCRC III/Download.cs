@@ -163,6 +163,12 @@ namespace NdsCRC_III
             _autoclose = chkAutoQuit.Checked;
         }
 
+        /// <summary>
+        /// Start the download without showing it
+        /// </summary>
+        /// <param name="url">url to download</param>
+        /// <param name="fileName">filename on the disk</param>
+        /// <param name="formText">ttitle of the form</param>
         public void ShowDialog(string url, string fileName, string formText)
         {
             base.ShowDialog();

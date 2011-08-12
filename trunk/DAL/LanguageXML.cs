@@ -3,10 +3,10 @@
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
-using System.Collections.Generic;
-
 namespace NdsCRC_III.DAL
 {
+    using System.Collections.Generic;
+
     public static class LanguageXML
     {
         static public Dictionary<int, string> DicoLanguage = new Dictionary<int, string>();
