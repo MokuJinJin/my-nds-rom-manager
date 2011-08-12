@@ -173,7 +173,7 @@ namespace NdsCRC_III
                 throw new Exception("StartupPath Not defined");
             }
 
-            xmlread = XmlReader.Create(string.Format("data{0}xml{0}NDScrc_III.xml", Path.PathSeparator));
+            xmlread = XmlReader.Create(string.Format("data{0}xml{0}NDScrc_III.xml", Path.DirectorySeparatorChar));
             xdoc = new XmlDocument();
             xdoc.Load(xmlread);
 
