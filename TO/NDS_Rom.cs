@@ -274,13 +274,13 @@ namespace NdsCRC_III
         public override int GetHashCode()
         {
 
-            //Get hash code for the releaseNumber field if it is not null.
+            // Get hash code for the releaseNumber field if it is not null.
             int hashreleaseNumber = releaseNumber == null ? 0 : releaseNumber.GetHashCode();
 
-            //Get hash code for the RomCRC field.
+            // Get hash code for the RomCRC field.
             int hashRomCRC = RomCRC.GetHashCode();
 
-            //Calculate the hash code for the rom.
+            // Calculate the hash code for the rom.
             return hashreleaseNumber ^ hashRomCRC;
         }
 

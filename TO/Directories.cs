@@ -173,7 +173,7 @@ namespace NdsCRC_III
                 throw new Exception("StartupPath Not defined");
             }
 
-            xmlread = XmlReader.Create("data\\xml\\NDScrc_III.xml");
+            xmlread = XmlReader.Create(string.Format("data{0}xml{0}NDScrc_III.xml", Path.PathSeparator));
             xdoc = new XmlDocument();
             xdoc.Load(xmlread);
 
@@ -343,7 +343,7 @@ namespace NdsCRC_III
                     */
                     #endregion
 
-                    r = string.Format("http://www.retrocovers.com/offline/imgs/ADVANsCEne_NDS/{0}/{1}a.png", getUriFromReleaseNumber(releaseNumber), releaseNumber);
+                    r = string.Format("http://www.retrocovers.com/offline/imgs/ADVANsCEne_NDS/{0}/{1}a.png", GetUriFromReleaseNumber(releaseNumber), releaseNumber);
                     break;
                 case NDSDirectoriesEnum.UrlInGame:
                     #region Exemple
@@ -355,7 +355,7 @@ namespace NdsCRC_III
                     */
                     #endregion
 
-                    r = string.Format("http://www.retrocovers.com/offline/imgs/ADVANsCEne_NDS/{0}/{1}b.png", getUriFromReleaseNumber(releaseNumber), releaseNumber);
+                    r = string.Format("http://www.retrocovers.com/offline/imgs/ADVANsCEne_NDS/{0}/{1}b.png", GetUriFromReleaseNumber(releaseNumber), releaseNumber);
                     break;
                 case NDSDirectoriesEnum.UrlIco:
                     #region Exemple
@@ -365,27 +365,32 @@ namespace NdsCRC_III
                     */
                     #endregion
 
-                    r = string.Format("http://www.advanscene.com/offline/imgs/NDSicon/{0}/{1}.png", getUriFromReleaseNumber(releaseNumber), releaseNumber.ToString("0000"));
+                    r = string.Format("http://www.advanscene.com/offline/imgs/NDSicon/{0}/{1}.png", GetUriFromReleaseNumber(releaseNumber), releaseNumber.ToString("0000"));
                     break;
                 case NDSDirectoriesEnum.UrlNfo:
-                    r = string.Format("http://www.advanscene.com/offline/nfo/NDSnfo/{0}/{1}.nfo", getUriFromReleaseNumber(releaseNumber), releaseNumber.ToString("0000"));
+                    r = string.Format("http://www.advanscene.com/offline/nfo/NDSnfo/{0}/{1}.nfo", GetUriFromReleaseNumber(releaseNumber), releaseNumber.ToString("0000"));
                     break;
             }
 
             return r;
         }
 
-        private static string getUriFromReleaseNumber(int releaseNumber)
+        /// <summary>
+        /// Calculate URI from release number
+        /// </summary>
+        /// <param name="releaseNumber">the release number</param>
+        /// <returns>URI</returns>
+        private static string GetUriFromReleaseNumber(int releaseNumber)
         {
             string r = string.Empty;
             if (releaseNumber % 500 == 0)
             {
                 releaseNumber--;
             }
+
             double d = Math.Floor((double)releaseNumber / 500) * 500;
             r = string.Format("{0}-{1}", d + 1, d + 500);
             return r;
-
         }
 
         /// <summary>
