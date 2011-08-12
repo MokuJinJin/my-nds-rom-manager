@@ -319,8 +319,9 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabImages);
             this.tabControl1.Controls.Add(this.tabNFO);
             this.tabControl1.Controls.Add(this.tabInformations);
@@ -455,6 +456,8 @@
             // 
             // ListboxDataBaseUpdate
             // 
+            this.ListboxDataBaseUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.ListboxDataBaseUpdate.FormattingEnabled = true;
             this.ListboxDataBaseUpdate.Location = new System.Drawing.Point(3, 3);
             this.ListboxDataBaseUpdate.Name = "ListboxDataBaseUpdate";
@@ -551,6 +554,8 @@
             // 
             // tabControl2
             // 
+            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.tabControl2.Controls.Add(this.tabCollection);
             this.tabControl2.Controls.Add(this.tabDataBase);
             this.tabControl2.Controls.Add(this.tabMissing);
@@ -578,7 +583,7 @@
             this.tabDataBase.Location = new System.Drawing.Point(4, 22);
             this.tabDataBase.Name = "tabDataBase";
             this.tabDataBase.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDataBase.Size = new System.Drawing.Size(500, 412);
+            this.tabDataBase.Size = new System.Drawing.Size(510, 412);
             this.tabDataBase.TabIndex = 1;
             this.tabDataBase.Text = "DataBase";
             this.tabDataBase.UseVisualStyleBackColor = true;
@@ -608,7 +613,7 @@
             this.tabMissing.Location = new System.Drawing.Point(4, 22);
             this.tabMissing.Name = "tabMissing";
             this.tabMissing.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMissing.Size = new System.Drawing.Size(500, 412);
+            this.tabMissing.Size = new System.Drawing.Size(510, 412);
             this.tabMissing.TabIndex = 2;
             this.tabMissing.Text = "Missing";
             this.tabMissing.UseVisualStyleBackColor = true;

@@ -15,7 +15,9 @@ namespace NdsCRC_III
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            NDSDirectories.SetStartupPath(Application.StartupPath);
             Application.Run(new MainForm());
+            // Application.Run(new Form1());
         }
     }
 }

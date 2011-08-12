@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using NdsCRC_III.BusinessService;
 
@@ -60,7 +55,7 @@ namespace NdsCRC_III
             dataGridView1.Columns["Version"].Visible = false;
             dataGridView1.Columns["Wifi"].Visible = false;
             dataGridView1.Columns["duplicateid"].Visible = false;
-            dataGridView1.Columns["Have"].Visible = false;
+            // dataGridView1.Columns["Have"].Visible = false;
             dataGridView1.Columns["RomNumber"].Visible = true;
             dataGridView1.GridColor = Color.White;
             dataGridView1.Columns["RomNumber"].DisplayIndex = 0;

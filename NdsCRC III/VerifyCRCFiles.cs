@@ -18,12 +18,13 @@ namespace NdsCRC_III
         public VerifyCRCFiles()
         {
             InitializeComponent();
+            
         }
         public void Start()
         {
             label1.Text = "Counting files ...";
             
-            BW_VerifyCRCFiles bw = new BW_VerifyCRCFiles();
+            BW_VerifyCRCFiles bw = new BW_VerifyCRCFiles(Application.StartupPath);
             bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
             bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             bw.RunWorkerAsync();
@@ -49,6 +50,11 @@ namespace NdsCRC_III
         void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("The End");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Start();
         }
     }
 }
