@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="AdvanSceneDataBaseXML.cs" company="Zed Byt Corp">
+// <copyright file="NDSAdvanScene.cs" company="Zed Byt Corp">
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
