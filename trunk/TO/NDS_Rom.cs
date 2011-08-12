@@ -8,7 +8,7 @@ using System.IO;
 
 namespace NdsCRC_III
 {
-    [XmlRoot("NDS_Rom_Collection")]
+    [XmlRoot("NDS_Rom")]
     public class NDS_Rom : IEquatable<NDS_Rom>
     {
         public string imageNumber { get; set; }

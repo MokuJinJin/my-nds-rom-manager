@@ -20,9 +20,10 @@ namespace BusinessService.BW
         void bw_maj_img_nfo_DoWork(object sender, DoWorkEventArgs e)
         {
             Queue<MajUrl> Liste = new Queue<MajUrl>();
-            for (int i = 0; i < AdvanSceneDataBaseXML.AdvanSceneDataBase.Count; i++)
+            // for (int i = 0; i < AdvanSceneDataBaseXML.AdvanSceneDataBase.Count; i++)
+            for (int i = 0; i < DataAcessLayer.NdsAdvanScene.Count; i++)
             {
-                int releaseNumber = int.Parse(AdvanSceneDataBaseXML.AdvanSceneDataBase[i].releaseNumber);
+                int releaseNumber = int.Parse(DataAcessLayer.NdsAdvanScene[i].releaseNumber);
                 string filePath = string.Format("{0}{1}.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
                 if (!File.Exists(filePath))
                 {
@@ -47,7 +48,7 @@ namespace BusinessService.BW
                 {
                     Liste.Enqueue(new MajUrl() { uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlNfo), filepath = filePath });
                 }
-                ReportProgress(i * 100 / AdvanSceneDataBaseXML.AdvanSceneDataBase.Count);
+                ReportProgress(i * 100 / DataAcessLayer.NdsAdvanScene.Count);
             }
             e.Result = Liste;
         }

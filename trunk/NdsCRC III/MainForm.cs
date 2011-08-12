@@ -359,8 +359,9 @@ namespace NdsCRC_III
                 }
 
                 //bool RomExist = bool.Parse((sender as DataGridView)["RomExist", (sender as DataGridView).SelectedRows[0].Index].Value.ToString());
-                bool RomExist = File.Exists(dgv["RomPath", dgv.SelectedRows[0].Index].Value.ToString());
-                if (RomExist)
+                this.currentPathSelectedRom = dgv["RomPath", dgv.SelectedRows[0].Index].Value.ToString();
+                // bool RomExist = File.Exists(dgv["RomPath", dgv.SelectedRows[0].Index].Value.ToString());
+                if (File.Exists(currentPathSelectedRom))
                 {
                     btnUnzip.Enabled = true;
                     btnUnzip.Text = "Copier sur Carte";
@@ -526,7 +527,7 @@ namespace NdsCRC_III
                 folderBrowserDialogExtract.ShowDialog();
                 if (Directory.Exists(folderBrowserDialogExtract.SelectedPath) && currentPathSelectedRom != string.Empty)
                 {
-                    BW_Extract bw = new BW_Extract(folderBrowserDialogExtract.SelectedPath, currentPathSelectedRom);
+                    BW_Extract bw = new BW_Extract(currentPathSelectedRom, folderBrowserDialogExtract.SelectedPath);
                     bw.ProgressChanged += new ProgressChangedEventHandler(bw_Extract_ProgressChanged);
                     bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_Extract_RunWorkerCompleted);
                     btnUnzip.Enabled = false;

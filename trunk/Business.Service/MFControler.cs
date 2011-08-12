@@ -28,7 +28,7 @@
         {
             get
             {
-                return AdvanSceneDataBaseXML.DatVersion;
+                return DataAcessLayer.DatVersion;
             }
         }
 
@@ -36,7 +36,7 @@
         {
             get
             {
-                return AdvanSceneDataBaseXML.DatCreationDate;
+                return NDSAdvanScene.DatCreationDate;
             }
         }
 
@@ -52,7 +52,7 @@
         {
             get
             {
-                return AdvanSceneDataBaseXML.URLs["datURL"];
+                return NDSAdvanScene.URLs["datURL"];
             }
         }
 
@@ -60,7 +60,7 @@
         {
             get
             {
-                return AdvanSceneDataBaseXML.URLs["datFileName"];
+                return NDSAdvanScene.URLs["datFileName"];
             }
         }
         
@@ -68,7 +68,7 @@
         {
             get
             {
-                return AdvanSceneDataBaseXML.URLs["datVersionURL"];
+                return NDSAdvanScene.URLs["datVersionURL"];
             }
         }
         
@@ -86,8 +86,8 @@
         /// <param name="startUpPath">Application Start Up Path</param>
         public MFControler(string startUpPath)
         {
-            AdvanSceneDataBaseXML.Load(startUpPath);
-            //NDSDirectories.SetStartupPath(startUpPath);
+            // DataAcessLayer.AdvanScene.Load(startUpPath);
+            // NDSDirectories.SetStartupPath(startUpPath);
             InitDataBase();
             f.ChangeFilter += new ChangeFilterEventHandler(f_ChangeFilter);
         }
@@ -104,9 +104,9 @@
         /// </summary>
         private void InitDataBase()
         {
-            AdvanSceneDataBase = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.AdvanSceneDataBase);
-            Collection = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.Collection);
-            CollectionMissing = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.CollectionMissing);
+            AdvanSceneDataBase = new BindingListView<NDS_Rom>(DataAcessLayer.NdsAdvanScene);
+            Collection = new BindingListView<NDS_Rom>(DataAcessLayer.NdsCollection);
+            CollectionMissing = new BindingListView<NDS_Rom>(DataAcessLayer.NdsCollectionMissing);
         }
 
         /// <summary>
@@ -173,7 +173,7 @@
         /// </summary>
         public void ReloadAdvanSceneDataBase()
         {
-            AdvanSceneDataBaseXML.Reload();
+            DataAcessLayer.NdsAdvanSceneReload();
             InitDataBase();
         }
 
@@ -245,7 +245,7 @@
 
         public void RepairCollection()
         {
-            AdvanSceneDataBaseXML.RepairCollection();
+            DataAcessLayer.RepairCollection();
         }
     }
 }

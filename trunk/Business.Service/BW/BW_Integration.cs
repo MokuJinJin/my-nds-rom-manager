@@ -13,7 +13,7 @@ namespace NdsCRC_III.BusinessService.BW
     using NdsCRC_III.DAL;
     using System.Collections.Generic;
     using System.Linq;
-    
+
     /// <summary>
     /// Type advance
     /// </summary>
@@ -75,7 +75,7 @@ namespace NdsCRC_III.BusinessService.BW
         /// Object use to report progress (compression)
         /// </summary>
         private TOSortie tosCmp;
-        
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -87,7 +87,7 @@ namespace NdsCRC_III.BusinessService.BW
             this.WorkerSupportsCancellation = true;
             this.DoWork += new DoWorkEventHandler(BW_Integration_DoWork);
         }
-        
+
         /// <summary>
         /// List of rom to be integrated
         /// </summary>
@@ -120,22 +120,22 @@ namespace NdsCRC_III.BusinessService.BW
                                 {
                                     if (adata.FileName == ".nds")
                                     {
-                                        
+
                                     }
                                 }
                             }
                         }
-                        LocateFirstVolume(file);    
+                        LocateFirstVolume(file);
                         SearchNdsInArchive(file);
                         break;
                     case ".nds":
                     case ".nd5":
                         string crc = GetCRC32FromFile(file);
                         NdsFileIntegration(file, crc);
-                    break;
+                        break;
                     default:
                         // nothing to do
-                    break;
+                        break;
                 }
             }
         }
@@ -154,7 +154,7 @@ namespace NdsCRC_III.BusinessService.BW
                 {
                     if (adata.FileName.EndsWith(".rar"))
                     {
-                        
+
                     }
                 }
             }
@@ -169,7 +169,7 @@ namespace NdsCRC_III.BusinessService.BW
                 isVolume =
                     extractor.ArchiveProperties.Any(x =>
                         x.Name.Equals("IsVolume") && x.Value.Equals(true));
-                
+
                 parts = (
                     from x in extractor.ArchiveProperties
                     where x.Name.Equals("Number of volumes")
@@ -221,18 +221,18 @@ namespace NdsCRC_III.BusinessService.BW
 
             return null;
         }
-        void IntegrationArchive(string archive,ArchiveFileInfo adata)
+        void IntegrationArchive(string archive, ArchiveFileInfo adata)
         {
-            
+
             string SevenZipCRC = adata.Crc.ToString("X");
             while (SevenZipCRC.Length != 8)
             {
                 SevenZipCRC = string.Format("0{0}", SevenZipCRC);
             }
-            NDS_Rom romInfo = AdvanSceneDataBaseXML.FindCRCDataBase(SevenZipCRC.ToUpper());
+            NDS_Rom romInfo = DataAcessLayer.FindCRCDataBase(SevenZipCRC.ToUpper());
             if (romInfo != null)
             {
-                if (!AdvanSceneDataBaseXML.IsCRCInCollection(SevenZipCRC.ToUpper()))
+                if (!DataAcessLayer.IsCRCInCollection(SevenZipCRC.ToUpper()))
                 {
                     SevenZipExtractor szip = new SevenZipExtractor(archive);
                     szip.Extracting += new EventHandler<ProgressEventArgs>(szip_Extracting);
@@ -267,7 +267,7 @@ namespace NdsCRC_III.BusinessService.BW
         {
             ReportProgress(tosCmp.Avance(e.PercentDone), tosCmp);
         }
-        
+
         /// <summary>
         /// Add (or not) the file in the collection
         /// </summary>
@@ -276,10 +276,10 @@ namespace NdsCRC_III.BusinessService.BW
         private void NdsFileIntegration(string file, string crc)
         {
             //string crc = GetCRC32FromFile(file);
-            NDS_Rom romInfo = AdvanSceneDataBaseXML.FindCRCDataBase(crc.ToUpper());
+            NDS_Rom romInfo = DataAcessLayer.FindCRCDataBase(crc.ToUpper());
             if (romInfo != null)
             {
-                if (AdvanSceneDataBaseXML.IsCRCInCollection(crc.ToUpper()))
+                if (DataAcessLayer.IsCRCInCollection(crc.ToUpper()))
                 {
                     RomInCollection(romInfo, file);
                 }
@@ -287,9 +287,9 @@ namespace NdsCRC_III.BusinessService.BW
                 {
                     TypeAvancement infoAvancement = TypeAvancement.RomIntegrated;
                     string complementNomXXXX = (romInfo.RomNumber == "xxxx") ? string.Format("({0})", romInfo.Serial) : string.Empty;
-                    if (AdvanSceneDataBaseXML.IsRomNumberInCollection(romInfo.RomNumber))
+                    if (DataAcessLayer.IsRomNumberInCollection(romInfo.RomNumber))
                     {
-                        NDS_Rom romBadDump = AdvanSceneDataBaseXML.GetCollectionRom(romInfo.RomNumber);
+                        NDS_Rom romBadDump = DataAcessLayer.GetCollectionRom(romInfo.RomNumber);
                         //string fileArchive = string.Format(
                         //    "{0}{1}\\({2}) {3}{4}.7z",
                         //    NDSDirectories.PathRom,
@@ -306,8 +306,8 @@ namespace NdsCRC_III.BusinessService.BW
                         {
                             File.Move(romBadDump.RomPath, badDump);
                         }
-                        
-                        AdvanSceneDataBaseXML.Collection.Remove(romBadDump);
+
+                        DataAcessLayer.NdsCollection.Remove(romBadDump);
                         infoAvancement = TypeAvancement.RomIntegratedBadDump;
                     }
 
@@ -321,18 +321,30 @@ namespace NdsCRC_III.BusinessService.BW
                     File.Move(file, source);
 
                     string zipFile = string.Format("{0}({1}) {2}{3}.7z", NDSDirectories.PathTemp, romInfo.RomNumber, romInfo.title, complementNomXXXX);
-                    ZipRom(zipFile, source);
+                    try
+                    {
+                        ZipRom(zipFile, source);
+                        tos.SetIntituleTraitement(string.Format("Compressing {0} done", romInfo.title));
+                        File.Delete(source);
+                        Directory.Delete(Path.GetDirectoryName(source));
+                        tos.SetRomInfo(romInfo);
+                        tos.SetRomInfoIntegration(infoAvancement, Path.GetFileName(file));
+                        ReportProgress(tos.PourcentageAvancement(), tos);
 
-                    tos.SetIntituleTraitement(string.Format("Compressing {0} done", romInfo.title));
-                    File.Delete(source);
-                    Directory.Delete(Path.GetDirectoryName(source));
-                    tos.SetRomInfo(romInfo);
-                    tos.SetRomInfoIntegration(infoAvancement, Path.GetFileName(file));
-                    ReportProgress(tos.PourcentageAvancement(), tos);
+                        NDSDirectories.ArchiveRom(zipFile, romInfo.RomNumber);
+                        DataAcessLayer.NdsCollection.Add(romInfo);
+                        DataAcessLayer.SaveCollectionXML();
+                    }
+                    catch (Exception ex)
+                    {
+                        // throw;
+                        tos.SetIntituleTraitement(string.Format("Une erreur est survenue pendant la compression:{0}{1}", Environment.NewLine, ex.Message));
+                        File.Move(source, file);
+                        tos.SetRomInfo(romInfo);
+                        tos.SetRomInfoIntegration(TypeAvancement.Nothing, Path.GetFileName(file));
+                        ReportProgress(tos.PourcentageAvancement(), tos);
 
-                    NDSDirectories.ArchiveRom(zipFile, romInfo.RomNumber);
-                    AdvanSceneDataBaseXML.Collection.Add(romInfo);
-                    AdvanSceneDataBaseXML.SaveCollectionXML();
+                    }
                 }
             }
             else
@@ -357,7 +369,7 @@ namespace NdsCRC_III.BusinessService.BW
             ReportProgress(tos.Avance(TypeAvancement.RomNotFound), tos);
         }
 
-        private void RomInCollection(NDS_Rom romInfo,string file)
+        private void RomInCollection(NDS_Rom romInfo, string file)
         {
             tos.SetIntituleTraitement(string.Format("Already have {0} ({1}) => This will not be integrated.", romInfo.title, romInfo.RomNumber));
             tos.SetRomInfo(romInfo);
@@ -405,7 +417,14 @@ namespace NdsCRC_III.BusinessService.BW
             cmp.Compressing += new EventHandler<ProgressEventArgs>(Cmp_Compressing);
             cmp.CompressionFinished += new EventHandler<EventArgs>(Cmp_CompressionFinished);
             cmp.FileCompressionStarted += new EventHandler<FileNameEventArgs>(Cmp_FileCompressionStarted);
-            cmp.CompressFiles(zipFile, new string[] { filePath });
+            try
+            {
+                cmp.CompressFiles(zipFile, new string[] { filePath });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -508,7 +527,7 @@ namespace NdsCRC_III.BusinessService.BW
         /// What happen during integration
         /// </summary>
         public TypeAvancement WhatHappen { get; private set; }
-        
+
         /// <summary>
         /// Filename which is actually integrated
         /// </summary>
@@ -529,7 +548,7 @@ namespace NdsCRC_III.BusinessService.BW
             WhatHappen = ta;
             FileName = fn;
         }
-        
+
         /// <summary>
         /// set informations about the rom
         /// </summary>
@@ -538,7 +557,7 @@ namespace NdsCRC_III.BusinessService.BW
         {
             RomInfo = rom;
         }
-        
+
         /// <summary>
         /// set What the worker is doing
         /// </summary>
@@ -593,7 +612,7 @@ namespace NdsCRC_III.BusinessService.BW
         {
             return (int)Math.Floor((double)(NbActuel * 100 / NbFichier));
         }
-        
+
         /// <summary>
         /// New work (reset)
         /// </summary>

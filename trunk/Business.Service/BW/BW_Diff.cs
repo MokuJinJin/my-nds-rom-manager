@@ -13,6 +13,8 @@ namespace NdsCRC_III.BusinessService.BW
     using System.Text;
     using System.Xml;
     using DAL;
+    using System.Xml.Serialization;
+    using System.IO;
 
     /// <summary>
     /// BackgroundWorker which makes diff with old AdvanScene data and the new one
@@ -76,6 +78,37 @@ namespace NdsCRC_III.BusinessService.BW
                     }
                 }
             }
+        }
+
+        private void Bw_DoWork2(object sender, DoWorkEventArgs e)
+        {
+            
+            List<NDS_Rom> xmlAvant = new List<NDS_Rom>();
+            XmlSerializer xs = new XmlSerializer(typeof(List<NDS_Rom>));
+            using (StreamReader rd = new StreamReader(_xmlAvant))
+            {
+                xmlAvant = xs.Deserialize(rd) as List<NDS_Rom>;
+            }
+
+            List<NDS_Rom> xmlApres = new List<NDS_Rom>();
+            xs = new XmlSerializer(typeof(List<NDS_Rom>));
+            using (StreamReader rd = new StreamReader(_xmlApres))
+            {
+                xmlApres = xs.Deserialize(rd) as List<NDS_Rom>;
+            }
+
+            IEqualityComparer<NDS_Rom> comparerRomNumberAndCRC = new LambdaComparer<NDS_Rom>(
+                (o, n) =>
+                    o.releaseNumber == n.releaseNumber &&
+                    o.RomCRC == n.RomCRC
+                );
+            List<NDS_Rom> diff = xmlApres.Except(xmlAvant, comparerRomNumberAndCRC).ToList();
+            
+            IEqualityComparer<NDS_Rom> comparerRomNumber = new LambdaComparer<NDS_Rom>(
+                (o, n) =>
+                    o.releaseNumber == n.releaseNumber
+                );
+            List<NDS_Rom> diffCRC = xmlApres.Intersect(diff, comparerRomNumber).ToList();
         }
     }
 }
