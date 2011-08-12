@@ -7,7 +7,7 @@
   * [http://www.advanscene.com ADVANsCEne] database
     * One Click Update
     * datversion 1631 from 09 august 2011 included
-    * Check modifications between two update : some CRC may have been changed (MODIFIED)
+    * Check modifications between two update : some CRC may have been changed (MODIFIED release of the rom)
 
   * Download all missing image and nfo (no CRC check)
 
