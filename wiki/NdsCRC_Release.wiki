@@ -6,18 +6,19 @@
 
   * [http://www.advanscene.com ADVANsCEne] database
     * One Click Update
-    * datversion 1631 from 09 august 2011 included
-    * Check modifications between two update : some CRC may have been changed (MODIFIED release of the rom)
+    * dat-version 1631 from 09 august 2011 included
+    * Check modifications between two update : some CRC may have been changed (MODIFIED release of the ROM)
+    * Check missing image and nfo, automatic download
 
-  * Download all missing image and nfo (no CRC check)
+  * One click Download all missing image and nfo (no CRC check)
 
   * When storing a new rom :
     * Store .nds and .nd5 files.
     * Check CRC of the file, rename it and store it
-    * Check if the rom is already in your collection
-    * Check if the rom in your collection has the good CRC, if not replace it with the new one
+    * Check if the ROM is already in your collection
+    * Check if the ROM in your collection has the good CRC, if not replace it with the new one
 
-  * Unzip rom to any directory (Copier carte)
+  * Unzip ROM to any directory (Copier carte)
 
   * Filters :
     * title (contains)
