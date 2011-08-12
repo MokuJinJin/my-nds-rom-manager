@@ -24,3 +24,5 @@
   * Filters :
     * title (contains)
     * language (one at the time)
+
+  * *Do not work with demo ROM*
