@@ -144,6 +144,17 @@ namespace NdsCRC_III
         /// Path to AdvanceScene Database
         /// </summary>
         public static string PathXmlDB { get; private set; }
+
+        /// <summary>
+        /// Path to the Update DataBase Log File
+        /// </summary>
+        public static string PathUpdateDataBaseLogFile 
+        {
+            get
+            {
+                return string.Format("{0}\\UpdateDataBaseLog_{1}_{2}_{3}.txt", NDSDirectories.StartupPath, DateTime.Now.Year, DateTime.Now.Month.ToString("00"), DateTime.Now.Day.ToString("00"));
+            }
+        }
         
         /// <summary>
         /// Method to set Application Startup path and all other directories link to it

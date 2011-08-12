@@ -87,7 +87,7 @@
         public MFControler(string startUpPath)
         {
             AdvanSceneDataBaseXML.Load(startUpPath);
-            NDSDirectories.SetStartupPath(startUpPath);
+            //NDSDirectories.SetStartupPath(startUpPath);
             InitDataBase();
             f.ChangeFilter += new ChangeFilterEventHandler(f_ChangeFilter);
         }
@@ -174,6 +174,7 @@
         public void ReloadAdvanSceneDataBase()
         {
             AdvanSceneDataBaseXML.Reload();
+            InitDataBase();
         }
 
         /// <summary>

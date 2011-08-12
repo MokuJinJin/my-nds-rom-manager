@@ -44,9 +44,9 @@ namespace NdsCRC_III
             List<string> files = new List<string>();
             files.AddRange(Directory.GetFiles(pathToScan, "*.nds", SearchOption.TopDirectoryOnly));
             files.AddRange(Directory.GetFiles(pathToScan, "*.nd5", SearchOption.TopDirectoryOnly));
-            files.AddRange(Directory.GetFiles(pathToScan, "*.zip", SearchOption.TopDirectoryOnly));
-            files.AddRange(Directory.GetFiles(pathToScan, "*.7z", SearchOption.TopDirectoryOnly));
-            files.AddRange(Directory.GetFiles(pathToScan, "*.rar", SearchOption.TopDirectoryOnly));
+            //files.AddRange(Directory.GetFiles(pathToScan, "*.zip", SearchOption.TopDirectoryOnly));
+            //files.AddRange(Directory.GetFiles(pathToScan, "*.7z", SearchOption.TopDirectoryOnly));
+            //files.AddRange(Directory.GetFiles(pathToScan, "*.rar", SearchOption.TopDirectoryOnly));
 
 
             if (files.Count > 0)
@@ -71,8 +71,13 @@ namespace NdsCRC_III
             if (e.Cancelled)
             {
                 listBox1.Items.Add("Aborted.");
+                this.Text = "Aborted - IntegrationNDS";
             }
-            this.Text = "Complete - IntegrationNDS";
+            else
+            {
+                this.Text = "Complete - IntegrationNDS";
+            }
+            
             MajListBox();
             btnAbort.Text = "Quit";
         }
