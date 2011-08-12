@@ -85,7 +85,6 @@
     <Compile Include="BW\BW_Diff.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BW\BW_DL.cs" />
     <Compile Include="BW\BW_Extract.cs">
       <SubType>Component</SubType>
     </Compile>
