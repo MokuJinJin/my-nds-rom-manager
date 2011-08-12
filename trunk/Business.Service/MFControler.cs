@@ -86,8 +86,8 @@
         /// <param name="startUpPath">Application Start Up Path</param>
         public MFControler(string startUpPath)
         {
-            NDSDirectories.SetStartupPath(startUpPath);
             AdvanSceneDataBaseXML.Load(startUpPath);
+            NDSDirectories.SetStartupPath(startUpPath);
             InitDataBase();
             f.ChangeFilter += new ChangeFilterEventHandler(f_ChangeFilter);
         }
