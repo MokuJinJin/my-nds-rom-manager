@@ -162,8 +162,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="disk.ico" />
-    <Content Include="Library\Equin.ApplicationFramework.BindingListView.dll" />
-    <Content Include="Library\SevenZipSharp.dll" />
+    <Content Include="Library\7z.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Library\Equin.ApplicationFramework.BindingListView.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Library\SevenZipSharp.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Library\SevenZipSharp.v0.61.dll" />
     <Content Include="Library\SevenZipSharp.v0.63.dll" />
     <Content Include="Library\SevenZipSharp.v0.64.dll" />
