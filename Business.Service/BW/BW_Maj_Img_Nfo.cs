@@ -23,7 +23,7 @@ namespace BusinessService.BW
             // for (int i = 0; i < AdvanSceneDataBaseXML.AdvanSceneDataBase.Count; i++)
             for (int i = 0; i < DataAcessLayer.NdsAdvanScene.Count; i++)
             {
-                int releaseNumber = int.Parse(DataAcessLayer.NdsAdvanScene[i].releaseNumber);
+                int releaseNumber = int.Parse(DataAcessLayer.NdsAdvanScene[i].ReleaseNumber);
                 string filePath = string.Format("{0}{1}.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
                 if (!File.Exists(filePath))
                 {
@@ -52,10 +52,5 @@ namespace BusinessService.BW
             }
             e.Result = Liste;
         }
-    }
-    public class MajUrl
-    {
-        public string uri;
-        public string filepath;
     }
 }

@@ -1,20 +1,80 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.XPath;
-using System.Xml;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="Xpath.cs" company="Zed Byt Corp">
+//     Copyright Zed Byt Corp 2010
+// </copyright>
+//-----------------------------------------------------------------------
 namespace NdsCRC_III.DAL
 {
+    using System;
+    using System.Xml;
+    using System.Xml.XPath;
+
+    /// <summary>
+    /// Enumeration XPathSearch
+    /// </summary>
+    public enum XPathSearch
+    {
+        imageNumber,
+        releaseNumber,
+        title,
+        saveType,
+        romSize,
+        publisher,
+        location,
+        sourceRom,
+        language,
+        romCRC,
+        im1CRC,
+        im2CRC,
+        icoCRC,
+        nfoCRC,
+        genre,
+        dumpdate,
+        internalname,
+        serial,
+        version,
+        wifi,
+        filename,
+        dirname,
+        duplicateid,
+        comment,
+        RomNumber,
+    }
+
+    /// <summary>
+    /// Class for Dif on new DataBase DL
+    /// </summary>
     public class XMLExplorateur
     {
-        protected XPathDocument docNav;
-        protected XPathNavigator nav;
-        protected XPathNodeIterator xit;
-        protected bool initpath = true;
+        private XPathDocument docNav;
+        private XPathNavigator nav;
+        private XPathNodeIterator xit;
 
-        public string strExpression { get; set; }
+        /// <summary>
+        /// Constructor for XMLExplorateur
+        /// </summary>
+        public XMLExplorateur() 
+        {
+        }
+
+        /// <summary>
+        /// Constructor for XMLExplorateur
+        /// </summary>
+        public XMLExplorateur(string path)
+        {
+            try
+            {
+                docNav = new XPathDocument(path);
+                nav = docNav.CreateNavigator();
+            }
+            catch
+            {
+                docNav = null;
+                nav = null;
+            }
+        }
+
+        public string StrExpression { get; set; }
 
         public bool Search(XPathSearch search, string s)
         {
@@ -71,13 +131,14 @@ namespace NdsCRC_III.DAL
                     SearchByRomNumberToXmlReader(s);
                     break;
             }
+
             throw new NotImplementedException();
         }
 
         private bool SearchByCRC(string s)
         {
-            strExpression = string.Format("//games/game/files/romCRC[text()='{0}']/../..", s);
-            xit = nav.Select(strExpression);
+            StrExpression = string.Format("//games/game/files/romCRC[text()='{0}']/../..", s);
+            xit = nav.Select(StrExpression);
             if (xit.Count == 1)
             {
                 return xit.MoveNext();
@@ -87,13 +148,13 @@ namespace NdsCRC_III.DAL
                 return false;
             }
 
-            //xit.Current.ReadSubtree();
-
+            // xit.Current.ReadSubtree();
         }
+
         private bool SearchByReleaseNumber(string s)
         {
-            strExpression = string.Format("//games/game/releaseNumber[text()='{0}']/..", s);
-            xit = nav.Select(strExpression);
+            StrExpression = string.Format("//games/game/releaseNumber[text()='{0}']/..", s);
+            xit = nav.Select(StrExpression);
             if (xit.Count == 1)
             {
                 return xit.MoveNext();
@@ -102,12 +163,14 @@ namespace NdsCRC_III.DAL
             {
                 return false;
             }
-            //xit.Current.ReadSubtree();
+
+            // xit.Current.ReadSubtree();
         }
+
         public bool SearchByReleaseNumberHaveDB(string s)
         {
-            strExpression = string.Format("//NdsCollection/Rom/ReleaseNumber[text()='{0}']/..", s);
-            xit = nav.Select(strExpression);
+            StrExpression = string.Format("//NdsCollection/Rom/ReleaseNumber[text()='{0}']/..", s);
+            xit = nav.Select(StrExpression);
             if (xit.Count == 1)
             {
                 return xit.MoveNext();
@@ -116,12 +179,14 @@ namespace NdsCRC_III.DAL
             {
                 return false;
             }
-            //xit.Current.ReadSubtree();
+            
+            // xit.Current.ReadSubtree();
         }
+
         public bool SearchByCRCHaveDB(string s)
         {
-            strExpression = string.Format("//NdsCollection/Rom/RomCRC[text()='{0}']/..", s);
-            xit = nav.Select(strExpression);
+            StrExpression = string.Format("//NdsCollection/Rom/RomCRC[text()='{0}']/..", s);
+            xit = nav.Select(StrExpression);
             if (xit.Count == 1)
             {
                 return xit.MoveNext();
@@ -130,8 +195,10 @@ namespace NdsCRC_III.DAL
             {
                 return false;
             }
-            //xit.Current.ReadSubtree();
+            
+            // xit.Current.ReadSubtree();
         }
+
         public XmlReader SearchByRomNumberToXmlReader(string s)
         {
             if (SearchByRomNumber(s))
@@ -143,10 +210,11 @@ namespace NdsCRC_III.DAL
                 return null;
             }
         }
+
         private bool SearchByRomNumber(string s)
         {
-            strExpression = string.Format("//games/game/comment[text()='{0}']/..", s);
-            xit = nav.Select(strExpression);
+            StrExpression = string.Format("//games/game/comment[text()='{0}']/..", s);
+            xit = nav.Select(StrExpression);
             if (xit.Count == 1)
             {
                 return xit.MoveNext();
@@ -155,25 +223,11 @@ namespace NdsCRC_III.DAL
             {
                 return false;
             }
-            //xit.Current.ReadSubtree();
-        }
-        public XMLExplorateur() { }
 
-        public XMLExplorateur(String path)
-        {
-            try
-            {
-                docNav = new XPathDocument(path);
-                nav = docNav.CreateNavigator();
-            }
-            catch
-            {
-                docNav = null;
-                nav = null;
-            }
+            // xit.Current.ReadSubtree();
         }
 
-        public bool Init(String path)
+        public bool Init(string path)
         {
             try
             {
@@ -186,54 +240,36 @@ namespace NdsCRC_III.DAL
                 nav = null;
                 return false;
             }
+
             return true;
         }
 
-        public String ValueOf(String Item)
+        public string ValueOf(string item)
         {
-            if (nav == null) return "Erreur Navigateur null";
-            String tmp = "descendant::" + Item;
+            if (nav == null)
+            {
+                return "Erreur Navigateur null";
+            }
+
+            string tmp = "descendant::" + item;
             try
             {
                 xit = nav.Select(tmp);
-                if (xit.MoveNext()) tmp = xit.Current.Value;
-                else tmp = "null";
+                if (xit.MoveNext())
+                {
+                    tmp = xit.Current.Value;
+                }
+                else
+                {
+                    tmp = "null";
+                }
             }
             catch
             {
                 tmp = "null";
             }
+
             return tmp;
         }
     }
-
-    public enum XPathSearch
-    {
-        imageNumber,
-        releaseNumber,
-        title,
-        saveType,
-        romSize,
-        publisher,
-        location,
-        sourceRom,
-        language,
-        romCRC,
-        im1CRC,
-        im2CRC,
-        icoCRC,
-        nfoCRC,
-        genre,
-        dumpdate,
-        internalname,
-        serial,
-        version,
-        wifi,
-        filename,
-        dirname,
-        duplicateid,
-        comment,
-        RomNumber,
-    }
-
 }

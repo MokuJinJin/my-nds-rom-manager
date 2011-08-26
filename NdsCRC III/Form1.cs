@@ -1,38 +1,49 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using NdsCRC_III.BusinessService;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Form1.cs" company="Zed Byt Corp">
+//     Copyright Zed Byt Corp 2010
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace NdsCRC_III
 {
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+    
+    using NdsCRC_III.BusinessService;
+
     public partial class Form1 : Form
     {
-        private BindingSource bsCollection = new BindingSource();
-        private BindingSource bsAdvanScene = new BindingSource();
-        private BindingSource bsMissing = new BindingSource();
+        private BindingSource sourceCollection = new BindingSource();
+        private BindingSource sourceAdvanScene = new BindingSource();
+        private BindingSource sourceMissing = new BindingSource();
         private MFControler _controler;
+        
+        /// <summary>
+        /// Constructor of Form1 : used for test
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
             _controler = new MFControler(Application.StartupPath);
 
-            bsCollection.DataSource = _controler.GetCollection();
-            dataGridView1.DataSource = bsCollection;
+            sourceCollection.DataSource = _controler.GetCollection();
+            dataGridView1.DataSource = sourceCollection;
 
-            bsAdvanScene.DataSource = _controler.GetDataBase();
-            dataGridView2.DataSource = bsAdvanScene;
+            sourceAdvanScene.DataSource = _controler.GetDataBase();
+            dataGridView2.DataSource = sourceAdvanScene;
 
-            bsMissing.DataSource = _controler.GetCollectionMissing();
-            dataGridView3.DataSource = bsMissing;
+            sourceMissing.DataSource = _controler.GetCollectionMissing();
+            dataGridView3.DataSource = sourceMissing;
 
-            label1.DataBindings.Add("Text", bsAdvanScene, "Title");
+            label1.DataBindings.Add("Text", sourceAdvanScene, "Title");
             
-            
-            init(dataGridView1);
-            init(dataGridView2);
-            init(dataGridView3);
+            Init(dataGridView1);
+            Init(dataGridView2);
+            Init(dataGridView3);
         }
-        private void init(DataGridView dataGridView1)
+        
+        private void Init(DataGridView dataGridView1)
         {
             dataGridView1.Columns["ImageNumber"].Visible = false;
             dataGridView1.Columns["ReleaseNumber"].Visible = false;
@@ -55,6 +66,7 @@ namespace NdsCRC_III
             dataGridView1.Columns["Version"].Visible = false;
             dataGridView1.Columns["Wifi"].Visible = false;
             dataGridView1.Columns["duplicateid"].Visible = false;
+
             // dataGridView1.Columns["Have"].Visible = false;
             dataGridView1.Columns["RomNumber"].Visible = true;
             dataGridView1.GridColor = Color.White;
@@ -64,26 +76,26 @@ namespace NdsCRC_III
             dataGridView1.Columns["Title"].Width = 390;
         }
 
-        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             label1.DataBindings.Clear();
-            label1.DataBindings.Add("Text", bsAdvanScene, "Title");
+            label1.DataBindings.Add("Text", sourceAdvanScene, "Title");
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             label1.DataBindings.Clear();
-            label1.DataBindings.Add("Text", bsCollection, "Title");
+            label1.DataBindings.Add("Text", sourceCollection, "Title");
         }
 
-        private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
             label1.DataBindings.Clear();
             label1.DataBindings.Add("Text", dgv.DataSource, "Title");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             _controler.RepairCollection();
         }

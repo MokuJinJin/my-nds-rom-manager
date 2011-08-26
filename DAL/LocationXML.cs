@@ -1,52 +1,62 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace NdsCRC_III.DAL
 {
-    static class LocationXML
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Class for location
+    /// </summary>
+    public static class LocationXML
     {
-        static private Dictionary<int, string> DicoLocation = new Dictionary<int, string>();
+        private static Dictionary<int, string> dicoLocation = new Dictionary<int, string>();
+
+        /// <summary>
+        /// Constructor for LocationXML
+        /// </summary>
         static LocationXML()
         {
-            DicoLocation.Add(0, "Europe");
-            DicoLocation.Add(1, "USA");
-            DicoLocation.Add(2, "Germany");
-            DicoLocation.Add(3, "China");
-            DicoLocation.Add(4, "Spain");
-            DicoLocation.Add(5, "France");
-            DicoLocation.Add(6, "Italy");
-            DicoLocation.Add(7, "Japan");
-            DicoLocation.Add(8, "Nederland");
-            DicoLocation.Add(9, "England");
-            DicoLocation.Add(10, "Denmark");
-            DicoLocation.Add(11, "Finland");
-            DicoLocation.Add(12, "Norway");
-            DicoLocation.Add(13, "Poland");
-            DicoLocation.Add(14, "Portugal");
-            DicoLocation.Add(15, "Sweden");
-            DicoLocation.Add(16, "USA and Europe");
-            DicoLocation.Add(17, "Japan, USA and Europe");
-            DicoLocation.Add(18, "Japan and USA");
-            DicoLocation.Add(19, "Australia");
-            DicoLocation.Add(20, "North Korea");
-            DicoLocation.Add(21, "Brazil");
-            DicoLocation.Add(22, "Korea");
-            DicoLocation.Add(23, "Europe and Brazil");
-            DicoLocation.Add(24, "Europe, USA and Brazil");
-            DicoLocation.Add(25, "USA and Brazil");
-            DicoLocation.Add(26, "Russia");
-            DicoLocation.Add(27, "Russia");
-            DicoLocation.Add(28, "Greece");
-            DicoLocation.Add(29, "Turkey");
-            DicoLocation.Add(30, "Czech Republic");
-            DicoLocation.Add(31, "Hungary");
+            dicoLocation.Add(0, "Europe");
+            dicoLocation.Add(1, "USA");
+            dicoLocation.Add(2, "Germany");
+            dicoLocation.Add(3, "China");
+            dicoLocation.Add(4, "Spain");
+            dicoLocation.Add(5, "France");
+            dicoLocation.Add(6, "Italy");
+            dicoLocation.Add(7, "Japan");
+            dicoLocation.Add(8, "Nederland");
+            dicoLocation.Add(9, "England");
+            dicoLocation.Add(10, "Denmark");
+            dicoLocation.Add(11, "Finland");
+            dicoLocation.Add(12, "Norway");
+            dicoLocation.Add(13, "Poland");
+            dicoLocation.Add(14, "Portugal");
+            dicoLocation.Add(15, "Sweden");
+            dicoLocation.Add(16, "USA and Europe");
+            dicoLocation.Add(17, "Japan, USA and Europe");
+            dicoLocation.Add(18, "Japan and USA");
+            dicoLocation.Add(19, "Australia");
+            dicoLocation.Add(20, "North Korea");
+            dicoLocation.Add(21, "Brazil");
+            dicoLocation.Add(22, "Korea");
+            dicoLocation.Add(23, "Europe and Brazil");
+            dicoLocation.Add(24, "Europe, USA and Brazil");
+            dicoLocation.Add(25, "USA and Brazil");
+            dicoLocation.Add(26, "Russia");
+            dicoLocation.Add(27, "Russia");
+            dicoLocation.Add(28, "Greece");
+            dicoLocation.Add(29, "Turkey");
+            dicoLocation.Add(30, "Czech Republic");
+            dicoLocation.Add(31, "Hungary");
         }
-        static public string getStringLocation(int LocationCode)
+        
+        public static string GetStringLocation(int locationCode)
         {
             string ret = "N/A";
-            if (DicoLocation.ContainsKey(LocationCode))
+            if (dicoLocation.ContainsKey(locationCode))
             {
-                ret = DicoLocation[LocationCode];
+                ret = dicoLocation[locationCode];
             }
+
             return ret;
         }
     }

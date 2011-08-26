@@ -1,41 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using NdsCRC_III.BusinessService.BW;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="VerifyCRCFiles.cs" company="Zed Byt Corp">
+//     Copyright Zed Byt Corp 2010
+// </copyright>
+//-----------------------------------------------------------------------
 namespace NdsCRC_III
 {
+    using System;
+    using System.ComponentModel;
+    using System.Windows.Forms;
+    using NdsCRC_III.BusinessService.BW;
+
     public partial class VerifyCRCFiles : Form
     {
-        
+        /// <summary>
+        /// Constructor for VerifyCRCFiles
+        /// </summary>
         public VerifyCRCFiles()
         {
             InitializeComponent();
-            
         }
+
         public void Start()
         {
             label1.Text = "Counting files ...";
             
             BW_VerifyCRCFiles bw = new BW_VerifyCRCFiles(Application.StartupPath);
-            bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-            bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+            bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Bw_RunWorkerCompleted);
+            bw.ProgressChanged += new ProgressChangedEventHandler(Bw_ProgressChanged);
             bw.RunWorkerAsync();
         }
 
-        void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void Bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             if (e.UserState != null)
             {
                 listBox1.Items.Add((string)e.UserState);
             }
+
             if (e.ProgressPercentage == -1)
             {
                 label1.Text = "Checking ...";
@@ -47,12 +48,12 @@ namespace NdsCRC_III
             }
         }
 
-        void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("The End");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             Start();
         }

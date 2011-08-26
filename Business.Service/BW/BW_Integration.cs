@@ -311,20 +311,20 @@ namespace NdsCRC_III.BusinessService.BW
                         infoAvancement = TypeAvancement.RomIntegratedBadDump;
                     }
 
-                    tos.SetIntituleTraitement(string.Format("CRC : {0} => {1} => Compressing ...", crc.ToUpper(), romInfo.title));
+                    tos.SetIntituleTraitement(string.Format("CRC : {0} => {1} => Compressing ...", crc.ToUpper(), romInfo.Title));
 
                     ReportProgress(tos.Avance(infoAvancement), tos);
 
                     Directory.CreateDirectory(NDSDirectories.PathTemp + crc.ToUpper());
 
-                    string source = string.Format("{0}{1}\\{2}{3}.nds", NDSDirectories.PathTemp, crc.ToUpper(), romInfo.title, complementNomXXXX);
+                    string source = string.Format("{0}{1}\\{2}{3}.nds", NDSDirectories.PathTemp, crc.ToUpper(), romInfo.Title, complementNomXXXX);
                     File.Move(file, source);
 
-                    string zipFile = string.Format("{0}({1}) {2}{3}.7z", NDSDirectories.PathTemp, romInfo.RomNumber, romInfo.title, complementNomXXXX);
+                    string zipFile = string.Format("{0}({1}) {2}{3}.7z", NDSDirectories.PathTemp, romInfo.RomNumber, romInfo.Title, complementNomXXXX);
                     try
                     {
                         ZipRom(zipFile, source);
-                        tos.SetIntituleTraitement(string.Format("Compressing {0} done", romInfo.title));
+                        tos.SetIntituleTraitement(string.Format("Compressing {0} done", romInfo.Title));
                         File.Delete(source);
                         Directory.Delete(Path.GetDirectoryName(source));
                         tos.SetRomInfo(romInfo);
@@ -371,7 +371,7 @@ namespace NdsCRC_III.BusinessService.BW
 
         private void RomInCollection(NDS_Rom romInfo, string file)
         {
-            tos.SetIntituleTraitement(string.Format("Already have {0} ({1}) => This will not be integrated.", romInfo.title, romInfo.RomNumber));
+            tos.SetIntituleTraitement(string.Format("Already have {0} ({1}) => This will not be integrated.", romInfo.Title, romInfo.RomNumber));
             tos.SetRomInfo(romInfo);
             tos.SetRomInfoIntegration(TypeAvancement.RomAlreadyHave, Path.GetFileName(file));
 

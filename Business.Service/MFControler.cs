@@ -36,7 +36,7 @@
         {
             get
             {
-                return NDSAdvanScene.DatCreationDate;
+                return DataAcessLayer.DatCreationDate;
             }
         }
 
@@ -52,7 +52,7 @@
         {
             get
             {
-                return NDSAdvanScene.URLs["datURL"];
+                return DataAcessLayer.URLs["datURL"];
             }
         }
 
@@ -60,7 +60,7 @@
         {
             get
             {
-                return NDSAdvanScene.URLs["datFileName"];
+                return DataAcessLayer.URLs["datFileName"];
             }
         }
         
@@ -68,7 +68,7 @@
         {
             get
             {
-                return NDSAdvanScene.URLs["datVersionURL"];
+                return DataAcessLayer.URLs["datVersionURL"];
             }
         }
         

@@ -1,60 +1,67 @@
-﻿using System;
-using System.ComponentModel;
-using System.Data;
-using System.Windows.Forms;
-using System.IO;
-using NdsCRC_III.BusinessService;
-using NdsCRC_III.BusinessService.BW;
-using System.Collections.Generic;
-
+﻿
 namespace NdsCRC_III
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.IO;
+    using System.Windows.Forms;
+    using NdsCRC_III.BusinessService.BW;
+
     public partial class IntegrationNDS : Form
     {
-        public string MyProperty { get; set; }
-        //private string[] files;
-        //private NDS_Rom_Collection NdsCollection;
         private string pathToScan;
         private BW_Integration bw;
-        private DataTable dtAvancement = new DataTable();
-
+        private DataTable avancement = new DataTable();
+        
+        /// <summary>
+        /// Constructor for IntegrationNDS
+        /// </summary>
         public IntegrationNDS(string path)
         {
             InitializeComponent();
-            dtAvancement.Columns.Add("WhatHappen");
-            dtAvancement.Columns.Add("FileName");
-            dtAvancement.Columns.Add("RomName");
-            dtAvancement.Columns.Add("CRC");
-            dtAvancement.Columns.Add("RomNumber");
+            avancement.Columns.Add("WhatHappen");
+            avancement.Columns.Add("FileName");
+            avancement.Columns.Add("RomName");
+            avancement.Columns.Add("CRC");
+            avancement.Columns.Add("RomNumber");
 
             pathToScan = path;
         }
+
+        public string MyProperty { get; set; }
+
         private void IntegrationNDS_Shown(object sender, EventArgs e)
         {
-            scan();
+            Scan();
         }
-        public void scan()
+
+        public void Scan()
         {
+            /*
             //NdsCollection = new NDS_Rom_Collection();
             //string[] ndsFiles = Directory.GetFiles(pathToScan, "*.nds", SearchOption.TopDirectoryOnly);
             //string[] zipFiles = Directory.GetFiles(pathToScan, "*.zip", SearchOption.TopDirectoryOnly);
             //string[] sevenZipFiles = Directory.GetFiles(pathToScan, "*.7z", SearchOption.TopDirectoryOnly);
             //string[] rarFiles = Directory.GetFiles(pathToScan, "*.rar", SearchOption.TopDirectoryOnly);
+            */
 
             List<string> files = new List<string>();
             files.AddRange(Directory.GetFiles(pathToScan, "*.nds", SearchOption.TopDirectoryOnly));
             files.AddRange(Directory.GetFiles(pathToScan, "*.nd5", SearchOption.TopDirectoryOnly));
+            /*
             //files.AddRange(Directory.GetFiles(pathToScan, "*.zip", SearchOption.TopDirectoryOnly));
             //files.AddRange(Directory.GetFiles(pathToScan, "*.7z", SearchOption.TopDirectoryOnly));
             //files.AddRange(Directory.GetFiles(pathToScan, "*.rar", SearchOption.TopDirectoryOnly));
-
+            */
 
             if (files.Count > 0)
             {
                 listBox1.Items.Add("Found " + files.Count.ToString() + " NDS file.");
                 bw = new BW_Integration(files);
-                bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
-                bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+                bw.ProgressChanged += new ProgressChangedEventHandler(Bw_ProgressChanged);
+                bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Bw_RunWorkerCompleted);
                 bw.RunWorkerAsync();
             }
             else
@@ -64,9 +71,8 @@ namespace NdsCRC_III
                 btnAbort.Text = "Quit";
             }
         }
-        
-        
-        void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+
+        private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Cancelled)
             {
@@ -77,12 +83,12 @@ namespace NdsCRC_III
             {
                 this.Text = "Complete - IntegrationNDS";
             }
-            
+
             MajListBox();
             btnAbort.Text = "Quit";
         }
 
-        void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void Bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             TOSortie tos = (TOSortie)e.UserState;
             switch (tos.TypeTO)
@@ -93,31 +99,31 @@ namespace NdsCRC_III
 
                     if (tos.WhatHappen != TypeAvancement.Nothing)
                     {
-                        DataRow dr = dtAvancement.NewRow();
+                        DataRow dr = avancement.NewRow();
                         dr["WhatHappen"] = tos.WhatHappen.ToString();
                         dr["FileName"] = tos.FileName;
                         if (tos.RomInfo != null)
                         {
-                            dr["RomName"] = tos.RomInfo.title;
+                            dr["RomName"] = tos.RomInfo.Title;
                             dr["CRC"] = tos.RomInfo.RomCRC;
                             dr["RomNumber"] = tos.RomInfo.RomNumber;
                         }
-                        dtAvancement.Rows.Add(dr);
-                        GridResultat.DataSource = dtAvancement;
+
+                        avancement.Rows.Add(dr);
+                        GridResultat.DataSource = avancement;
                     }
-                    
-                    
+
                     listBox1.Items.Add(tos.IntituleTraitement);
-                    
+
                     lblRomNotFound.Text = string.Format("{0} Rom(s) not Found in DB", tos.NbRomNotFound);
                     lblTotalRom.Text = tos.NbFichier.ToString();
                     lblNbRom.Text = tos.NbActuel.ToString();
                     lblNbFound.Text = string.Format("{0} Rom(s) Found in DB", tos.NbRomAlreadyHave + tos.NbRomIntegrated);
                     LblAlreadyHave.Text = string.Format("{0} Rom(s) Already Have", tos.NbRomAlreadyHave.ToString());
                     LblIntegrated.Text = string.Format("{0} Rom(s) Integrated", tos.NbRomIntegrated.ToString());
-                    
+
                     MajListBox();
-                    
+
                     break;
                 case TypeTOSortie.Zip:
                     LblInfos.Text = tos.IntituleTraitement;
@@ -127,11 +133,7 @@ namespace NdsCRC_III
                     break;
             }
         }
-        
-        //public DataTable Table()
-        //{
-        //    return NdsCollection.Table;
-        //}
+
         private void MajListBox()
         {
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
@@ -143,10 +145,9 @@ namespace NdsCRC_III
             {
                 bw.CancelAsync();
             }
-            
         }
 
-        private void btnAbort_Click(object sender, EventArgs e)
+        private void BtnAbort_Click(object sender, EventArgs e)
         {
             if (btnAbort.Text == "Quit")
             {
@@ -161,45 +162,49 @@ namespace NdsCRC_III
         }
         #endregion
 
-        private void chk_CheckedChanged(object sender, EventArgs e)
+        private void Chk_CheckedChanged(object sender, EventArgs e)
         {
-            string Filter = "";
+            string filter = string.Empty;
             if (chkAlreadyHave.Checked)
             {
-                Filter += " WhatHappen = '" + TypeAvancement.RomAlreadyHave.ToString()+"'";
+                filter += " WhatHappen = '" + TypeAvancement.RomAlreadyHave.ToString() + "'";
                 if (chkIntegrated.Checked || chkNotFound.Checked)
                 {
-                    Filter += " or ";
+                    filter += " or ";
                 }
             }
+
             if (chkIntegrated.Checked)
             {
-                Filter += " WhatHappen = '" + TypeAvancement.RomIntegrated.ToString() + "'";
+                filter += " WhatHappen = '" + TypeAvancement.RomIntegrated.ToString() + "'";
                 if (chkNotFound.Checked)
                 {
-                    Filter += " or ";
+                    filter += " or ";
                 }
             }
+
             if (chkBadDump.Checked)
             {
-                Filter += " WhatHappen = '" + TypeAvancement.RomIntegratedBadDump.ToString() + "'";
+                filter += " WhatHappen = '" + TypeAvancement.RomIntegratedBadDump.ToString() + "'";
                 if (chkNotFound.Checked)
                 {
-                    Filter += " or ";
+                    filter += " or ";
                 }
             }
+
             if (chkNotFound.Checked)
             {
-                Filter += " WhatHappen = '" + TypeAvancement.RomNotFound.ToString() + "'";
+                filter += " WhatHappen = '" + TypeAvancement.RomNotFound.ToString() + "'";
             }
+
             if (!chkNotFound.Checked && !chkIntegrated.Checked && !chkAlreadyHave.Checked && !chkBadDump.Checked)
             {
-                Filter = " WhatHappen = 'nothing'";
+                filter = " WhatHappen = 'nothing'";
             }
-            DataView dv = dtAvancement.DefaultView;
-            dv.RowFilter = Filter;
+
+            DataView dv = avancement.DefaultView;
+            dv.RowFilter = filter;
             GridResultat.DataSource = dv.ToTable();
         }
-
     }
 }

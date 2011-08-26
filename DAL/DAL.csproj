@@ -73,7 +73,6 @@
     <Compile Include="EnumBase.cs" />
     <Compile Include="LanguageXML.cs" />
     <Compile Include="LocationXML.cs" />
-    <Compile Include="NDSCRC_III_DB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RomCollection.cs" />
     <Compile Include="Xpath.cs" />

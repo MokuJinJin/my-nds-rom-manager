@@ -124,7 +124,7 @@
             this.btnAbort.TabIndex = 4;
             this.btnAbort.Text = "Abort";
             this.btnAbort.UseVisualStyleBackColor = true;
-            this.btnAbort.Click += new System.EventHandler(this.btnAbort_Click);
+            this.btnAbort.Click += new System.EventHandler(this.BtnAbort_Click);
             // 
             // groupBox1
             // 
@@ -217,7 +217,7 @@
             this.chkAlreadyHave.TabIndex = 9;
             this.chkAlreadyHave.Text = "Already Have";
             this.chkAlreadyHave.UseVisualStyleBackColor = true;
-            this.chkAlreadyHave.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
+            this.chkAlreadyHave.CheckedChanged += new System.EventHandler(this.Chk_CheckedChanged);
             // 
             // chkNotFound
             // 
@@ -231,7 +231,7 @@
             this.chkNotFound.TabIndex = 9;
             this.chkNotFound.Text = "Not Found";
             this.chkNotFound.UseVisualStyleBackColor = true;
-            this.chkNotFound.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
+            this.chkNotFound.CheckedChanged += new System.EventHandler(this.Chk_CheckedChanged);
             // 
             // chkIntegrated
             // 
@@ -245,7 +245,7 @@
             this.chkIntegrated.TabIndex = 9;
             this.chkIntegrated.Text = "Integrated";
             this.chkIntegrated.UseVisualStyleBackColor = true;
-            this.chkIntegrated.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
+            this.chkIntegrated.CheckedChanged += new System.EventHandler(this.Chk_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -272,7 +272,7 @@
             this.chkBadDump.TabIndex = 9;
             this.chkBadDump.Text = "Bad dump";
             this.chkBadDump.UseVisualStyleBackColor = true;
-            this.chkBadDump.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
+            this.chkBadDump.CheckedChanged += new System.EventHandler(this.Chk_CheckedChanged);
             // 
             // IntegrationNDS
             // 
