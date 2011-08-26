@@ -247,5 +247,10 @@
         {
             DataAcessLayer.RepairCollection();
         }
+
+        public void SetFilterDemo(bool visible)
+        {
+            f.SetDemoRomFilter(visible);
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace NdsCRC_III.BusinessService
 
         string TitleFilter = string.Empty;
         int LanguageFilter = 0;
+        bool DemoRom = true;
 
         #region IItemFilter<T> Members
 
@@ -19,6 +20,7 @@ namespace NdsCRC_III.BusinessService
         {
             bool languageInclude = false;
             bool titleInclude = false;
+            bool DemoRomInclude = false;
             if (TitleFilter != string.Empty)
             {
                 titleInclude = (item as NDS_Rom).title.ToLower().Contains(TitleFilter.ToLower());
@@ -38,8 +40,16 @@ namespace NdsCRC_III.BusinessService
                 languageInclude = true;
             }
 
+            if (DemoRom)
+            {
+                DemoRomInclude = true;
+            }
+            else
+            {
+                DemoRomInclude = !(item as NDS_Rom).IsDemo();
+            }
 
-            return languageInclude && titleInclude;
+            return languageInclude && titleInclude && DemoRomInclude;
         }
 
         #endregion
@@ -62,6 +72,12 @@ namespace NdsCRC_III.BusinessService
         public void ResetTitleFilter()
         {
             TitleFilter = string.Empty;
+            ChangeFilter(this, new EventArgs());
+        }
+
+        internal void SetDemoRomFilter(bool visible)
+        {
+            DemoRom = visible;
             ChangeFilter(this, new EventArgs());
         }
     }
