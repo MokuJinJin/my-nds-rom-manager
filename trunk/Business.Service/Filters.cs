@@ -23,7 +23,7 @@ namespace NdsCRC_III.BusinessService
             bool DemoRomInclude = false;
             if (TitleFilter != string.Empty)
             {
-                titleInclude = (item as NDS_Rom).title.ToLower().Contains(TitleFilter.ToLower());
+                titleInclude = (item as NDS_Rom).Title.ToLower().Contains(TitleFilter.ToLower());
 
             }
             else
@@ -33,7 +33,7 @@ namespace NdsCRC_III.BusinessService
             
             if (LanguageFilter != 0)
             {
-                languageInclude = (item as NDS_Rom).languageCode.Contains(LanguageFilter);
+                languageInclude = (item as NDS_Rom).LanguageCode.Contains(LanguageFilter);
             }
             else
             {

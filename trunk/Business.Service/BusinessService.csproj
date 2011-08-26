@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="Class\CRC32.cs" />
     <Compile Include="Class\LambdaComparer.cs" />
+    <Compile Include="Class\MajUrl.cs" />
     <Compile Include="Filters.cs" />
     <Compile Include="MFControler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

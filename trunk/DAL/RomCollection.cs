@@ -8,9 +8,15 @@ namespace NdsCRC_III.DAL
     using System.Collections.Generic;
     using System.Xml.Serialization;
     
+    /// <summary>
+    /// Collection of Nds Rom
+    /// </summary>
     [XmlRoot("NDSCollection")]
     public class NDSCollection
     {
+        /// <summary>
+        /// Constructor for NDSCollection
+        /// </summary>
         public NDSCollection()
         {
             DataBase = new List<NDS_Rom>();
@@ -19,6 +25,5 @@ namespace NdsCRC_III.DAL
         [XmlArray("Collection")]
         [XmlArrayItem("NdsRom")]
         public List<NDS_Rom> DataBase { get; set; }
-
     }
 }

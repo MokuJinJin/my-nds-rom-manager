@@ -7,65 +7,21 @@ namespace NdsCRC_III.DAL
 {
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Class for the Languages
+    /// </summary>
     public static class LanguageXML
     {
-        static public Dictionary<int, string> DicoLanguage = new Dictionary<int, string>();
-        static private List<int> LanguageList = new List<int>();
-        static private string StringLanguage = "";
-        static public string getLanguage(int LanguageCode)
-        {
-            string ret = "N/A";
-            if (DicoLanguage.ContainsKey(LanguageCode)) { ret = DicoLanguage[LanguageCode].ToString(); }
-            else
-            {
-                setLanguageString(LanguageCode, LanguageList.Count - 1);
-                ret = StringLanguage.Remove(StringLanguage.Length - 2, 2);
-                StringLanguage = "";
-            }
+        private static List<int> languageList;
+        private static string stringLanguage = string.Empty;
 
-            return ret;
-        }
-        private static void setLanguageString(int i, int index)
-        {
-            while (i < LanguageList[index])
-            {
-                index--;
-            }
-            StringLanguage += DicoLanguage[LanguageList[index]] + ", ";
-            i = i - LanguageList[index];
-            if (i != 0)
-            {
-                setLanguageString(i, index);
-            }
-        }
-        public static List<int> getLanguagesList(int languages)
-        {
-            
-            List<int> l = new List<int>();
-            if (DicoLanguage.ContainsKey(languages))
-            {
-                l.Add(languages);
-                return l;
-            }
-            else
-            {
-                int index = LanguageList.Count - 1;
-                while (languages < LanguageList[index])
-                {
-                    index--;
-                }
-                l.Add(LanguageList[index]);
-                languages -= LanguageList[index];
-                if (languages != 0)
-                {
-                    l.AddRange(getLanguagesList(languages));
-                }
-            }
-            return l;
-        }
+        /// <summary>
+        /// Constructor for LanguageXML
+        /// </summary>
         static LanguageXML()
         {
-            DicoLanguage.Add(-1, "All Languages"); 
+            DicoLanguage = new Dictionary<int, string>();
+            DicoLanguage.Add(-1, "All Languages");
             DicoLanguage.Add(1, "French");
             DicoLanguage.Add(2, "English");
             DicoLanguage.Add(4, "Chinese");
@@ -89,29 +45,90 @@ namespace NdsCRC_III.DAL
             DicoLanguage.Add(1048576, "Czech");
             DicoLanguage.Add(2097152, "Hungarian");
 
-            LanguageList.Add(1);
-            LanguageList.Add(2);
-            LanguageList.Add(4);
-            LanguageList.Add(8);
-            LanguageList.Add(16);
-            LanguageList.Add(32);
-            LanguageList.Add(64);
-            LanguageList.Add(128);
-            LanguageList.Add(256);
-            LanguageList.Add(512);
-            LanguageList.Add(1024);
-            LanguageList.Add(2048);
-            LanguageList.Add(4096);
-            LanguageList.Add(8192);
-            LanguageList.Add(16384);
-            LanguageList.Add(32768);
-            LanguageList.Add(65536);
-            LanguageList.Add(131072);
-            LanguageList.Add(262144);
-            LanguageList.Add(524288);
-            LanguageList.Add(1048576);
-            LanguageList.Add(2097152);
+            languageList = new List<int>();
+            languageList.Add(1);
+            languageList.Add(2);
+            languageList.Add(4);
+            languageList.Add(8);
+            languageList.Add(16);
+            languageList.Add(32);
+            languageList.Add(64);
+            languageList.Add(128);
+            languageList.Add(256);
+            languageList.Add(512);
+            languageList.Add(1024);
+            languageList.Add(2048);
+            languageList.Add(4096);
+            languageList.Add(8192);
+            languageList.Add(16384);
+            languageList.Add(32768);
+            languageList.Add(65536);
+            languageList.Add(131072);
+            languageList.Add(262144);
+            languageList.Add(524288);
+            languageList.Add(1048576);
+            languageList.Add(2097152);
+        }
 
+        public static Dictionary<int, string> DicoLanguage { get; private set; }
+
+        public static string GetLanguage(int languageCode)
+        {
+            string ret = "N/A";
+            if (DicoLanguage.ContainsKey(languageCode)) 
+            {
+                ret = DicoLanguage[languageCode].ToString(); 
+            }
+            else
+            {
+                SetLanguageString(languageCode, languageList.Count - 1);
+                ret = stringLanguage.Remove(stringLanguage.Length - 2, 2);
+                stringLanguage = string.Empty;
+            }
+
+            return ret;
+        }
+
+        private static void SetLanguageString(int i, int index)
+        {
+            while (i < languageList[index])
+            {
+                index--;
+            }
+
+            stringLanguage += DicoLanguage[languageList[index]] + ", ";
+            i = i - languageList[index];
+            if (i != 0)
+            {
+                SetLanguageString(i, index);
+            }
+        }
+
+        public static List<int> GetLanguagesList(int languages)
+        {
+            List<int> l = new List<int>();
+            if (DicoLanguage.ContainsKey(languages))
+            {
+                l.Add(languages);
+                return l;
+            }
+            else
+            {
+                int index = languageList.Count - 1;
+                while (languages < languageList[index])
+                {
+                    index--;
+                }
+
+                l.Add(languageList[index]);
+                languages -= languageList[index];
+                if (languages != 0)
+                {
+                    l.AddRange(GetLanguagesList(languages));
+                }
+            }
+
+            return l;
         }
     }
 }

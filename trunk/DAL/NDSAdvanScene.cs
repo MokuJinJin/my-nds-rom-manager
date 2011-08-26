@@ -47,12 +47,12 @@ namespace NdsCRC_III.DAL
         /// <summary>
         /// Urls in AdvanScene Xml
         /// </summary>
-        public static Dictionary<string, string> URLs { get; private set; }
+        public Dictionary<string, string> URLs { get; private set; }
 
         /// <summary>
         /// AdvanScene xml creation date
         /// </summary>
-        public static string DatCreationDate { get; private set; }
+        public string DatCreationDate { get; private set; }
 
         /// <summary>
         /// Load Listing of roms
@@ -102,7 +102,7 @@ namespace NdsCRC_III.DAL
         /// Load Urls in AdvanScene xml
         /// </summary>
         /// <param name="xnd">Xml Node</param>
-        private static void LoadURL(XmlNode xnd)
+        private void LoadURL(XmlNode xnd)
         {
             foreach (XmlNode xndd in xnd.ChildNodes)
             {
@@ -123,15 +123,10 @@ namespace NdsCRC_III.DAL
         private void LoadDatasource()
         {
             XmlNode xnd = xdoc.ChildNodes[1].ChildNodes[1];
-            ////DataBase = new DataTable();
-            ////InitialiseDataTable();
-            DataBase.Clear();
 
-            //XmlSerializer xs = new XmlSerializer(typeof(List<NDS_Rom>));
-            //using (StreamReader rd = new StreamReader())
-            //{
-            //    AdvanSceneDataBase = xs.Deserialize(rd) as List<NDS_Rom>;
-            //}
+            // DataBase = new DataTable();
+            // InitialiseDataTable();
+            DataBase.Clear();
 
             foreach (XmlNode xndd in xnd.ChildNodes)
             {
@@ -151,62 +146,62 @@ namespace NdsCRC_III.DAL
                 switch (xndd.Name)
                 {
                     case "imageNumber":
-                        rom.imageNumber = xndd.InnerText;
+                        rom.ImageNumber = xndd.InnerText;
                         if (int.Parse(xndd.InnerText) < 1000)
                         {
-                            rom.imageNumber = "0" + xndd.InnerText;
+                            rom.ImageNumber = "0" + xndd.InnerText;
                         }
 
                         if (int.Parse(xndd.InnerText) < 100)
                         {
-                            rom.imageNumber = "00" + xndd.InnerText;
+                            rom.ImageNumber = "00" + xndd.InnerText;
                         }
 
                         if (int.Parse(xndd.InnerText) < 10)
                         {
-                            rom.imageNumber = "000" + xndd.InnerText;
+                            rom.ImageNumber = "000" + xndd.InnerText;
                         }
 
                         break;
                     case "releaseNumber":
-                        rom.releaseNumber = xndd.InnerText;
+                        rom.ReleaseNumber = xndd.InnerText;
                         if (int.Parse(xndd.InnerText) < 1000)
                         {
-                            rom.releaseNumber = "0" + xndd.InnerText;
+                            rom.ReleaseNumber = "0" + xndd.InnerText;
                         }
 
                         if (int.Parse(xndd.InnerText) < 100)
                         {
-                            rom.releaseNumber = "00" + xndd.InnerText;
+                            rom.ReleaseNumber = "00" + xndd.InnerText;
                         }
 
                         if (int.Parse(xndd.InnerText) < 10)
                         {
-                            rom.releaseNumber = "000" + xndd.InnerText;
+                            rom.ReleaseNumber = "000" + xndd.InnerText;
                         }
 
                         break;
                     case "title":
-                        rom.title = xndd.InnerText;
+                        rom.Title = xndd.InnerText;
                         break;
                     case "saveType":
-                        rom.saveType = xndd.InnerText;
+                        rom.SaveType = xndd.InnerText;
                         break;
                     case "romSize":
-                        rom.romSize = (int.Parse(xndd.InnerText) / 1024 / 1024).ToString() + " Mo";
+                        rom.RomSize = (int.Parse(xndd.InnerText) / 1024 / 1024).ToString() + " Mo";
                         break;
                     case "publisher":
-                        rom.publisher = xndd.InnerText;
+                        rom.Publisher = xndd.InnerText;
                         break;
                     case "location":
-                        rom.location = LocationXML.getStringLocation(int.Parse(xndd.InnerText));
+                        rom.Location = LocationXML.GetStringLocation(int.Parse(xndd.InnerText));
                         break;
                     case "sourceRom":
-                        rom.sourceRom = xndd.InnerText;
+                        rom.SourceRom = xndd.InnerText;
                         break;
                     case "language":
-                        rom.languageString = LanguageXML.getLanguage(int.Parse(xndd.InnerText));
-                        rom.languageCode = LanguageXML.getLanguagesList(int.Parse(xndd.InnerText));
+                        rom.LanguageString = LanguageXML.GetLanguage(int.Parse(xndd.InnerText));
+                        rom.LanguageCode = LanguageXML.GetLanguagesList(int.Parse(xndd.InnerText));
                         break;
                     case "files":
                         rom.RomCRC = xndd.ChildNodes[0].InnerText;
@@ -271,7 +266,6 @@ namespace NdsCRC_III.DAL
 
             DataBase.Add(rom);
         }
-
         
         /// <summary>
         /// Close Xml Reader

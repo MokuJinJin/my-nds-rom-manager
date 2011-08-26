@@ -48,7 +48,7 @@ namespace NdsCRC_III.BusinessService.BW
                         SevenZipExtractor szip = new SevenZipExtractor(file);
                         foreach (ArchiveFileInfo adata in szip.ArchiveFileData)
                         {
-                            if (adata.FileName == string.Format("{0}.nds", DBrom.title))
+                            if (adata.FileName == string.Format("{0}.nds", DBrom.Title))
                             {
                                 string SevenZipCRC = adata.Crc.ToString("X");
                                 while (SevenZipCRC.Length != 8) { SevenZipCRC = string.Format("0{0}", SevenZipCRC); }

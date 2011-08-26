@@ -104,7 +104,7 @@
             this.btnGetNewRom.TabIndex = 0;
             this.btnGetNewRom.Text = "GetNewRom";
             this.btnGetNewRom.UseVisualStyleBackColor = true;
-            this.btnGetNewRom.Click += new System.EventHandler(this.btnGetNewRom_Click);
+            this.btnGetNewRom.Click += new System.EventHandler(this.BtnGetNewRom_Click);
             // 
             // GridCollection
             // 
@@ -145,7 +145,7 @@
             this.btnUnzip.TabIndex = 7;
             this.btnUnzip.Text = "Copier sur Carte";
             this.btnUnzip.UseVisualStyleBackColor = true;
-            this.btnUnzip.Click += new System.EventHandler(this.btnUnzip_Click);
+            this.btnUnzip.Click += new System.EventHandler(this.BtnUnzip_Click);
             // 
             // lblReleaseNumber
             // 
@@ -186,7 +186,7 @@
             this.btnFilterDuplicate.Text = "Filter Duplicate";
             this.btnFilterDuplicate.UseVisualStyleBackColor = true;
             this.btnFilterDuplicate.Visible = false;
-            this.btnFilterDuplicate.Click += new System.EventHandler(this.btnFilterDuplicate_Click);
+            this.btnFilterDuplicate.Click += new System.EventHandler(this.BtnFilterDuplicate_Click);
             // 
             // lblGenre
             // 
@@ -483,7 +483,7 @@
             this.btnMAJ_Img_NFO.TabIndex = 23;
             this.btnMAJ_Img_NFO.Text = "Update Nfo Img";
             this.btnMAJ_Img_NFO.UseVisualStyleBackColor = true;
-            this.btnMAJ_Img_NFO.Click += new System.EventHandler(this.btnMAJ_Img_NFO_Click);
+            this.btnMAJ_Img_NFO.Click += new System.EventHandler(this.BtnMAJ_Img_NFO_Click);
             // 
             // progressBar1
             // 
@@ -503,7 +503,7 @@
             this.button4.Text = "RepairCollection";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Visible = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // labelUpdatePercent
             // 
@@ -523,7 +523,7 @@
             this.txtRecherche.Name = "txtRecherche";
             this.txtRecherche.Size = new System.Drawing.Size(171, 20);
             this.txtRecherche.TabIndex = 27;
-            this.txtRecherche.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtRecherche_KeyUp);
+            this.txtRecherche.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtRecherche_KeyUp);
             // 
             // btnRecherche
             // 
@@ -533,7 +533,7 @@
             this.btnRecherche.TabIndex = 28;
             this.btnRecherche.Text = "recherche";
             this.btnRecherche.UseVisualStyleBackColor = true;
-            this.btnRecherche.Click += new System.EventHandler(this.btnRecherche_Click);
+            this.btnRecherche.Click += new System.EventHandler(this.BtnRecherche_Click);
             // 
             // cbxLanguages
             // 
@@ -542,7 +542,7 @@
             this.cbxLanguages.Name = "cbxLanguages";
             this.cbxLanguages.Size = new System.Drawing.Size(159, 21);
             this.cbxLanguages.TabIndex = 29;
-            this.cbxLanguages.SelectedIndexChanged += new System.EventHandler(this.cbxLanguages_SelectedIndexChanged);
+            this.cbxLanguages.SelectedIndexChanged += new System.EventHandler(this.CbxLanguages_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -565,7 +565,7 @@
             this.tabControl2.SelectedIndex = 0;
             this.tabControl2.Size = new System.Drawing.Size(518, 438);
             this.tabControl2.TabIndex = 31;
-            this.tabControl2.SelectedIndexChanged += new System.EventHandler(this.tabControl2_SelectedIndexChanged);
+            this.tabControl2.SelectedIndexChanged += new System.EventHandler(this.TabControl2_SelectedIndexChanged);
             // 
             // tabCollection
             // 
@@ -649,7 +649,7 @@
             this.chk_DemoRomVisibility.TabIndex = 32;
             this.chk_DemoRomVisibility.Text = "Demo Rom visibility";
             this.chk_DemoRomVisibility.UseVisualStyleBackColor = true;
-            this.chk_DemoRomVisibility.CheckedChanged += new System.EventHandler(this.chk_DemoRomVisibility_CheckedChanged);
+            this.chk_DemoRomVisibility.CheckedChanged += new System.EventHandler(this.Chk_DemoRomVisibility_CheckedChanged);
             // 
             // MainForm
             // 

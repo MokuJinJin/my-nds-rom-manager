@@ -99,14 +99,14 @@ namespace NdsCRC_III.BusinessService.BW
 
             IEqualityComparer<NDS_Rom> comparerRomNumberAndCRC = new LambdaComparer<NDS_Rom>(
                 (o, n) =>
-                    o.releaseNumber == n.releaseNumber &&
+                    o.ReleaseNumber == n.ReleaseNumber &&
                     o.RomCRC == n.RomCRC
                 );
             List<NDS_Rom> diff = xmlApres.Except(xmlAvant, comparerRomNumberAndCRC).ToList();
             
             IEqualityComparer<NDS_Rom> comparerRomNumber = new LambdaComparer<NDS_Rom>(
                 (o, n) =>
-                    o.releaseNumber == n.releaseNumber
+                    o.ReleaseNumber == n.ReleaseNumber
                 );
             List<NDS_Rom> diffCRC = xmlApres.Intersect(diff, comparerRomNumber).ToList();
         }
