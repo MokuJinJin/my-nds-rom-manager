@@ -10,7 +10,7 @@ namespace NdsCRC_III.DAL
     using System.Linq;
     using System.Xml.Serialization;
 
-    public static partial class DataAcessLayer
+    public static class DataAcessLayer
     {
         /// <summary>
         /// List of Rom collection
