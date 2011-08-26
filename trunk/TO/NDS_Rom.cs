@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="NDS_Roms.cs" company="Zed Byt Corp">
+// <copyright file="NDS_Rom.cs" company="Zed Byt Corp">
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------

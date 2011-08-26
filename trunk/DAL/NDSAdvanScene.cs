@@ -57,17 +57,25 @@ namespace NdsCRC_III.DAL
         /// <summary>
         /// Load Listing of roms
         /// </summary>
-        /// <param name="startupPath">Application Startup Path</param>
-        public void Load()
+        /// <param name="path">Path of AdvanScene Xml Database</param>
+        public void Load(string path)
         {
             URLs = new Dictionary<string, string>();
-            DatCreationDate = new FileInfo(NDSDirectories.PathXmlDB).LastWriteTime.ToLongDateString();
-            xmlread = XmlReader.Create(NDSDirectories.PathXmlDB);
+            DatCreationDate = new FileInfo(path).LastWriteTime.ToLongDateString();
+            xmlread = XmlReader.Create(path);
             xdoc = new XmlDocument();
             xdoc.Load(xmlread);
             LoadConfiguration();
             LoadDatasource();
             xmlread.Close();
+        }
+
+        /// <summary>
+        /// Load Listing of roms
+        /// </summary>
+        public void Load()
+        {
+            Load(NDSDirectories.PathXmlDB);
         }
 
         /// <summary>

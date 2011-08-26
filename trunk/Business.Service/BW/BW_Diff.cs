@@ -51,64 +51,40 @@ namespace NdsCRC_III.BusinessService.BW
         /// <param name="e">Argument to the work (none there)</param>
         private void Bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            ////Dictionary<string, string> Files = (Dictionary<string, string>)e.Argument;
-            ////@"E:\Games\-=Mes Documents=-\Visual Studio 2008\Projects\AdvanceSceneDiff\ADVANsCEne_NDScrc_2010-07-16.xml"
-            XMLExplorateur xexplo = new XMLExplorateur(_xmlAvant);
-            XmlDocument xdoc = new XmlDocument();
-            ////@"E:\Games\-=Mes Documents=-\Visual Studio 2008\Projects\AdvanceSceneDiff\ADVANsCEne_NDScrc_2010-07-28.xml"
-            xdoc.Load(_xmlApres);
-            int max = xdoc.ChildNodes[1].ChildNodes[1].ChildNodes.Count;
-            for (int i = 0; i < max; i++)
-            {
-                XmlNode xnode = xdoc.ChildNodes[1].ChildNodes[1].ChildNodes[i];
-                if (xexplo.Search(XPathSearch.romCRC, xnode.ChildNodes[9].ChildNodes[0].InnerText))
-                {
-                    ReportProgress((i + 1) * 100 / max, null);
-                    ////MessageBox.Show("Founded");
-                }
-                else
-                {
-                    if (xexplo.Search(XPathSearch.releaseNumber, xnode.ChildNodes[1].InnerText))
-                    {
-                        ReportProgress((i + 1) * 100 / max, string.Format("MODIFY ({0}) {2}|{1}", xnode.ChildNodes[23].InnerText, xnode.ChildNodes[20].InnerText, xnode.ChildNodes[2].InnerText));
-                    }
-                    else
-                    {
-                        ReportProgress((i + 1) * 100 / max, string.Format("NEW ({0}) {2}|{1}", xnode.ChildNodes[23].InnerText, xnode.ChildNodes[20].InnerText, xnode.ChildNodes[2].InnerText));
-                    }
-                }
-            }
-        }
+            ReportProgress(0, null);
 
-        private void Bw_DoWork2(object sender, DoWorkEventArgs e)
-        {
-            
-            List<NDS_Rom> xmlAvant = new List<NDS_Rom>();
-            XmlSerializer xs = new XmlSerializer(typeof(List<NDS_Rom>));
-            using (StreamReader rd = new StreamReader(_xmlAvant))
-            {
-                xmlAvant = xs.Deserialize(rd) as List<NDS_Rom>;
-            }
+            NDSAdvanScene xmlAvant = new NDSAdvanScene();
+            xmlAvant.Load(_xmlAvant);
+            NDSAdvanScene xmlApres = new NDSAdvanScene();
+            xmlApres.Load(_xmlApres);
 
-            List<NDS_Rom> xmlApres = new List<NDS_Rom>();
-            xs = new XmlSerializer(typeof(List<NDS_Rom>));
-            using (StreamReader rd = new StreamReader(_xmlApres))
-            {
-                xmlApres = xs.Deserialize(rd) as List<NDS_Rom>;
-            }
+            ReportProgress(0, "Calculating Differences ...");
 
-            IEqualityComparer<NDS_Rom> comparerRomNumberAndCRC = new LambdaComparer<NDS_Rom>(
+            IEqualityComparer<NDS_Rom> comparerCRC = new LambdaComparer<NDS_Rom>(
                 (o, n) =>
-                    o.ReleaseNumber == n.ReleaseNumber &&
                     o.RomCRC == n.RomCRC
                 );
-            List<NDS_Rom> diff = xmlApres.Except(xmlAvant, comparerRomNumberAndCRC).ToList();
-            
+            List<NDS_Rom> diffAll = xmlApres.DataBase.Except(xmlAvant.DataBase, comparerCRC).ToList();
+            ReportProgress(45, string.Format("Found {0} differences", diffAll.Count));
+
             IEqualityComparer<NDS_Rom> comparerRomNumber = new LambdaComparer<NDS_Rom>(
                 (o, n) =>
                     o.ReleaseNumber == n.ReleaseNumber
                 );
-            List<NDS_Rom> diffCRC = xmlApres.Intersect(diff, comparerRomNumber).ToList();
+            List<NDS_Rom> diffNew = xmlApres.DataBase.Except(xmlAvant.DataBase, comparerRomNumber).ToList();
+            ReportProgress(90, string.Format("Found {0} new Roms", diffNew.Count));
+
+            List<NDS_Rom> diffModified = diffAll.Except(diffNew).ToList();
+            ReportProgress(100, string.Format("Found {0} modified Roms", diffModified.Count));
+
+            for (int i = 0; i < diffNew.Count; i++)
+            {
+                ReportProgress((i + 1) * 100 / diffAll.Count, string.Format("New Rom : {0}", diffNew[i].Title));
+            }
+            for (int i = 0; i < diffModified.Count; i++)
+            {
+                ReportProgress((i + 1 + diffNew.Count) * 100 / diffAll.Count, string.Format("Modified Rom : {0}", diffModified[i].Title));
+            }
         }
     }
 }

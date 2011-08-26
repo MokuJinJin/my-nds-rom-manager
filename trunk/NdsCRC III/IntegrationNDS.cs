@@ -1,4 +1,8 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="IntegrationNDS.cs" company="Zed Byt Corp">
+//     Copyright Zed Byt Corp 2010
+// </copyright>
+//-----------------------------------------------------------------------
 namespace NdsCRC_III
 {
     using System;
@@ -18,6 +22,7 @@ namespace NdsCRC_III
         /// <summary>
         /// Constructor for IntegrationNDS
         /// </summary>
+        /// <param name="path">Path to Scan</param>
         public IntegrationNDS(string path)
         {
             InitializeComponent();
