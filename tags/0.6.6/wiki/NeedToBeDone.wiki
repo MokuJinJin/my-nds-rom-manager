@@ -1,0 +1,9 @@
+#summary Things to do
+
+= Things need to be done =
+
+Listing of things to do for the future release.
+
+=== Coming soon (no precise version) ===
+
+  * Store .dsi files (and easily add more ... )
