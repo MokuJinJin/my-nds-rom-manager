@@ -589,9 +589,17 @@ namespace NdsCRC_III
 
         private void setLblNbRom()
         {
-            tabCollection.Text = string.Format("Collection ({0} roms)", GridCollection.RowCount);
-            tabDataBase.Text = string.Format("DataBase ({0} roms)", GridDataBase.RowCount);
-            tabMissing.Text = string.Format("Missing ({0} roms)", GridMissing.RowCount);
+            tabCollection.Text = string.Format("Collection ({0} roms)", _controler.GetCollection().Count);
+            tabDataBase.Text = string.Format("DataBase ({0} roms)", _controler.GetDataBase().Count);
+            tabMissing.Text = string.Format("Missing ({0} roms)", _controler.GetCollectionMissing().Count);
+        }
+
+        private void chk_DemoRomVisibility_CheckedChanged(object sender, EventArgs e)
+        {
+            _controler.SetFilterDemo(chk_DemoRomVisibility.Checked);
+            // tabControl2_SelectedIndexChanged(null, new EventArgs());
+            // setLblNbRom();
+            SetDataSource();
         }
     }
 }

@@ -285,5 +285,11 @@ namespace NdsCRC_III
         }
 
         #endregion
+
+        
+        public bool IsDemo()
+        {
+            return (this.RomNumber == "xxxx");
+        }
     }
 }

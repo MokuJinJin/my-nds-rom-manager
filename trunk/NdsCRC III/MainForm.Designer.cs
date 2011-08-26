@@ -77,6 +77,7 @@
             this.GridDataBase = new System.Windows.Forms.DataGridView();
             this.tabMissing = new System.Windows.Forms.TabPage();
             this.GridMissing = new System.Windows.Forms.DataGridView();
+            this.chk_DemoRomVisibility = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.GridCollection)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
@@ -495,7 +496,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(510, 12);
+            this.button4.Location = new System.Drawing.Point(913, 32);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(95, 23);
             this.button4.TabIndex = 25;
@@ -603,7 +604,7 @@
             this.GridDataBase.ReadOnly = true;
             this.GridDataBase.RowHeadersVisible = false;
             this.GridDataBase.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridDataBase.Size = new System.Drawing.Size(494, 406);
+            this.GridDataBase.Size = new System.Drawing.Size(504, 406);
             this.GridDataBase.TabIndex = 2;
             this.GridDataBase.SelectionChanged += new System.EventHandler(this.Grid_CurrentCellChanged);
             // 
@@ -633,15 +634,29 @@
             this.GridMissing.ReadOnly = true;
             this.GridMissing.RowHeadersVisible = false;
             this.GridMissing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridMissing.Size = new System.Drawing.Size(494, 406);
+            this.GridMissing.Size = new System.Drawing.Size(504, 406);
             this.GridMissing.TabIndex = 3;
             this.GridMissing.SelectionChanged += new System.EventHandler(this.Grid_CurrentCellChanged);
+            // 
+            // chk_DemoRomVisibility
+            // 
+            this.chk_DemoRomVisibility.AutoSize = true;
+            this.chk_DemoRomVisibility.Checked = true;
+            this.chk_DemoRomVisibility.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk_DemoRomVisibility.Location = new System.Drawing.Point(496, 16);
+            this.chk_DemoRomVisibility.Name = "chk_DemoRomVisibility";
+            this.chk_DemoRomVisibility.Size = new System.Drawing.Size(117, 17);
+            this.chk_DemoRomVisibility.TabIndex = 32;
+            this.chk_DemoRomVisibility.Text = "Demo Rom visibility";
+            this.chk_DemoRomVisibility.UseVisualStyleBackColor = true;
+            this.chk_DemoRomVisibility.CheckedChanged += new System.EventHandler(this.chk_DemoRomVisibility_CheckedChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1009, 486);
+            this.Controls.Add(this.chk_DemoRomVisibility);
             this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbxLanguages);
@@ -729,6 +744,7 @@
         private System.Windows.Forms.TabPage tabMissing;
         private System.Windows.Forms.DataGridView GridMissing;
         private System.Windows.Forms.PictureBox ImgIcon;
+        private System.Windows.Forms.CheckBox chk_DemoRomVisibility;
     }
 }
 
