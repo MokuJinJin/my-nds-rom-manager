@@ -35,8 +35,6 @@ namespace NdsCRC_III
             pathToScan = path;
         }
 
-        public string MyProperty { get; set; }
-
         private void IntegrationNDS_Shown(object sender, EventArgs e)
         {
             Scan();

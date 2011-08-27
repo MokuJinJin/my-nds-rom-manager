@@ -27,7 +27,10 @@ namespace NdsCRC_III
             InitializeComponent();
         }
 
-        public void Start()
+        /// <summary>
+        /// Calculate the missing File and launch Download when finished
+        /// </summary>
+        public void StartDownloadAllMissingFiles()
         {
             label1.Text = "Checking files ...";
             label2.Text = "Not Downloading";
@@ -38,12 +41,22 @@ namespace NdsCRC_III
             bw.RunWorkerAsync();
         }
 
+        /// <summary>
+        /// Event when Progress of Calculate the missing File change
+        /// </summary>
+        /// <param name="sender">Object</param>
+        /// <param name="e">Args</param>
         private void Bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar1.Value = e.ProgressPercentage;
         }
 
-        private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        /// <summary>
+        /// Event when Calculate the missing File is complete
+        /// </summary>
+        /// <param name="sender">Object</param>
+        /// <param name="e">Args, Result is a Queue<MajUrl></param>
+        public void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             liste = (Queue<MajUrl>)e.Result;
             if (liste.Count > 0)
@@ -65,6 +78,7 @@ namespace NdsCRC_III
         private void DownloadFileInBackGround(MajUrl majurl)
         {
             Uri uri = new Uri(majurl.uri);
+            client = new WebClient();
             client.DownloadFileCompleted += new AsyncCompletedEventHandler(Client_DownloadFileCompleted);
             client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);
             client.DownloadFileAsync(uri, majurl.filepath);
@@ -81,7 +95,6 @@ namespace NdsCRC_III
             if (liste.Count > 0)
             {
                 label1.Text = string.Format("Download  {0} / {1}", progressBar1.Value, progressBar1.Maximum);
-                client = new WebClient();
                 MajUrl o = liste.Dequeue();
                 label2.Text = string.Format("Downloading {0}", Path.GetFileName(o.uri));
                 DownloadFileInBackGround(o);

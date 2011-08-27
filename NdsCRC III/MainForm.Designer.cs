@@ -78,6 +78,7 @@
             this.tabMissing = new System.Windows.Forms.TabPage();
             this.GridMissing = new System.Windows.Forms.DataGridView();
             this.chk_DemoRomVisibility = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridCollection)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
@@ -397,6 +398,7 @@
             // tabInformations
             // 
             this.tabInformations.Controls.Add(this.ImgIcon);
+            this.tabInformations.Controls.Add(this.button1);
             this.tabInformations.Controls.Add(this.labelExtractPercent);
             this.tabInformations.Controls.Add(this.btnUnzip);
             this.tabInformations.Controls.Add(this.lblReleaseNumber);
@@ -651,6 +653,16 @@
             this.chk_DemoRomVisibility.UseVisualStyleBackColor = true;
             this.chk_DemoRomVisibility.CheckedChanged += new System.EventHandler(this.Chk_DemoRomVisibility_CheckedChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(9, 322);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(142, 23);
+            this.button1.TabIndex = 33;
+            this.button1.Text = "Download Img/Nfo";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -745,6 +757,7 @@
         private System.Windows.Forms.DataGridView GridMissing;
         private System.Windows.Forms.PictureBox ImgIcon;
         private System.Windows.Forms.CheckBox chk_DemoRomVisibility;
+        private System.Windows.Forms.Button button1;
     }
 }
 
