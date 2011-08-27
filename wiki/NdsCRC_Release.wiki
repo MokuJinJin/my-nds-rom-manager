@@ -1,13 +1,13 @@
 #summary v0.6.6
 
-== Features ==
+= Features ==
 
-= NdsCRC v0.6.6 =
+== NdsCRC v0.6.6 ==
 
   * Show/Hide Demo Rom 
   * Faster update check modifications
 
-= NdsCRC v0.6.5.2 =
+== NdsCRC v0.6.5.2 ==
 
   * Multi-threaded
   * [http://www.advanscene.com ADVANsCEne] database
