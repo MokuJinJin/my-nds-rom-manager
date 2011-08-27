@@ -3,6 +3,7 @@
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
+using BusinessService.BW;
 namespace NdsCRC_III
 {
     using System;
@@ -13,7 +14,8 @@ namespace NdsCRC_III
     using System.Windows.Forms;
     using NdsCRC_III.BusinessService;
     using NdsCRC_III.BusinessService.BW;
-
+    using System.Collections.Generic;
+    
     public partial class MainForm : Form
     {
         private MFControler _controler;
@@ -23,6 +25,7 @@ namespace NdsCRC_III
         private BindingSource sourceMissing = new BindingSource();
 
         private string currentPathSelectedRom = string.Empty;
+        private NDS_Rom currentSelectedRom = new NDS_Rom();
 
         /// <summary>
         /// Constructor for MainForm
@@ -31,7 +34,7 @@ namespace NdsCRC_III
         {
             InitializeComponent();
             _controler = new MFControler(Application.StartupPath);
-
+            
             sourceAdvanScene.DataSource = _controler.GetDataBase();
             GridDataBase.DataSource = sourceAdvanScene;
             sourceCollection.DataSource = _controler.GetCollection();
@@ -373,6 +376,7 @@ namespace NdsCRC_III
 
                 // bool RomExist = bool.Parse((sender as DataGridView)["RomExist", (sender as DataGridView).SelectedRows[0].Index].Value.ToString());
                 this.currentPathSelectedRom = dgv["RomPath", dgv.SelectedRows[0].Index].Value.ToString();
+                this.currentSelectedRom = _controler.GetRomByReleaseNumber(dgv["ReleaseNumber", dgv.SelectedRows[0].Index].Value.ToString());
 
                 // bool RomExist = File.Exists(dgv["RomPath", dgv.SelectedRows[0].Index].Value.ToString());
                 if (File.Exists(currentPathSelectedRom))
@@ -467,7 +471,7 @@ namespace NdsCRC_III
 
             MAJ_Img_Nfo maj = new MAJ_Img_Nfo();
             maj.Show();
-            maj.Start();
+            maj.StartDownloadAllMissingFiles();
 
             MessageBox.Show("Update Complete.", "DataBase Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
             tabControl1.SelectedIndex = 4;
@@ -493,7 +497,7 @@ namespace NdsCRC_III
         {
             MAJ_Img_Nfo maj = new MAJ_Img_Nfo();
             maj.Show();
-            maj.Start();
+            maj.StartDownloadAllMissingFiles();
         }
 
         private void Bw_dl_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -621,6 +625,42 @@ namespace NdsCRC_III
             // tabControl2_SelectedIndexChanged(null, new EventArgs());
             // setLblNbRom();
             SetDataSource();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MAJ_Img_Nfo maj = new MAJ_Img_Nfo();
+            // maj.Show();
+            // maj.StartDownloadAllMissingFiles();
+            int releaseNumber = int.Parse(currentSelectedRom.ReleaseNumber);
+            string filePath = string.Format("{0}{1}.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
+            Queue<MajUrl> liste = new Queue<MajUrl>();
+            if (!File.Exists(filePath))
+            {
+                liste.Enqueue(new MajUrl()
+                {
+                    uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlIco),
+                    filepath = filePath
+                });
+            }
+            filePath = string.Format("{0}{1}a.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
+            if (!File.Exists(filePath))
+            {
+                liste.Enqueue(new MajUrl() { uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlCover), filepath = filePath });
+            }
+            filePath = string.Format("{0}{1}b.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
+            if (!File.Exists(filePath))
+            {
+                liste.Enqueue(new MajUrl() { uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlInGame), filepath = filePath });
+            }
+            filePath = string.Format("{0}{1}.nfo", NDSDirectories.PathNfo, releaseNumber.ToString("0000"));
+            if (!File.Exists(filePath))
+            {
+                liste.Enqueue(new MajUrl() { uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlNfo), filepath = filePath });
+            }
+
+            maj.Bw_RunWorkerCompleted(null, new RunWorkerCompletedEventArgs(liste,null,false));
+            //TabControl2_SelectedIndexChanged(null, new EventArgs());
         }
     }
 }

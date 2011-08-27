@@ -2,13 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Data;
     using System.IO;
+    using System.Linq;
     using Equin.ApplicationFramework;
-    using NdsCRC_III.BusinessService;
-    using SevenZip;
     using NdsCRC_III.DAL;
+    using SevenZip;
     
 
     /// <summary>
@@ -251,6 +249,12 @@
         public void SetFilterDemo(bool visible)
         {
             f.SetDemoRomFilter(visible);
+        }
+
+        public NDS_Rom GetRomByReleaseNumber(string releaseNumber)
+        {
+            NDS_Rom rom = DataAcessLayer.NdsAdvanScene.Single(r => r.ReleaseNumber == releaseNumber);
+            return rom;
         }
     }
 }
