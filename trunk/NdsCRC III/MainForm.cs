@@ -376,7 +376,11 @@ namespace NdsCRC_III
 
                 // bool RomExist = bool.Parse((sender as DataGridView)["RomExist", (sender as DataGridView).SelectedRows[0].Index].Value.ToString());
                 this.currentPathSelectedRom = dgv["RomPath", dgv.SelectedRows[0].Index].Value.ToString();
-                this.currentSelectedRom = _controler.GetRomByReleaseNumber(dgv["ReleaseNumber", dgv.SelectedRows[0].Index].Value.ToString());
+                if (dgv["ReleaseNumber", dgv.SelectedRows[0].Index].Value != null)
+                {
+                    this.currentSelectedRom = _controler.GetRomByReleaseNumber(dgv["ReleaseNumber", dgv.SelectedRows[0].Index].Value.ToString());    
+                }
+                
 
                 // bool RomExist = File.Exists(dgv["RomPath", dgv.SelectedRows[0].Index].Value.ToString());
                 if (File.Exists(currentPathSelectedRom))
@@ -389,6 +393,24 @@ namespace NdsCRC_III
                     btnUnzip.Enabled = false;
                     btnUnzip.Text = "Fichier Manquant";
                 }
+
+                if (currentSelectedRom != null)
+                {
+                    if (File.Exists(currentSelectedRom.NfoPath))
+                    {
+                        btnDownloadImgNfoOneRom.Enabled = false;
+                    }
+                    else
+                    {
+                        btnDownloadImgNfoOneRom.Enabled = true;
+                    }
+                }
+                else
+                {
+                    btnDownloadImgNfoOneRom.Enabled = false;
+                }
+
+                
             }
             else
             {
@@ -630,8 +652,7 @@ namespace NdsCRC_III
         private void button1_Click(object sender, EventArgs e)
         {
             MAJ_Img_Nfo maj = new MAJ_Img_Nfo();
-            // maj.Show();
-            // maj.StartDownloadAllMissingFiles();
+            
             int releaseNumber = int.Parse(currentSelectedRom.ReleaseNumber);
             string filePath = string.Format("{0}{1}.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
             Queue<MajUrl> liste = new Queue<MajUrl>();
@@ -661,6 +682,13 @@ namespace NdsCRC_III
 
             maj.Bw_RunWorkerCompleted(null, new RunWorkerCompletedEventArgs(liste,null,false));
             //TabControl2_SelectedIndexChanged(null, new EventArgs());
+            maj.Show();
+        }
+
+        private void AdvansceneLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string link = string.Format("http://www.advanscene.com/html/Releases/dbrelds.php?id={0}",currentSelectedRom.ReleaseNumber);
+            System.Diagnostics.Process.Start(link);
         }
     }
 }
