@@ -1,0 +1,9 @@
+#summary StyleCop
+
+= Introduction =
+
+http://stylecop.codeplex.com/
+
+= Details =
+
+Used to maintain a certain code's "beauty"
