@@ -57,7 +57,9 @@
             this.tabNFO = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabInformations = new System.Windows.Forms.TabPage();
+            this.AdvansceneLink = new System.Windows.Forms.LinkLabel();
             this.ImgIcon = new System.Windows.Forms.PictureBox();
+            this.btnDownloadImgNfoOneRom = new System.Windows.Forms.Button();
             this.imgLocation = new System.Windows.Forms.PictureBox();
             this.tabDataBaseUpdateInfo = new System.Windows.Forms.TabPage();
             this.ListboxDataBaseUpdate = new System.Windows.Forms.ListBox();
@@ -78,7 +80,6 @@
             this.tabMissing = new System.Windows.Forms.TabPage();
             this.GridMissing = new System.Windows.Forms.DataGridView();
             this.chk_DemoRomVisibility = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridCollection)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
@@ -397,8 +398,9 @@
             // 
             // tabInformations
             // 
+            this.tabInformations.Controls.Add(this.AdvansceneLink);
             this.tabInformations.Controls.Add(this.ImgIcon);
-            this.tabInformations.Controls.Add(this.button1);
+            this.tabInformations.Controls.Add(this.btnDownloadImgNfoOneRom);
             this.tabInformations.Controls.Add(this.labelExtractPercent);
             this.tabInformations.Controls.Add(this.btnUnzip);
             this.tabInformations.Controls.Add(this.lblReleaseNumber);
@@ -427,6 +429,17 @@
             this.tabInformations.Text = "Informations";
             this.tabInformations.UseVisualStyleBackColor = true;
             // 
+            // AdvansceneLink
+            // 
+            this.AdvansceneLink.AutoSize = true;
+            this.AdvansceneLink.Location = new System.Drawing.Point(9, 218);
+            this.AdvansceneLink.Name = "AdvansceneLink";
+            this.AdvansceneLink.Size = new System.Drawing.Size(104, 13);
+            this.AdvansceneLink.TabIndex = 34;
+            this.AdvansceneLink.TabStop = true;
+            this.AdvansceneLink.Text = "Link to AdvanScene";
+            this.AdvansceneLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AdvansceneLink_LinkClicked);
+            // 
             // ImgIcon
             // 
             this.ImgIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -436,6 +449,16 @@
             this.ImgIcon.Size = new System.Drawing.Size(36, 36);
             this.ImgIcon.TabIndex = 27;
             this.ImgIcon.TabStop = false;
+            // 
+            // btnDownloadImgNfoOneRom
+            // 
+            this.btnDownloadImgNfoOneRom.Location = new System.Drawing.Point(9, 322);
+            this.btnDownloadImgNfoOneRom.Name = "btnDownloadImgNfoOneRom";
+            this.btnDownloadImgNfoOneRom.Size = new System.Drawing.Size(142, 23);
+            this.btnDownloadImgNfoOneRom.TabIndex = 33;
+            this.btnDownloadImgNfoOneRom.Text = "Download Img/Nfo";
+            this.btnDownloadImgNfoOneRom.UseVisualStyleBackColor = true;
+            this.btnDownloadImgNfoOneRom.Click += new System.EventHandler(this.button1_Click);
             // 
             // imgLocation
             // 
@@ -653,16 +676,6 @@
             this.chk_DemoRomVisibility.UseVisualStyleBackColor = true;
             this.chk_DemoRomVisibility.CheckedChanged += new System.EventHandler(this.Chk_DemoRomVisibility_CheckedChanged);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(9, 322);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(142, 23);
-            this.button1.TabIndex = 33;
-            this.button1.Text = "Download Img/Nfo";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -757,7 +770,8 @@
         private System.Windows.Forms.DataGridView GridMissing;
         private System.Windows.Forms.PictureBox ImgIcon;
         private System.Windows.Forms.CheckBox chk_DemoRomVisibility;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDownloadImgNfoOneRom;
+        private System.Windows.Forms.LinkLabel AdvansceneLink;
     }
 }
 
