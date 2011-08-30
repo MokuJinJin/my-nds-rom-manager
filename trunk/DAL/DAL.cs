@@ -220,13 +220,13 @@ namespace NdsCRC_III.DAL
         /// </summary>
         public static void RepairCollection()
         {
-            foreach (NDS_Rom rom in _ndsCollection.DataBase)
+            // foreach (NDS_Rom rom in _ndsCollection.DataBase)
+            for (int i = 0; i < _ndsCollection.DataBase.Count; i++)
             {
-                NDS_Rom romDB = FindCRCDataBase(rom.RomCRC);
+                NDS_Rom romDB = FindCRCDataBase(_ndsCollection.DataBase[i].RomCRC);
                 if (romDB != null)
                 {
-                    rom.LanguageString = romDB.LanguageString;
-                    rom.LanguageCode = romDB.LanguageCode;
+                    _ndsCollection.DataBase[i] = romDB;
                 }
             }
 

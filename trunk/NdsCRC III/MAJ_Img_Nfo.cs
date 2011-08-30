@@ -30,11 +30,25 @@ namespace NdsCRC_III
         private Queue<MajUrl> liste = new Queue<MajUrl>();
 
         /// <summary>
+        /// Set it to true to have the form showing message box at the end
+        /// </summary>
+        private bool _showFinishMessage = true;
+
+        /// <summary>
         /// Constructor for MAJ_Img_Nfo
         /// </summary>
         public MAJ_Img_Nfo()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Set the ShowFinnishMessage
+        /// </summary>
+        /// <param name="show">Set it to true to have the form showing message box at the end</param>
+        public void SetShowFinishMessage(bool show)
+        {
+            _showFinishMessage = show;
         }
 
         /// <summary>
@@ -80,7 +94,11 @@ namespace NdsCRC_III
             }
             else
             {
-                MessageBox.Show("Everything is there");
+                if (_showFinishMessage)
+                {
+                    MessageBox.Show("Everything is there");
+                }
+                
                 this.Close();
             }
         }
@@ -125,7 +143,11 @@ namespace NdsCRC_III
             }
             else
             {
-                MessageBox.Show("Update done.");
+                if (_showFinishMessage)
+                {
+                    MessageBox.Show("Update done.");
+                }
+                
                 this.Close();
             }
         }
