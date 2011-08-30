@@ -376,6 +376,16 @@ namespace NdsCRC_III
             return File.Exists(_coverImg) && File.Exists(_iconImg) && File.Exists(_inGameImg);
         }
 
+        /// <summary>
+        /// External File name
+        /// </summary>
+        public string ExternalFileName { get; set; }
+
+        /// <summary>
+        /// External Dir name
+        /// </summary>
+        public string ExternalDirName { get; set; }
+
         #region IEquatable<NDS_Rom> Members : Not used ?
         /*
         /// <summary>

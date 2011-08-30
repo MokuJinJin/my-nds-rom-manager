@@ -269,6 +269,12 @@ namespace NdsCRC_III.DAL
                         }
 
                         break;
+                    case "dirname":
+                        rom.ExternalDirName = xndd.InnerText;
+                        break;
+                    case "filename":
+                        rom.ExternalFileName = xndd.InnerText;
+                        break;
                 }
             }
 
