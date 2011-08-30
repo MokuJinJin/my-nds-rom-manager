@@ -1,22 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using NdsCRC_III.DAL;
-using System.IO;
-using NdsCRC_III;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="BW_Maj_Img_Nfo.cs" company="Zed Byt Corp">
+//     Copyright Zed Byt Corp 2010
+// </copyright>
+//-----------------------------------------------------------------------
 namespace BusinessService.BW
 {
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.IO;
+
+    using NdsCRC_III;
+    using NdsCRC_III.DAL;
+
+    /// <summary>
+    /// Worker for Downloading all image and nfo
+    /// </summary>
     public class BW_Maj_Img_Nfo : BackgroundWorker
     {
+        /// <summary>
+        /// Constructor of the worker
+        /// </summary>
         public BW_Maj_Img_Nfo()
         {
             WorkerReportsProgress = true;
             this.DoWork += new DoWorkEventHandler(bw_maj_img_nfo_DoWork);
         }
 
+        /// <summary>
+        /// Work of the worker
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">DoWorkEventArgs</param>
         void bw_maj_img_nfo_DoWork(object sender, DoWorkEventArgs e)
         {
             Queue<MajUrl> Liste = new Queue<MajUrl>();

@@ -12,6 +12,9 @@ namespace NdsCRC_III.DAL
     /// </summary>
     public static class LocationXML
     {
+        /// <summary>
+        /// List of all location with their code
+        /// </summary>
         private static Dictionary<int, string> dicoLocation = new Dictionary<int, string>();
 
         /// <summary>
@@ -53,6 +56,11 @@ namespace NdsCRC_III.DAL
             dicoLocation.Add(31, "Hungary");
         }
         
+        /// <summary>
+        /// Change a location code to a string for display
+        /// </summary>
+        /// <param name="locationCode">Location code</param>
+        /// <returns>string for display, "N/A" if none code found</returns>
         public static string GetStringLocation(int locationCode)
         {
             string ret = "N/A";

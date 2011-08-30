@@ -15,8 +15,10 @@ namespace NdsCRC_III
     /// Class of NDS Rom
     /// </summary>
     [XmlRoot("NDS_Rom")]
-    public class NDS_Rom : IEquatable<NDS_Rom>
+    public class NDS_Rom
     {
+        // : IEquatable<NDS_Rom>
+
         /// <summary>
         /// Constructor for NDS_Rom
         /// </summary>
@@ -25,64 +27,136 @@ namespace NdsCRC_III
             LanguageCode = new List<int>();
         }
 
+        /// <summary>
+        /// Number for Img
+        /// </summary>
         public string ImageNumber { get; set; }
 
+        /// <summary>
+        /// Number of the release
+        /// </summary>
         public string ReleaseNumber { get; set; }
         
+        /// <summary>
+        /// Rom's title
+        /// </summary>
         public string Title { get; set; }
         
+        /// <summary>
+        /// Game's save type
+        /// </summary>
         public string SaveType { get; set; }
         
+        /// <summary>
+        /// Rom's size
+        /// </summary>
         public string RomSize { get; set; }
         
+        /// <summary>
+        /// Game's publisher
+        /// </summary>
         public string Publisher { get; set; }
         
+        /// <summary>
+        /// Location's Integer
+        /// </summary>
+        /// <remarks>For the list of Location's integer see : DAL.LocationXML</remarks>
         public string Location { get; set; }
-        
+
+        /// <summary>
+        /// Rom's Dumper
+        /// </summary>
         public string SourceRom { get; set; }
-        
+
+        /// <summary>
+        /// Language string for display, all language available
+        /// </summary>
         public string LanguageString { get; set; }
         
+        /// <summary>
+        /// List of language integer : available language in the rom
+        /// </summary>
+        /// <remarks>For the list of Language's integer see : DAL.LanguageXML</remarks>
         public List<int> LanguageCode { get; set; }
         
+        /// <summary>
+        /// Rom's CRC32
+        /// </summary>
         public string RomCRC { get; set; }
         
+        /// <summary>
+        /// Cover image CRC32
+        /// </summary>
         public string ImgCoverCRC { get; set; }
         
+        /// <summary>
+        /// In game image CRC32
+        /// </summary>
         public string ImgInGameCRC { get; set; }
         
+        /// <summary>
+        /// Icon CRC32
+        /// </summary>
         public string IcoCRC { get; set; }
         
+        /// <summary>
+        /// NFO CRC32
+        /// </summary>
         public string NfoCRC { get; set; }
         
+        /// <summary>
+        /// Genre Category
+        /// </summary>
         public string Genre { get; set; }
         
+        /// <summary>
+        /// Date of the dump/release
+        /// </summary>
         public string DumpDate { get; set; }
         
+        /// <summary>
+        /// Rom's Internal Name
+        /// </summary>
+        /// <remarks>Is it unique ?</remarks>
         public string InternalName { get; set; }
         
+        /// <summary>
+        /// Serial
+        /// </summary>
+        /// <remarks>Is it unique ?</remarks>
         public string Serial { get; set; }
         
+        /// <summary>
+        /// If multiple sales of the rom, it may have multiple version
+        /// </summary>
         public string Version { get; set; }
         
+        /// <summary>
+        /// If the game has the wifi
+        /// </summary>
         public bool Wifi { get; set; }
         
+        /// <summary>
+        /// Rom's Number in Advanscene web display
+        /// </summary>
+        /// <remarks>Found it in the comment</remarks>
         public string RomNumber { get; set; }
         
+        /// <summary>
+        /// Duplicate ID, all rom which are location duplicate have de same Duplicate ID
+        /// </summary>
         public int DuplicateID { get; set; }
 
-        [XmlIgnore]
+        /// <summary>
+        /// Cover Image path for the display
+        /// </summary>
         public string ImgCoverPath
         {
             get
             {
-                string imgCover = string.Format(
-                                "{0}{1}a.png",
-                                NDSDirectories.PathImg,
-                                this.ImageNumber);
-                if (File.Exists(imgCover))
+                if (File.Exists(_coverImg))
                 {
-                    return imgCover;
+                    return _coverImg;
                 }
                 else
                 {
@@ -93,18 +167,30 @@ namespace NdsCRC_III
             }
         }
 
-        [XmlIgnore]
+        /// <summary>
+        /// Cover image path
+        /// </summary>
+        private string _coverImg
+        {
+            get
+            {
+                return string.Format(
+                                "{0}{1}a.png",
+                                NDSDirectories.PathImg,
+                                this.ImageNumber);
+            }
+        }
+
+        /// <summary>
+        /// In Game image for the display
+        /// </summary>
         public string ImgInGamePath 
         {
             get
             {
-                string inGame = string.Format(
-                            "{0}{1}b.png",
-                            NDSDirectories.PathImg,
-                            this.ImageNumber);
-                if (File.Exists(inGame))
+                if (File.Exists(_inGameImg))
                 {
-                    return inGame;
+                    return _inGameImg;
                 }
                 else
                 {
@@ -115,18 +201,30 @@ namespace NdsCRC_III
             }
         }
 
-        [XmlIgnore]
+        /// <summary>
+        /// In Game image
+        /// </summary>
+        private string _inGameImg
+        {
+            get
+            {
+                return string.Format(
+                            "{0}{1}b.png",
+                            NDSDirectories.PathImg,
+                            this.ImageNumber);
+            }
+        }
+        
+        /// <summary>
+        /// Icon image for the display
+        /// </summary>
         public string ImgIconPath 
         {
             get
             {
-                string icon = string.Format(
-                                "{0}{1}.png",
-                                NDSDirectories.PathImg,
-                                this.ImageNumber);
-                if (File.Exists(icon))
+                if (File.Exists(_iconImg))
                 {
-                    return icon;
+                    return _iconImg;
                 }
                 else
                 {
@@ -137,7 +235,23 @@ namespace NdsCRC_III
             }
         }
 
-        [XmlIgnore]
+        /// <summary>
+        /// Icon image
+        /// </summary>
+        private string _iconImg
+        {
+            get
+            {
+                return string.Format(
+                                "{0}{1}.png",
+                                NDSDirectories.PathImg,
+                                this.ImageNumber);
+            }
+        }
+
+        /// <summary>
+        /// Flag path for display
+        /// </summary>
         public string FlagPath 
         {
             get
@@ -146,18 +260,16 @@ namespace NdsCRC_III
             }
         }
 
-        [XmlIgnore]
+        /// <summary>
+        /// Nfo path for display
+        /// </summary>
         public string NfoPath 
         {
             get
             {
-                string nfoPath = string.Format(
-                                "{0}{1}.nfo",
-                                NDSDirectories.PathNfo,
-                                this.ReleaseNumber);
-                if (File.Exists(nfoPath))
+                if (File.Exists(_nfoPath))
                 {
-                    return nfoPath;
+                    return _nfoPath;
                 }
                 else
                 {
@@ -168,23 +280,46 @@ namespace NdsCRC_III
             }
         }
 
-        [XmlIgnore]
+        /// <summary>
+        /// Nfo Path
+        /// </summary>
+        private string _nfoPath
+        {
+            get
+            {
+                return string.Format(
+                                "{0}{1}.nfo",
+                                NDSDirectories.PathNfo,
+                                this.ReleaseNumber);
+            }
+        }
+
+        /// <summary>
+        /// Rom path
+        /// </summary>
         public string RomPath 
         {
             get
             {
-                string complementNomXXXX = (this.RomNumber == "xxxx") ? string.Format("({0})", this.Serial) : string.Empty;
+                string complementNomDemo = string.Empty;
+                if (this.IsDemo())
+                {
+                    complementNomDemo = string.Format("({0})", this.Serial);
+                }
+
                 return string.Format(
                          "{0}{1}\\({2}) {3}{4}.7z",
                          NDSDirectories.PathRom,
                          NDSDirectories.GetDirFromReleaseNumber(this.RomNumber),
                          this.RomNumber,
                          this.Title,
-                         complementNomXXXX);
+                         complementNomDemo);
             }
         }
 
-        [XmlIgnore]
+        /// <summary>
+        /// True if Rom file exist
+        /// </summary>
         public bool RomExist 
         {
             get
@@ -193,7 +328,9 @@ namespace NdsCRC_III
             }
         }
 
-        [XmlIgnore]
+        /// <summary>
+        /// Bitmap of the Icon
+        /// </summary>
         public Image Icon
         {
             get
@@ -202,18 +339,50 @@ namespace NdsCRC_III
             }
         }
 
+        /// <summary>
+        /// Check if the rom has wifi
+        /// </summary>
+        /// <returns>True if Wifi is used in the game, false otherwise</returns>
         public bool IsWifi() 
         {
             return Wifi; 
         }
 
+        /// <summary>
+        /// Search if the Rom have a certain language by its code
+        /// </summary>
+        /// <param name="languageCode">Language Code integer</param>
+        /// <returns>True if the rom have the language, false otherwise</returns>
         public bool IsLanguage(int languageCode)
         {
             return this.LanguageCode.Contains(languageCode);
         }
 
-        #region IEquatable<NDS_Rom> Members
+        /// <summary>
+        /// Check if the rom is a demo
+        /// </summary>
+        /// <returns>True if the rom is a demo, false otherwise</returns>
+        public bool IsDemo()
+        {
+            return this.RomNumber == "xxxx";
+        }
 
+        /// <summary>
+        /// Check if all image are present
+        /// </summary>
+        /// <returns>True if all image are present, false otherwise</returns>
+        public bool IsAllImagePresent()
+        {
+            return File.Exists(_coverImg) && File.Exists(_iconImg) && File.Exists(_inGameImg);
+        }
+
+        #region IEquatable<NDS_Rom> Members : Not used ?
+        /*
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool Equals(NDS_Rom other)
         {
             // Check whether the compared object is null.
@@ -243,12 +412,7 @@ namespace NdsCRC_III
             // Calculate the hash code for the rom.
             return hashreleaseNumber ^ hashRomCRC;
         }
-
+        */
         #endregion
-
-        public bool IsDemo()
-        {
-            return this.RomNumber == "xxxx";
-        }
     }
 }

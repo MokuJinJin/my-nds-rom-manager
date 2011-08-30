@@ -14,9 +14,19 @@ namespace NdsCRC_III
     using System.Net;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// Form for the update of Image and NFO
+    /// </summary>
     public partial class MAJ_Img_Nfo : Form
     {
+        /// <summary>
+        /// for the download
+        /// </summary>
         private WebClient client = new WebClient();
+
+        /// <summary>
+        /// list of the file to download
+        /// </summary>
         private Queue<MajUrl> liste = new Queue<MajUrl>();
 
         /// <summary>
@@ -55,7 +65,7 @@ namespace NdsCRC_III
         /// Event when Calculate the missing File is complete
         /// </summary>
         /// <param name="sender">Object</param>
-        /// <param name="e">Args, Result is a Queue<MajUrl></param>
+        /// <param name="e">Args, Result is a Queue-MajUrl-</param>
         public void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             liste = (Queue<MajUrl>)e.Result;
@@ -75,6 +85,10 @@ namespace NdsCRC_III
             }
         }
 
+        /// <summary>
+        /// Download a File In BackGround
+        /// </summary>
+        /// <param name="majurl">link of the file</param>
         private void DownloadFileInBackGround(MajUrl majurl)
         {
             Uri uri = new Uri(majurl.uri);
@@ -84,11 +98,21 @@ namespace NdsCRC_III
             client.DownloadFileAsync(uri, majurl.filepath);
         }
 
+        /// <summary>
+        /// Client Download Progress Changed
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">DownloadProgressChangedEventArgs</param>
         private void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             progressBar2.Value = e.ProgressPercentage;
         }
 
+        /// <summary>
+        /// Client Download File Completed
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">AsyncCompletedEventArgs</param>
         private void Client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             progressBar1.Value++;
