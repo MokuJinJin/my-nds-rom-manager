@@ -273,6 +273,8 @@ namespace NdsCRC_III
             grid.Columns["NfoPath"].Visible = false;
             grid.Columns["RomPath"].Visible = false;
             grid.Columns["RomExist"].Visible = false;
+            grid.Columns["ExternalFileName"].Visible = false;
+            grid.Columns["ExternalDirName"].Visible = false;
 
             grid.Columns["Icon"].DisplayIndex = 0;
             grid.Columns["Icon"].ValueType = typeof(Image);
