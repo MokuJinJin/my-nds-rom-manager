@@ -13,10 +13,24 @@ namespace NdsCRC_III
     using System.Windows.Forms;
     using NdsCRC_III.BusinessService.BW;
 
+    /// <summary>
+    /// Integration form
+    /// </summary>
     public partial class IntegrationNDS : Form
     {
+        /// <summary>
+        /// path to scna for new rom ??
+        /// </summary>
         private string pathToScan;
+
+        /// <summary>
+        /// worker for integration
+        /// </summary>
         private BW_Integration bw;
+
+        /// <summary>
+        /// DataTable for the avancement
+        /// </summary>
         private DataTable avancement = new DataTable();
         
         /// <summary>
@@ -35,11 +49,19 @@ namespace NdsCRC_III
             pathToScan = path;
         }
 
+        /// <summary>
+        /// Event when form show
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void IntegrationNDS_Shown(object sender, EventArgs e)
         {
             Scan();
         }
 
+        /// <summary>
+        /// Start the work
+        /// </summary>
         public void Scan()
         {
             /*
@@ -75,6 +97,11 @@ namespace NdsCRC_III
             }
         }
 
+        /// <summary>
+        /// Event when worker is finished
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">RunWorkerCompletedEventArgs</param>
         private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Cancelled)
@@ -91,6 +118,11 @@ namespace NdsCRC_III
             btnAbort.Text = "Quit";
         }
 
+        /// <summary>
+        /// Event when Worker Progress Changed
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">ProgressChangedEventArgs</param>
         private void Bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             TOSortie tos = (TOSortie)e.UserState;
@@ -137,11 +169,21 @@ namespace NdsCRC_III
             }
         }
 
+        /// <summary>
+        /// To put the listbox to the last line
+        /// </summary>
         private void MajListBox()
         {
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
         }
+        
         #region Closing
+        
+        /// <summary>
+        /// IntegrationNDS_FormClosing, cancel the worker
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">FormClosingEventArgs</param>
         private void IntegrationNDS_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (btnAbort.Text != "Quit")
@@ -150,6 +192,11 @@ namespace NdsCRC_III
             }
         }
 
+        /// <summary>
+        /// request abort
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void BtnAbort_Click(object sender, EventArgs e)
         {
             if (btnAbort.Text == "Quit")
@@ -165,6 +212,11 @@ namespace NdsCRC_III
         }
         #endregion
 
+        /// <summary>
+        /// Checkbox check changed Event
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void Chk_CheckedChanged(object sender, EventArgs e)
         {
             string filter = string.Empty;

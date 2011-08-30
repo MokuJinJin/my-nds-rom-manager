@@ -12,11 +12,29 @@ namespace NdsCRC_III
     
     using NdsCRC_III.BusinessService;
 
+    /// <summary>
+    /// Test form
+    /// </summary>
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// sourceCollection
+        /// </summary>
         private BindingSource sourceCollection = new BindingSource();
+        
+        /// <summary>
+        /// sourceAdvanScene
+        /// </summary>
         private BindingSource sourceAdvanScene = new BindingSource();
+        
+        /// <summary>
+        /// sourceMissing
+        /// </summary>
         private BindingSource sourceMissing = new BindingSource();
+
+        /// <summary>
+        /// Controler of the form
+        /// </summary>
         private MFControler _controler;
         
         /// <summary>
@@ -43,6 +61,10 @@ namespace NdsCRC_III
             Init(dataGridView3);
         }
         
+        /// <summary>
+        /// whatever
+        /// </summary>
+        /// <param name="dataGridView1">dataGridView1</param>
         private void Init(DataGridView dataGridView1)
         {
             dataGridView1.Columns["ImageNumber"].Visible = false;
@@ -76,18 +98,33 @@ namespace NdsCRC_III
             dataGridView1.Columns["Title"].Width = 390;
         }
 
+        /// <summary>
+        /// DataGridView2_CellClick
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">DataGridViewCellEventArgs</param>
         private void DataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             label1.DataBindings.Clear();
             label1.DataBindings.Add("Text", sourceAdvanScene, "Title");
         }
 
+        /// <summary>
+        /// DataGridView1_CellClick
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">DataGridViewCellEventArgs</param>
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             label1.DataBindings.Clear();
             label1.DataBindings.Add("Text", sourceCollection, "Title");
         }
 
+        /// <summary>
+        /// DataGridView3_CellClick
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">DataGridViewCellEventArgs</param>
         private void DataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
@@ -95,6 +132,11 @@ namespace NdsCRC_III
             label1.DataBindings.Add("Text", dgv.DataSource, "Title");
         }
 
+        /// <summary>
+        /// Button1_Click
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void Button1_Click(object sender, EventArgs e)
         {
             _controler.RepairCollection();

@@ -12,7 +12,14 @@ namespace NdsCRC_III.DAL
     /// </summary>
     public static class LanguageXML
     {
+        /// <summary>
+        /// List of language code
+        /// </summary>
         private static List<int> languageList;
+
+        /// <summary>
+        /// Used to construct Language String
+        /// </summary>
         private static string stringLanguage = string.Empty;
 
         /// <summary>
@@ -70,8 +77,16 @@ namespace NdsCRC_III.DAL
             languageList.Add(2097152);
         }
 
+        /// <summary>
+        /// List of all language whith their code
+        /// </summary>
         public static Dictionary<int, string> DicoLanguage { get; private set; }
 
+        /// <summary>
+        /// Calculate string for display form a language code
+        /// </summary>
+        /// <param name="languageCode">language code</param>
+        /// <returns>N/A if no language found, string with all the language separated by comma</returns>
         public static string GetLanguage(int languageCode)
         {
             string ret = "N/A";
@@ -89,6 +104,11 @@ namespace NdsCRC_III.DAL
             return ret;
         }
 
+        /// <summary>
+        /// add Language string to the final language string
+        /// </summary>
+        /// <param name="i">i don't know</param>
+        /// <param name="index">only god know</param>
         private static void SetLanguageString(int i, int index)
         {
             while (i < languageList[index])
@@ -104,6 +124,11 @@ namespace NdsCRC_III.DAL
             }
         }
 
+        /// <summary>
+        /// i don't know
+        /// </summary>
+        /// <param name="languages">only god know</param>
+        /// <returns>whatever</returns>
         public static List<int> GetLanguagesList(int languages)
         {
             List<int> l = new List<int>();

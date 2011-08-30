@@ -14,14 +14,29 @@
     /// </summary>
     public class MFControler
     {
+        /// <summary>
+        /// Database
+        /// </summary>
         private BindingListView<NDS_Rom> AdvanSceneDataBase;
 
+        /// <summary>
+        /// Collection
+        /// </summary>
         private BindingListView<NDS_Rom> Collection;
 
+        /// <summary>
+        /// Rom missing
+        /// </summary>
         private BindingListView<NDS_Rom> CollectionMissing;
 
+        /// <summary>
+        /// filters
+        /// </summary>
         private Filters<NDS_Rom> f = new Filters<NDS_Rom>();
 
+        /// <summary>
+        /// Dat Version of the database
+        /// </summary>
         public string DatVersion
         {
             get
@@ -30,6 +45,9 @@
             }
         }
 
+        /// <summary>
+        /// Date of the creation of the Advanscene database
+        /// </summary>
         public string DatCreationDate
         {
             get
@@ -38,6 +56,9 @@
             }
         }
 
+        /// <summary>
+        /// Path to the new rom
+        /// </summary>
         public string PathNewRom
         {
             get
@@ -46,6 +67,9 @@
             }
         }
 
+        /// <summary>
+        /// Urls of the database
+        /// </summary>
         public string datURL
         {
             get
@@ -54,6 +78,9 @@
             }
         }
 
+        /// <summary>
+        /// File name of the database to download
+        /// </summary>
         public string datFileName
         {
             get
@@ -62,6 +89,9 @@
             }
         }
         
+        /// <summary>
+        /// URL of the datVersion file
+        /// </summary>
         public string datVersionURL
         {
             get
@@ -70,6 +100,9 @@
             }
         }
         
+        /// <summary>
+        /// Path of the Advanscene database of the hardrive
+        /// </summary>
         public string PathXmlDB
         {
             get
@@ -90,6 +123,11 @@
             f.ChangeFilter += new ChangeFilterEventHandler(f_ChangeFilter);
         }
 
+        /// <summary>
+        /// ChangeFilterEventHandler
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         void f_ChangeFilter(object sender, EventArgs e)
         {
             AdvanSceneDataBase.ApplyFilter(f);
@@ -214,16 +252,27 @@
             //CollectionMissing.ApplySort(sortsCollectionMissing);
         }
 
+        /// <summary>
+        /// Return all Language
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<int, string> GetLanguages()
         {
             return LanguageXML.DicoLanguage;
         }
 
+        /// <summary>
+        /// Set No/All Language Filter
+        /// </summary>
         public void SetNoLanguageFilter()
         {
             f.ResetLanguageFilter();
         }
 
+        /// <summary>
+        /// Set language filter on the given code 
+        /// </summary>
+        /// <param name="languageCode">language code to set the filter on</param>
         public void SetLanguageFilter(int languageCode)
         {
             f.SetLanguageFilter(languageCode);
@@ -241,16 +290,28 @@
             
         }
 
+        /// <summary>
+        /// Test -> Repair the collection
+        /// </summary>
         public void RepairCollection()
         {
             DataAcessLayer.RepairCollection();
         }
 
+        /// <summary>
+        /// Set the filter Demo rom  visible
+        /// </summary>
+        /// <param name="visible">True to see the Demo Rom, false to hide it</param>
         public void SetFilterDemo(bool visible)
         {
             f.SetDemoRomFilter(visible);
         }
 
+        /// <summary>
+        /// Get NDS_Rom from its release number
+        /// </summary>
+        /// <param name="releaseNumber">release number of a rom</param>
+        /// <returns>NDS_Rom</returns>
         public NDS_Rom GetRomByReleaseNumber(string releaseNumber)
         {
             NDS_Rom rom = DataAcessLayer.NdsAdvanScene.Single(r => r.ReleaseNumber == releaseNumber);

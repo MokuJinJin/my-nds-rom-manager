@@ -4,27 +4,53 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using BusinessService.BW;
+
 namespace NdsCRC_III
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Drawing;
     using System.IO;
     using System.Text;
     using System.Windows.Forms;
+
     using NdsCRC_III.BusinessService;
     using NdsCRC_III.BusinessService.BW;
-    using System.Collections.Generic;
-    
+
+    /// <summary>
+    /// Main Form
+    /// </summary>
     public partial class MainForm : Form
     {
-        private MFControler _controler;
-
+        /// <summary>
+        /// sourceCollection
+        /// </summary>
         private BindingSource sourceCollection = new BindingSource();
+
+        /// <summary>
+        /// sourceAdvanScene
+        /// </summary>
         private BindingSource sourceAdvanScene = new BindingSource();
+
+        /// <summary>
+        /// sourceMissing
+        /// </summary>
         private BindingSource sourceMissing = new BindingSource();
 
+        /// <summary>
+        /// Controler of the form
+        /// </summary>
+        private MFControler _controler;
+
+        /// <summary>
+        /// current Path of the Selected Rom
+        /// </summary>
         private string currentPathSelectedRom = string.Empty;
+
+        /// <summary>
+        /// current Selected Rom
+        /// </summary>
         private NDS_Rom currentSelectedRom = new NDS_Rom();
 
         /// <summary>
@@ -34,7 +60,7 @@ namespace NdsCRC_III
         {
             InitializeComponent();
             _controler = new MFControler(Application.StartupPath);
-            
+
             sourceAdvanScene.DataSource = _controler.GetDataBase();
             GridDataBase.DataSource = sourceAdvanScene;
             sourceCollection.DataSource = _controler.GetCollection();
@@ -188,6 +214,11 @@ namespace NdsCRC_III
         }
 */
 
+        /// <summary>
+        /// Start the integration
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void BtnGetNewRom_Click(object sender, EventArgs e)
         {
             IntegrationNDS f = new IntegrationNDS(_controler.PathNewRom);
@@ -196,12 +227,21 @@ namespace NdsCRC_III
             f.Show();
         }
 
+        /// <summary>
+        /// IntegrationNDS Close Event
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">FormClosedEventArgs</param>
         private void F_FormClosed(object sender, FormClosedEventArgs e)
         {
             btnGetNewRom.Enabled = true;
             _controler.ReloadAdvanSceneDataBase();
         }
 
+        /// <summary>
+        /// Initialize DataGrid
+        /// </summary>
+        /// <param name="grid">DataGrid to initialize</param>
         private void InitDataGrid(DataGridView grid)
         {
             grid.Columns["ImageNumber"].Visible = false;
@@ -256,6 +296,11 @@ namespace NdsCRC_III
             grid.Sort(grid.Columns["RomNumber"], ListSortDirection.Ascending);
         }
 
+        /// <summary>
+        /// Set Duplicate filter
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void BtnFilterDuplicate_Click(object sender, EventArgs e)
         {
             /*
@@ -271,16 +316,21 @@ namespace NdsCRC_III
             //    GridDataBase.DataSource = dtv.ToTable();
 
             //}
-             * */
+            */
         }
 
+        /// <summary>
+        /// DataBinding of the selected Rom
+        /// </summary>
+        /// <param name="sender">DataGridView</param>
+        /// <param name="e">EventArgs</param>
         private void Grid_CurrentCellChanged(object sender, EventArgs e)
         {
             if ((sender as DataGridView).SelectedRows.Count == 1)
             {
                 // Grid_CellClick(sender, new DataGridViewCellEventArgs(1, GridCollection.SelectedRows[0].Index));
                 DataGridView dgv = (DataGridView)sender;
-                
+
                 // lblLanguage.Text = (sender as DataGridView)["language", e.RowIndex].Value.ToString();
                 lblLanguage.DataBindings.Clear();
                 lblLanguage.DataBindings.Add("Text", dgv.DataSource, "languageString");
@@ -348,9 +398,8 @@ namespace NdsCRC_III
                 imgLocation.DataBindings.Clear();
                 imgLocation.DataBindings.Add("ImageLocation", dgv.DataSource, "FlagPath");
 
-                ImgIcon.DataBindings.Clear();
-
                 // ImgIcon.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgIconPath");
+                ImgIcon.DataBindings.Clear();
                 ImgIcon.DataBindings.Add("Image", dgv.DataSource, "Icon");
 
                 Encoding encoding = Encoding.GetEncoding(437);
@@ -378,25 +427,24 @@ namespace NdsCRC_III
                 this.currentPathSelectedRom = dgv["RomPath", dgv.SelectedRows[0].Index].Value.ToString();
                 if (dgv["ReleaseNumber", dgv.SelectedRows[0].Index].Value != null)
                 {
-                    this.currentSelectedRom = _controler.GetRomByReleaseNumber(dgv["ReleaseNumber", dgv.SelectedRows[0].Index].Value.ToString());    
+                    this.currentSelectedRom = _controler.GetRomByReleaseNumber(dgv["ReleaseNumber", dgv.SelectedRows[0].Index].Value.ToString());
                 }
-                
 
                 // bool RomExist = File.Exists(dgv["RomPath", dgv.SelectedRows[0].Index].Value.ToString());
                 if (File.Exists(currentPathSelectedRom))
                 {
                     btnUnzip.Enabled = true;
-                    btnUnzip.Text = "Copier sur Carte";
+                    btnUnzip.Text = "Copy on Linker";
                 }
                 else
                 {
                     btnUnzip.Enabled = false;
-                    btnUnzip.Text = "Fichier Manquant";
+                    btnUnzip.Text = "File is missing";
                 }
 
                 if (currentSelectedRom != null)
                 {
-                    if (File.Exists(currentSelectedRom.NfoPath))
+                    if (currentSelectedRom.IsAllImagePresent())
                     {
                         btnDownloadImgNfoOneRom.Enabled = false;
                     }
@@ -409,8 +457,6 @@ namespace NdsCRC_III
                 {
                     btnDownloadImgNfoOneRom.Enabled = false;
                 }
-
-                
             }
             else
             {
@@ -431,6 +477,9 @@ namespace NdsCRC_III
             }
         }
 
+        /// <summary>
+        /// Update the database
+        /// </summary>
         private void UpdateDatabase()
         {
             Download downloadXml = new Download(true);
@@ -440,6 +489,9 @@ namespace NdsCRC_III
             downloadXml.Show(_controler.datURL, _controler.datFileName, "Downloading Database ...");
         }
 
+        /// <summary>
+        /// Download the datversion
+        /// </summary>
         private void DownloadDatVersion()
         {
             // http://www.advanscene.com/offline/version/ADVANsCEne_NDScrc.txt
@@ -449,7 +501,12 @@ namespace NdsCRC_III
             // DLXml.Show("http://www.advanscene.com/offline/datas/ADVANsCEne_NDScrc.zip", "ADVANsCEne_NDScrc.zip", "Downloading Database ...");
             downloadXml.ShowHidden(_controler.datVersionURL, string.Format("{0}\\ADVANsCEne_NDScrc_Version.txt", Application.StartupPath), "Downloading Version ...");
         }
-        
+
+        /// <summary>
+        /// Check if Dat Version is greater than the actual
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void CheckDatVersion(object sender, EventArgs e)
         {
             if (File.Exists(string.Format("{0}\\ADVANsCEne_NDScrc_Version.txt", Application.StartupPath)))
@@ -471,6 +528,11 @@ namespace NdsCRC_III
             }
         }
 
+        /// <summary>
+        /// Event Download Advanscene DataBase disposed (autoclose)
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void DLXml_Disposed(object sender, EventArgs e)
         {
             _controler.ExtractNewDataBase();
@@ -482,6 +544,11 @@ namespace NdsCRC_III
             bw.RunWorkerAsync();
         }
 
+        /// <summary>
+        /// Worker diff work completed
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">RunWorkerCompletedEventArgs</param>
         private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             File.Delete(Directory.GetParent(_controler.PathXmlDB) + "\\ADVANsCEne_NDScrc.xml.old");
@@ -499,6 +566,11 @@ namespace NdsCRC_III
             tabControl1.SelectedIndex = 4;
         }
 
+        /// <summary>
+        /// Worker diff work progress changed
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">ProgressChangedEventArgs</param>
         private void Bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar1.Value = e.ProgressPercentage;
@@ -515,6 +587,11 @@ namespace NdsCRC_III
             }
         }
 
+        /// <summary>
+        /// Download all missing img/nfo
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void BtnMAJ_Img_NFO_Click(object sender, EventArgs e)
         {
             MAJ_Img_Nfo maj = new MAJ_Img_Nfo();
@@ -522,23 +599,31 @@ namespace NdsCRC_III
             maj.StartDownloadAllMissingFiles();
         }
 
-        private void Bw_dl_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            progressBar1.Value = e.ProgressPercentage;
-        }
-
+        /// <summary>
+        /// RepairCollection
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void Button4_Click(object sender, EventArgs e)
         {
             _controler.RepairCollection();
         }
 
         #region Search
+        /// <summary>
+        /// Title filter
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void BtnRecherche_Click(object sender, EventArgs e)
         {
             _controler.SetTitleFilter(txtRecherche.Text);
             SetDataSource();
         }
 
+        /// <summary>
+        /// initialize a lot of things
+        /// </summary>
         private void SetDataSource()
         {
             GridDataBase.DataSource = _controler.GetDataBase();
@@ -549,7 +634,12 @@ namespace NdsCRC_III
             InitDataGrid(GridMissing);
             SetLblNbRom();
         }
-        
+
+        /// <summary>
+        /// launch the title filter
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void TxtRecherche_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -560,6 +650,11 @@ namespace NdsCRC_III
         #endregion
 
         #region Extract
+        /// <summary>
+        /// Unzip rom
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void BtnUnzip_Click(object sender, EventArgs e)
         {
             progressBarExtract.Value = 0;
@@ -582,6 +677,11 @@ namespace NdsCRC_III
             }
         }
 
+        /// <summary>
+        /// Bw_Extract_RunWorkerCompleted
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">RunWorkerCompletedEventArgs</param>
         private void Bw_Extract_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("Copie Fini", "Copie Rom", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -589,7 +689,12 @@ namespace NdsCRC_III
             labelExtractPercent.Text = "00%";
             btnUnzip.Enabled = true;
         }
-        
+
+        /// <summary>
+        /// Bw_Extract_ProgressChanged
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">ProgressChangedEventArgs</param>
         private void Bw_Extract_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBarExtract.Value = e.ProgressPercentage;
@@ -597,6 +702,11 @@ namespace NdsCRC_III
         }
         #endregion
 
+        /// <summary>
+        /// Set language filter
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void CbxLanguages_SelectedIndexChanged(object sender, EventArgs e)
         {
             int code = -10;
@@ -615,6 +725,11 @@ namespace NdsCRC_III
             }
         }
 
+        /// <summary>
+        /// TabControl2_SelectedIndexChanged
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void TabControl2_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (tabControl2.SelectedIndex)
@@ -633,6 +748,9 @@ namespace NdsCRC_III
             SetLblNbRom();
         }
 
+        /// <summary>
+        /// Update the number of rom to display on the tabs
+        /// </summary>
         private void SetLblNbRom()
         {
             tabCollection.Text = string.Format("Collection ({0} roms)", _controler.GetCollection().Count);
@@ -640,6 +758,11 @@ namespace NdsCRC_III
             tabMissing.Text = string.Format("Missing ({0} roms)", _controler.GetCollectionMissing().Count);
         }
 
+        /// <summary>
+        /// Chk_DemoRomVisibility_CheckedChanged
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void Chk_DemoRomVisibility_CheckedChanged(object sender, EventArgs e)
         {
             _controler.SetFilterDemo(chk_DemoRomVisibility.Checked);
@@ -649,10 +772,15 @@ namespace NdsCRC_III
             SetDataSource();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Update image nfo of the selected rom
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
+        private void Button1_Click(object sender, EventArgs e)
         {
             MAJ_Img_Nfo maj = new MAJ_Img_Nfo();
-            
+
             int releaseNumber = int.Parse(currentSelectedRom.ReleaseNumber);
             string filePath = string.Format("{0}{1}.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
             Queue<MajUrl> liste = new Queue<MajUrl>();
@@ -664,30 +792,39 @@ namespace NdsCRC_III
                     filepath = filePath
                 });
             }
+
             filePath = string.Format("{0}{1}a.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
             if (!File.Exists(filePath))
             {
                 liste.Enqueue(new MajUrl() { uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlCover), filepath = filePath });
             }
+
             filePath = string.Format("{0}{1}b.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
             if (!File.Exists(filePath))
             {
                 liste.Enqueue(new MajUrl() { uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlInGame), filepath = filePath });
             }
+
             filePath = string.Format("{0}{1}.nfo", NDSDirectories.PathNfo, releaseNumber.ToString("0000"));
             if (!File.Exists(filePath))
             {
                 liste.Enqueue(new MajUrl() { uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlNfo), filepath = filePath });
             }
 
-            maj.Bw_RunWorkerCompleted(null, new RunWorkerCompletedEventArgs(liste,null,false));
-            //TabControl2_SelectedIndexChanged(null, new EventArgs());
+            maj.Bw_RunWorkerCompleted(null, new RunWorkerCompletedEventArgs(liste, null, false));
+
+            // TabControl2_SelectedIndexChanged(null, new EventArgs());
             maj.Show();
         }
 
+        /// <summary>
+        /// AdvansceneLink_LinkClicked
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void AdvansceneLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string link = string.Format("http://www.advanscene.com/html/Releases/dbrelds.php?id={0}",currentSelectedRom.ReleaseNumber);
+            string link = string.Format("http://www.advanscene.com/html/Releases/dbrelds.php?id={0}", currentSelectedRom.ReleaseNumber);
             System.Diagnostics.Process.Start(link);
         }
     }

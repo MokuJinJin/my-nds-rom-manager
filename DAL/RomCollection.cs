@@ -22,6 +22,9 @@ namespace NdsCRC_III.DAL
             DataBase = new List<NDS_Rom>();
         }
 
+        /// <summary>
+        /// List of roms
+        /// </summary>
         [XmlArray("Collection")]
         [XmlArrayItem("NdsRom")]
         public List<NDS_Rom> DataBase { get; set; }

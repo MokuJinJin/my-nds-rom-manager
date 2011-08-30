@@ -10,6 +10,9 @@ namespace NdsCRC_III
     using System.Windows.Forms;
     using NdsCRC_III.BusinessService.BW;
 
+    /// <summary>
+    /// Form for verify CRC of the collection files
+    /// </summary>
     public partial class VerifyCRCFiles : Form
     {
         /// <summary>
@@ -20,6 +23,9 @@ namespace NdsCRC_III
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Launch the work
+        /// </summary>
         public void Start()
         {
             label1.Text = "Counting files ...";
@@ -30,6 +36,11 @@ namespace NdsCRC_III
             bw.RunWorkerAsync();
         }
 
+        /// <summary>
+        /// Bw_ProgressChanged
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">ProgressChangedEventArgs</param>
         private void Bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             if (e.UserState != null)
@@ -48,11 +59,21 @@ namespace NdsCRC_III
             }
         }
 
+        /// <summary>
+        /// Bw_RunWorkerCompleted
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">RunWorkerCompletedEventArgs</param>
         private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("The End");
         }
 
+        /// <summary>
+        /// Button1_Click
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
         private void Button1_Click(object sender, EventArgs e)
         {
             Start();

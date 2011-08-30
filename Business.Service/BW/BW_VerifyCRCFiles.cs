@@ -10,11 +10,21 @@ using System.Xml.Serialization;
 
 namespace NdsCRC_III.BusinessService.BW
 {
+    /// <summary>
+    /// Worker to verify CRC of the all rom collection
+    /// </summary>
     public class BW_VerifyCRCFiles : BackgroundWorker
     {
 
+        /// <summary>
+        /// statup path of the application
+        /// </summary>
         private string _startuppath;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="startupPath">StarupPath of the application</param>
         public BW_VerifyCRCFiles(string startupPath)
         {
             _startuppath = startupPath;
@@ -25,6 +35,11 @@ namespace NdsCRC_III.BusinessService.BW
             this.DoWork += new DoWorkEventHandler(BW_VerifyCRCFiles_DoWork);
         }
 
+        /// <summary>
+        /// Work of the worker
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">DoWorkEventArgs</param>
         void BW_VerifyCRCFiles_DoWork(object sender, DoWorkEventArgs e)
         {
             List<NDS_Rom> NewCollection = new List<NDS_Rom>();

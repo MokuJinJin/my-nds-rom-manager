@@ -10,6 +10,9 @@ namespace NdsCRC_III.DAL
     using System.Linq;
     using System.Xml.Serialization;
 
+    /// <summary>
+    /// Data Access Layer
+    /// </summary>
     public static class DataAcessLayer
     {
         /// <summary>
@@ -288,6 +291,9 @@ namespace NdsCRC_III.DAL
         }
         #endregion
 
+        /// <summary>
+        /// Reload the Advnascene DataBase
+        /// </summary>
         public static void NdsAdvanSceneReload()
         {
             _ndsAdvanScene.Reload();

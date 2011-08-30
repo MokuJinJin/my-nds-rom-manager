@@ -458,7 +458,7 @@
             this.btnDownloadImgNfoOneRom.TabIndex = 33;
             this.btnDownloadImgNfoOneRom.Text = "Download Img/Nfo";
             this.btnDownloadImgNfoOneRom.UseVisualStyleBackColor = true;
-            this.btnDownloadImgNfoOneRom.Click += new System.EventHandler(this.button1_Click);
+            this.btnDownloadImgNfoOneRom.Click += new System.EventHandler(this.Button1_Click);
             // 
             // imgLocation
             // 
@@ -556,7 +556,7 @@
             this.btnRecherche.Name = "btnRecherche";
             this.btnRecherche.Size = new System.Drawing.Size(75, 23);
             this.btnRecherche.TabIndex = 28;
-            this.btnRecherche.Text = "recherche";
+            this.btnRecherche.Text = "Title Filter";
             this.btnRecherche.UseVisualStyleBackColor = true;
             this.btnRecherche.Click += new System.EventHandler(this.BtnRecherche_Click);
             // 
