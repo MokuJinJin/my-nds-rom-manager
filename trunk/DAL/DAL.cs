@@ -95,7 +95,7 @@ namespace NdsCRC_III.DAL
                 return _ndsAdvanScene.URLs;
             }
         }
-        
+
         /// <summary>
         /// List of missing collection rom
         /// </summary>
@@ -103,7 +103,8 @@ namespace NdsCRC_III.DAL
         {
             get
             {
-                return _ndsAdvanScene.DataBase.Except(_ndsCollection.DataBase).ToList();
+                IEqualityComparer<NDS_Rom> cmp = new LambdaComparer<NDS_Rom>((x, y) => x.ReleaseNumber == y.ReleaseNumber);
+                return _ndsAdvanScene.DataBase.Except(_ndsCollection.DataBase, cmp).ToList();
             }
         }
 

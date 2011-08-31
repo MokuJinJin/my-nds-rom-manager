@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LambdaComparer.cs" />
     <Compile Include="NDSAdvanScene.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="EnumBase.cs" />
