@@ -160,9 +160,12 @@ namespace NdsCRC_III.TO
                 }
                 else
                 {
+                    /*
                     return string.Format(
                         "{0}defaulta.png",
                         NDSDirectories.PathImg);
+                    */
+                    return string.Empty;
                 }
             }
         }
@@ -374,6 +377,22 @@ namespace NdsCRC_III.TO
         public bool IsAllImagePresent()
         {
             return File.Exists(_coverImg) && File.Exists(_iconImg) && File.Exists(_inGameImg);
+        }
+
+        /// <summary>
+        /// Check if a rom has a duplicate
+        /// </summary>
+        /// <returns>Ture if it has a duplicate, false otherwise</returns>
+        public bool IsDuplicate()
+        {
+            if (DuplicateID.ToString() == string.Empty)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         /// <summary>

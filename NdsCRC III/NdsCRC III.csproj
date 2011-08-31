@@ -176,9 +176,9 @@
     <Content Include="Library\SevenZipSharp.v0.61.dll" />
     <Content Include="Library\SevenZipSharp.v0.63.dll" />
     <Content Include="Library\SevenZipSharp.v0.64.dll" />
-    <None Include="Resources\defaultb.png" />
     <None Include="Resources\defaulta.png" />
     <None Include="Resources\default.png" />
+    <None Include="Resources\defaultb.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

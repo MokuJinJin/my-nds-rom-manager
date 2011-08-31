@@ -60,23 +60,23 @@ namespace NdsCRC_III.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap _default {
+        internal static System.Drawing.Bitmap Icon {
             get {
-                object obj = ResourceManager.GetObject("default", resourceCulture);
+                object obj = ResourceManager.GetObject("Icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap defaulta {
+        internal static System.Drawing.Bitmap ImgCover {
             get {
-                object obj = ResourceManager.GetObject("defaulta", resourceCulture);
+                object obj = ResourceManager.GetObject("ImgCover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap defaultb {
+        internal static System.Drawing.Bitmap ImgInGame {
             get {
-                object obj = ResourceManager.GetObject("defaultb", resourceCulture);
+                object obj = ResourceManager.GetObject("ImgInGame", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

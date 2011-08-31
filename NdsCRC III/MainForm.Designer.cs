@@ -57,9 +57,13 @@
             this.tabNFO = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabInformations = new System.Windows.Forms.TabPage();
+            this.txtFileName = new System.Windows.Forms.TextBox();
+            this.txtDirName = new System.Windows.Forms.TextBox();
             this.AdvansceneLink = new System.Windows.Forms.LinkLabel();
             this.ImgIcon = new System.Windows.Forms.PictureBox();
             this.btnDownloadImgNfoOneRom = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.imgLocation = new System.Windows.Forms.PictureBox();
             this.tabDataBaseUpdateInfo = new System.Windows.Forms.TabPage();
             this.ListboxDataBaseUpdate = new System.Windows.Forms.ListBox();
@@ -80,10 +84,6 @@
             this.tabMissing = new System.Windows.Forms.TabPage();
             this.GridMissing = new System.Windows.Forms.DataGridView();
             this.chk_DemoRomVisibility = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtDirName = new System.Windows.Forms.TextBox();
-            this.txtFileName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.GridCollection)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
@@ -191,7 +191,6 @@
             this.btnFilterDuplicate.TabIndex = 3;
             this.btnFilterDuplicate.Text = "Filter Duplicate";
             this.btnFilterDuplicate.UseVisualStyleBackColor = true;
-            this.btnFilterDuplicate.Visible = false;
             this.btnFilterDuplicate.Click += new System.EventHandler(this.BtnFilterDuplicate_Click);
             // 
             // lblGenre
@@ -355,7 +354,7 @@
             // 
             this.ImgInGame.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ImgInGame.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ImgInGame.InitialImage = global::NdsCRC_III.Properties.Resources.defaultb;
+            this.ImgInGame.InitialImage = global::NdsCRC_III.Properties.Resources.ImgInGame;
             this.ImgInGame.Location = new System.Drawing.Point(223, 15);
             this.ImgInGame.Name = "ImgInGame";
             this.ImgInGame.Size = new System.Drawing.Size(256, 384);
@@ -367,7 +366,7 @@
             this.ImgCover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ImgCover.BackColor = System.Drawing.SystemColors.Control;
             this.ImgCover.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ImgCover.InitialImage = global::NdsCRC_III.Properties.Resources.defaulta;
+            this.ImgCover.InitialImage = global::NdsCRC_III.Properties.Resources.ImgCover;
             this.ImgCover.Location = new System.Drawing.Point(6, 15);
             this.ImgCover.Name = "ImgCover";
             this.ImgCover.Size = new System.Drawing.Size(214, 384);
@@ -437,6 +436,28 @@
             this.tabInformations.Text = "Informations";
             this.tabInformations.UseVisualStyleBackColor = true;
             // 
+            // txtFileName
+            // 
+            this.txtFileName.BackColor = System.Drawing.SystemColors.Control;
+            this.txtFileName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtFileName.Location = new System.Drawing.Point(71, 250);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.ReadOnly = true;
+            this.txtFileName.Size = new System.Drawing.Size(402, 13);
+            this.txtFileName.TabIndex = 35;
+            this.txtFileName.Text = "txtFileName";
+            // 
+            // txtDirName
+            // 
+            this.txtDirName.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDirName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDirName.Location = new System.Drawing.Point(70, 223);
+            this.txtDirName.Name = "txtDirName";
+            this.txtDirName.ReadOnly = true;
+            this.txtDirName.Size = new System.Drawing.Size(402, 13);
+            this.txtDirName.TabIndex = 35;
+            this.txtDirName.Text = "txtDirName";
+            // 
             // AdvansceneLink
             // 
             this.AdvansceneLink.AutoSize = true;
@@ -451,7 +472,7 @@
             // ImgIcon
             // 
             this.ImgIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ImgIcon.InitialImage = global::NdsCRC_III.Properties.Resources._default;
+            this.ImgIcon.InitialImage = global::NdsCRC_III.Properties.Resources.Icon;
             this.ImgIcon.Location = new System.Drawing.Point(8, 6);
             this.ImgIcon.Name = "ImgIcon";
             this.ImgIcon.Size = new System.Drawing.Size(36, 36);
@@ -467,6 +488,26 @@
             this.btnDownloadImgNfoOneRom.Text = "Download Img/Nfo";
             this.btnDownloadImgNfoOneRom.UseVisualStyleBackColor = true;
             this.btnDownloadImgNfoOneRom.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(5, 250);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(57, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "FileName :";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 223);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "DirName :";
             // 
             // imgLocation
             // 
@@ -684,48 +725,6 @@
             this.chk_DemoRomVisibility.Text = "Demo Rom visibility";
             this.chk_DemoRomVisibility.UseVisualStyleBackColor = true;
             this.chk_DemoRomVisibility.CheckedChanged += new System.EventHandler(this.Chk_DemoRomVisibility_CheckedChanged);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 223);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "DirName :";
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(5, 250);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(57, 13);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "FileName :";
-            // 
-            // txtDirName
-            // 
-            this.txtDirName.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDirName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDirName.Location = new System.Drawing.Point(70, 223);
-            this.txtDirName.Name = "txtDirName";
-            this.txtDirName.ReadOnly = true;
-            this.txtDirName.Size = new System.Drawing.Size(402, 13);
-            this.txtDirName.TabIndex = 35;
-            this.txtDirName.Text = "txtDirName";
-            // 
-            // txtFileName
-            // 
-            this.txtFileName.BackColor = System.Drawing.SystemColors.Control;
-            this.txtFileName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtFileName.Location = new System.Drawing.Point(71, 250);
-            this.txtFileName.Name = "txtFileName";
-            this.txtFileName.ReadOnly = true;
-            this.txtFileName.Size = new System.Drawing.Size(402, 13);
-            this.txtFileName.TabIndex = 35;
-            this.txtFileName.Text = "txtFileName";
             // 
             // MainForm
             // 

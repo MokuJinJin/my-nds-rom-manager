@@ -53,7 +53,7 @@ namespace NdsCRC_III
         {
             InitializeComponent();
             _controler = new MFControler(Application.StartupPath);
-
+            
             sourceAdvanScene.DataSource = _controler.GetDataBase();
             GridDataBase.DataSource = sourceAdvanScene;
             sourceCollection.DataSource = _controler.GetCollection();
@@ -298,19 +298,20 @@ namespace NdsCRC_III
         /// <param name="e">EventArgs</param>
         private void BtnFilterDuplicate_Click(object sender, EventArgs e)
         {
+            _controler.SetDuplicateFilter(currentSelectedRom.DuplicateID);
+            SetDataSource();
             /*
-            //if (lblDuplicateID.Text != "None")
-            //{
-            //    StringBuilder strFiltre = new StringBuilder();
-            //    DataView dtv = new DataView(AdvanceSceneDataBaseXML.DataBase);
+            if (lblDuplicateID.Text != "None")
+            {
+                StringBuilder strFiltre = new StringBuilder();
+                DataView dtv = new DataView(AdvanceSceneDataBaseXML.DataBase);
 
-            //    strFiltre.Append("duplicateid = '" + lblDuplicateID.Text + "'");
+                strFiltre.Append("duplicateid = '" + lblDuplicateID.Text + "'");
 
-            //    dtv.RowFilter = strFiltre.ToString();
-            //    dtv.Sort = "RomNumber";
-            //    GridDataBase.DataSource = dtv.ToTable();
-
-            //}
+                dtv.RowFilter = strFiltre.ToString();
+                dtv.Sort = "RomNumber";
+                GridDataBase.DataSource = dtv.ToTable();
+            }
             */
         }
 
@@ -354,7 +355,9 @@ namespace NdsCRC_III
 
                 lblDuplicateID.DataBindings.Clear();
                 lblDuplicateID.DataBindings.Add("Text", dgv.DataSource, "duplicateid");
-                if (lblDuplicateID.Text == "None")
+                
+                // if (lblDuplicateID.Text == "None")
+                if (lblDuplicateID.Text == string.Empty)
                 {
                     btnFilterDuplicate.Enabled = true;
                 }
@@ -367,16 +370,28 @@ namespace NdsCRC_III
                 lblReleaseNumber.DataBindings.Add("Text", dgv.DataSource, "ReleaseNumber");
 
                 ImgCover.DataBindings.Clear();
-                ImgCover.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgCoverPath");
-
+                if (dgv["ImgCoverPath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
+                {
+                    ImgCover.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgCoverPath");
+                }
+                
                 ImgInGame.DataBindings.Clear();
-                ImgInGame.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgInGamePath");
+                if (dgv["ImgInGamePath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
+                {
+                    ImgInGame.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgInGamePath");
+                } 
 
                 imgLocation.DataBindings.Clear();
-                imgLocation.DataBindings.Add("ImageLocation", dgv.DataSource, "FlagPath");
+                if (dgv["FlagPath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
+                {
+                    imgLocation.DataBindings.Add("ImageLocation", dgv.DataSource, "FlagPath");
+                } 
 
                 ImgIcon.DataBindings.Clear();
-                ImgIcon.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgIconPath");
+                if (dgv["ImgIconPath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
+                {
+                    ImgIcon.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgIconPath");
+                } 
                 
                 Encoding encoding = Encoding.GetEncoding(437);
                 
