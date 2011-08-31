@@ -3,7 +3,7 @@
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
-namespace NdsCRC_III
+namespace NdsCRC_III.TO
 {
     using System;
     using System.Collections.Generic;

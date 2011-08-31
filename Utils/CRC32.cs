@@ -3,8 +3,7 @@
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
-
-namespace NdsCRC_III
+namespace Utils
 {
     #region Exemple
     ////Crc32 crc32 = new Crc32();

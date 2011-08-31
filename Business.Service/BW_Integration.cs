@@ -4,15 +4,17 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace NdsCRC_III.BusinessService.BW
+namespace NdsCRC_III.BusinessService
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
-    using SevenZip;
-    using NdsCRC_III.DAL;
-    using System.Collections.Generic;
     using System.Linq;
+    using NdsCRC_III.DAL;
+    using NdsCRC_III.TO;
+    using SevenZip;
+    using Utils;
 
     /// <summary>
     /// Type advance
@@ -105,29 +107,31 @@ namespace NdsCRC_III.BusinessService.BW
             {
                 switch (Path.GetExtension(file))
                 {
-                    //case ".7z":
-                    //case ".zip":
-                    //case ".rar":
-                    //    SevenZipExtractor ex = new SevenZipExtractor(file);
-                    //    foreach (ArchiveFileInfo adata in ex.ArchiveFileData)
-                    //    {
-                    //        if (adata.FileName.EndsWith(".rar"))
-                    //        {
-                    //            MemoryStream ms = new MemoryStream();
-                    //            ex.ExtractFile(adata.Index, ms);
-                    //            SevenZipExtractor ex2 = new SevenZipExtractor(ms);
-                    //            foreach (ArchiveFileInfo adata2 in ex2.ArchiveFileData)
-                    //            {
-                    //                if (adata.FileName == ".nds")
-                    //                {
+                    /*
+                    case ".7z":
+                    case ".zip":
+                    case ".rar":
+                        SevenZipExtractor ex = new SevenZipExtractor(file);
+                        foreach (ArchiveFileInfo adata in ex.ArchiveFileData)
+                        {
+                            if (adata.FileName.EndsWith(".rar"))
+                            {
+                                MemoryStream ms = new MemoryStream();
+                                ex.ExtractFile(adata.Index, ms);
+                                SevenZipExtractor ex2 = new SevenZipExtractor(ms);
+                                foreach (ArchiveFileInfo adata2 in ex2.ArchiveFileData)
+                                {
+                                    if (adata.FileName == ".nds")
+                                    {
 
-                    //                }
-                    //            }
-                    //        }
-                    //    }
-                    //    LocateFirstVolume(file);
-                    //    SearchNdsInArchive(file);
-                    //    break;
+                                    }
+                                }
+                            }
+                        }
+                        LocateFirstVolume(file);
+                        SearchNdsInArchive(file);
+                        break;
+                    */
                     case ".nds":
                     case ".nd5":
                         string crc = GetCRC32FromFile(file);
@@ -140,7 +144,11 @@ namespace NdsCRC_III.BusinessService.BW
             }
         }
 
-        void SearchNdsInArchive(string archive)
+        /// <summary>
+        /// Search Nds In Archive
+        /// </summary>
+        /// <param name="archive">archive path</param>
+        private void SearchNdsInArchive(string archive)
         {
             SevenZipExtractor.SetLibraryPath("7z.dll");
             SevenZipExtractor szip = new SevenZipExtractor(archive);
@@ -154,19 +162,25 @@ namespace NdsCRC_III.BusinessService.BW
                 {
                     if (adata.FileName.EndsWith(".rar"))
                     {
-
+                        // TODO : continuer
                     }
                 }
             }
         }
-        private static string LocateFirstVolume(string filename)
+
+        /// <summary>
+        /// Locate first volume of an archive
+        /// </summary>
+        /// <param name="filename">filename of the archive</param>
+        /// <returns>firstvolume</returns>
+        private string LocateFirstVolume(string filename)
         {
-            var isVolume = false;
+            var boolVolume = false;
             var parts = 1u;
 
             using (var extractor = new SevenZipExtractor(filename))
             {
-                isVolume =
+                boolVolume =
                     extractor.ArchiveProperties.Any(x =>
                         x.Name.Equals("IsVolume") && x.Value.Equals(true));
 
@@ -176,14 +190,17 @@ namespace NdsCRC_III.BusinessService.BW
                     select (uint)x.Value).DefaultIfEmpty(1u).SingleOrDefault();
             }
 
-            if (!isVolume)
+            if (!boolVolume)
+            {
                 return null;
+            }
 
             if (parts > 1)
+            {
                 return filename;
+            }
 
-            if (!Path.GetExtension(filename)
-                .Equals(".rar", StringComparison.OrdinalIgnoreCase))
+            if (!Path.GetExtension(filename).Equals(".rar", StringComparison.OrdinalIgnoreCase))
             {
                 var rarFile =
                     Path.Combine(
@@ -221,25 +238,31 @@ namespace NdsCRC_III.BusinessService.BW
 
             return null;
         }
-        void IntegrationArchive(string archive, ArchiveFileInfo adata)
-        {
 
-            string SevenZipCRC = adata.Crc.ToString("X");
-            while (SevenZipCRC.Length != 8)
+        /// <summary>
+        /// IntegrationArchive
+        /// </summary>
+        /// <param name="archive">archive</param>
+        /// <param name="adata">ArchiveFileInfo</param>
+        private void IntegrationArchive(string archive, ArchiveFileInfo adata)
+        {
+            string sevenZipCRC = adata.Crc.ToString("X");
+            while (sevenZipCRC.Length != 8)
             {
-                SevenZipCRC = string.Format("0{0}", SevenZipCRC);
+                sevenZipCRC = string.Format("0{0}", sevenZipCRC);
             }
-            NDS_Rom romInfo = DataAcessLayer.FindCRCDataBase(SevenZipCRC.ToUpper());
+
+            NDS_Rom romInfo = DataAcessLayer.FindCRCDataBase(sevenZipCRC.ToUpper());
             if (romInfo != null)
             {
-                if (!DataAcessLayer.IsCRCInCollection(SevenZipCRC.ToUpper()))
+                if (!DataAcessLayer.IsCRCInCollection(sevenZipCRC.ToUpper()))
                 {
                     SevenZipExtractor szip = new SevenZipExtractor(archive);
-                    szip.Extracting += new EventHandler<ProgressEventArgs>(szip_Extracting);
-                    szip.ExtractionFinished += new EventHandler<EventArgs>(szip_ExtractionFinished);
-                    szip.FileExtractionStarted += new EventHandler<FileInfoEventArgs>(szip_FileExtractionStarted);
+                    szip.Extracting += new EventHandler<ProgressEventArgs>(Szip_Extracting);
+                    szip.ExtractionFinished += new EventHandler<EventArgs>(Szip_ExtractionFinished);
+                    szip.FileExtractionStarted += new EventHandler<FileInfoEventArgs>(Szip_FileExtractionStarted);
                     szip.ExtractFiles(NDSDirectories.PathTemp, new int[] { adata.Index });
-                    NdsFileIntegration(string.Format("{0}{1}", NDSDirectories.PathTemp, adata.FileName), SevenZipCRC);
+                    NdsFileIntegration(string.Format("{0}{1}", NDSDirectories.PathTemp, adata.FileName), sevenZipCRC);
                 }
                 else
                 {
@@ -248,22 +271,37 @@ namespace NdsCRC_III.BusinessService.BW
             }
             else
             {
-                RomNotFound(archive, SevenZipCRC);
+                RomNotFound(archive, sevenZipCRC);
             }
         }
 
-        void szip_FileExtractionStarted(object sender, FileInfoEventArgs e)
+        /// <summary>
+        /// szip_FileExtractionStarted
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">FileInfoEventArgs</param>
+        private void Szip_FileExtractionStarted(object sender, FileInfoEventArgs e)
         {
             tosCmp = new TOSortie(100, string.Format("Extracting \"{0}\" ...", e.FileInfo.FileName), TypeTOSortie.Zip);
         }
 
-        void szip_ExtractionFinished(object sender, EventArgs e)
+        /// <summary>
+        /// Szip_ExtractionFinished
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
+        private void Szip_ExtractionFinished(object sender, EventArgs e)
         {
             tos.SetIntituleTraitement("Finished");
             ReportProgress(0, tosCmp);
         }
 
-        void szip_Extracting(object sender, ProgressEventArgs e)
+        /// <summary>
+        /// Szip_Extracting
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">ProgressEventArgs</param>
+        private void Szip_Extracting(object sender, ProgressEventArgs e)
         {
             ReportProgress(tosCmp.Avance(e.PercentDone), tosCmp);
         }
@@ -275,7 +313,7 @@ namespace NdsCRC_III.BusinessService.BW
         /// <param name="crc">crc of the file</param>
         private void NdsFileIntegration(string file, string crc)
         {
-            //string crc = GetCRC32FromFile(file);
+            // string crc = GetCRC32FromFile(file);
             NDS_Rom romInfo = DataAcessLayer.FindCRCDataBase(crc.ToUpper());
             if (romInfo != null)
             {
@@ -290,18 +328,21 @@ namespace NdsCRC_III.BusinessService.BW
                     if (DataAcessLayer.IsRomNumberInCollection(romInfo.RomNumber))
                     {
                         NDS_Rom romBadDump = DataAcessLayer.GetCollectionRom(romInfo.RomNumber);
-                        //string fileArchive = string.Format(
-                        //    "{0}{1}\\({2}) {3}{4}.7z",
-                        //    NDSDirectories.PathRom,
-                        //    NDSDirectories.GetDirFromReleaseNumber(romBadDump.RomNumber),
-                        //    romBadDump.RomNumber,
-                        //    romBadDump.title,
-                        //    complementNomXXXX);
+                        /*
+                        string fileArchive = string.Format(
+                            "{0}{1}\\({2}) {3}{4}.7z",
+                            NDSDirectories.PathRom,
+                            NDSDirectories.GetDirFromReleaseNumber(romBadDump.RomNumber),
+                            romBadDump.RomNumber,
+                            romBadDump.title,
+                            complementNomXXXX);
+                        */
                         string badDump = string.Format("{0}{1}", NDSDirectories.PathTrash, Path.GetFileName(romBadDump.RomPath));
                         if (File.Exists(badDump))
                         {
                             File.Delete(badDump);
                         }
+
                         if (File.Exists(romBadDump.RomPath))
                         {
                             File.Move(romBadDump.RomPath, badDump);
@@ -343,7 +384,6 @@ namespace NdsCRC_III.BusinessService.BW
                         tos.SetRomInfo(romInfo);
                         tos.SetRomInfoIntegration(TypeAvancement.Nothing, Path.GetFileName(file));
                         ReportProgress(tos.PourcentageAvancement(), tos);
-
                     }
                 }
             }
@@ -356,6 +396,11 @@ namespace NdsCRC_III.BusinessService.BW
             tos.SetRomInfoIntegration(TypeAvancement.Nothing, null);
         }
 
+        /// <summary>
+        /// RomNotFound
+        /// </summary>
+        /// <param name="file">file path</param>
+        /// <param name="crc">crc</param>
         private void RomNotFound(string file, string crc)
         {
             tos.SetIntituleTraitement(string.Format("CRC : {0} => Not found in DataBase", crc.ToUpper()));
@@ -369,6 +414,11 @@ namespace NdsCRC_III.BusinessService.BW
             ReportProgress(tos.Avance(TypeAvancement.RomNotFound), tos);
         }
 
+        /// <summary>
+        /// RomInCollection
+        /// </summary>
+        /// <param name="romInfo">rom</param>
+        /// <param name="file">file</param>
         private void RomInCollection(NDS_Rom romInfo, string file)
         {
             tos.SetIntituleTraitement(string.Format("Already have {0} ({1}) => This will not be integrated.", romInfo.Title, romInfo.RomNumber));

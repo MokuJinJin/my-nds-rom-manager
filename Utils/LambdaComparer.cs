@@ -1,17 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace NdsCRC_III.BusinessService
+﻿//-----------------------------------------------------------------------
+// <copyright file="LambdaComparer.cs" company="Zed Byt Corp">
+//     Copyright Zed Byt Corp 2010
+// </copyright>
+//-----------------------------------------------------------------------
+namespace Utils
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Comparer with lambda expression
     /// </summary>
     /// <typeparam name="T">Object type to compare</typeparam>
     public class LambdaComparer<T> : IEqualityComparer<T>
     {
+        /// <summary>
+        /// Whatever
+        /// </summary>
         private readonly Func<T, T, bool> _lambdaComparer;
+        
+        /// <summary>
+        /// whatever
+        /// </summary>
         private readonly Func<T, int> _lambdaHash;
 
         /// <summary>
@@ -31,9 +41,14 @@ namespace NdsCRC_III.BusinessService
         public LambdaComparer(Func<T, T, bool> lambdaComparer, Func<T, int> lambdaHash)
         {
             if (lambdaComparer == null)
+            {
                 throw new ArgumentNullException("lambdaComparer");
+            }
+
             if (lambdaHash == null)
+            {
                 throw new ArgumentNullException("lambdaHash");
+            }
 
             _lambdaComparer = lambdaComparer;
             _lambdaHash = lambdaHash;

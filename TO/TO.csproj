@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Directories.cs" />
+    <Compile Include="MajUrl.cs" />
     <Compile Include="NDS_Rom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

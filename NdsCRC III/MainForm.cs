@@ -3,8 +3,6 @@
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
-using BusinessService.BW;
-
 namespace NdsCRC_III
 {
     using System;
@@ -16,7 +14,7 @@ namespace NdsCRC_III
     using System.Windows.Forms;
 
     using NdsCRC_III.BusinessService;
-    using NdsCRC_III.BusinessService.BW;
+    using NdsCRC_III.TO;
 
     /// <summary>
     /// Main Form
@@ -453,7 +451,7 @@ namespace NdsCRC_III
             downloadXml.Disposed += new EventHandler(DLXml_Disposed);
 
             // DLXml.Show("http://www.advanscene.com/offline/datas/ADVANsCEne_NDScrc.zip", "ADVANsCEne_NDScrc.zip", "Downloading Database ...");
-            downloadXml.Show(_controler.datURL, _controler.datFileName, "Downloading Database ...");
+            downloadXml.Show(_controler.DatURL, _controler.DatFileName, "Downloading Database ...");
         }
 
         /// <summary>
@@ -466,7 +464,7 @@ namespace NdsCRC_III
             downloadXml.Disposed += new EventHandler(CheckDatVersion);
 
             // DLXml.Show("http://www.advanscene.com/offline/datas/ADVANsCEne_NDScrc.zip", "ADVANsCEne_NDScrc.zip", "Downloading Database ...");
-            downloadXml.ShowHidden(_controler.datVersionURL, string.Format("{0}\\ADVANsCEne_NDScrc_Version.txt", Application.StartupPath), "Downloading Version ...");
+            downloadXml.ShowHidden(_controler.DatVersionURL, string.Format("{0}\\ADVANsCEne_NDScrc_Version.txt", Application.StartupPath), "Downloading Version ...");
         }
 
         /// <summary>
@@ -758,27 +756,27 @@ namespace NdsCRC_III
             {
                 liste.Enqueue(new MajUrl()
                 {
-                    uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlIco),
-                    filepath = filePath
+                    Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlIco),
+                    Filepath = filePath
                 });
             }
 
             filePath = string.Format("{0}{1}a.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
             if (!File.Exists(filePath))
             {
-                liste.Enqueue(new MajUrl() { uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlCover), filepath = filePath });
+                liste.Enqueue(new MajUrl() { Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlCover), Filepath = filePath });
             }
 
             filePath = string.Format("{0}{1}b.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
             if (!File.Exists(filePath))
             {
-                liste.Enqueue(new MajUrl() { uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlInGame), filepath = filePath });
+                liste.Enqueue(new MajUrl() { Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlInGame), Filepath = filePath });
             }
 
             filePath = string.Format("{0}{1}.nfo", NDSDirectories.PathNfo, releaseNumber.ToString("0000"));
             if (!File.Exists(filePath))
             {
-                liste.Enqueue(new MajUrl() { uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlNfo), filepath = filePath });
+                liste.Enqueue(new MajUrl() { Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlNfo), Filepath = filePath });
             }
 
             maj.Bw_RunWorkerCompleted(null, new RunWorkerCompletedEventArgs(liste, null, false));

@@ -3,11 +3,4 @@
     <StringProperty Name="LinkedSettingsFile">..\Settings.StyleCop</StringProperty>
     <StringProperty Name="MergeSettingsFiles">Linked</StringProperty>
   </GlobalSettings>
-  <Parsers>
-    <Parser ParserId="Microsoft.StyleCop.CSharp.CsParser">
-      <ParserSettings>
-        <BooleanProperty Name="AnalyzeDesignerFiles">True</BooleanProperty>
-      </ParserSettings>
-    </Parser>
-  </Parsers>
 </StyleCopSettings>

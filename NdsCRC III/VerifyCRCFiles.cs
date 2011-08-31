@@ -8,7 +8,7 @@ namespace NdsCRC_III
     using System;
     using System.ComponentModel;
     using System.Windows.Forms;
-    using NdsCRC_III.BusinessService.BW;
+    using NdsCRC_III.BusinessService;
 
     /// <summary>
     /// Form for verify CRC of the collection files
