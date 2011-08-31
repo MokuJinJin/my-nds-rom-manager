@@ -180,6 +180,9 @@ namespace NdsCRC_III.BusinessService
             f.ResetLanguageFilter();
             f.ResetTitleFilter();
 
+            // HACK : DemoFilter always to True
+            f.SetDemoRomFilter(true);
+
             _advanSceneDataBase.RemoveFilter();
             _collection.RemoveFilter();
             _collectionMissing.RemoveFilter();
@@ -324,6 +327,15 @@ namespace NdsCRC_III.BusinessService
         {
             NDS_Rom rom = DataAcessLayer.NdsAdvanScene.Single(r => r.ReleaseNumber == releaseNumber);
             return rom;
+        }
+
+        /// <summary>
+        /// Set the Duplicate ID Filter
+        /// </summary>
+        /// <param name="id">duplicate id</param>
+        public void SetDuplicateFilter(int id)
+        {
+            f.SetDuplicateIdFilter(id);
         }
     }
 }

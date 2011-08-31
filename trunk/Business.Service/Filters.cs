@@ -38,6 +38,11 @@ namespace NdsCRC_III.BusinessService
         private bool _demoRomFilter = true;
 
         /// <summary>
+        /// Duplicate Filter
+        /// </summary>
+        private int _duplicateID = 0;
+
+        /// <summary>
         /// Event
         /// </summary>
         public event ChangeFilterEventHandler ChangeFilter;
@@ -54,6 +59,8 @@ namespace NdsCRC_III.BusinessService
             bool languageInclude = false;
             bool titleInclude = false;
             bool demoRomInclude = false;
+            bool duplicateInclude = false;
+
             if (_titleFilter != string.Empty)
             {
                 titleInclude = (item as NDS_Rom).Title.ToLower().Contains(_titleFilter.ToLower());
@@ -81,7 +88,16 @@ namespace NdsCRC_III.BusinessService
                 demoRomInclude = !(item as NDS_Rom).IsDemo();
             }
 
-            return languageInclude && titleInclude && demoRomInclude;
+            if (_duplicateID != 0)
+            {
+                duplicateInclude = (item as NDS_Rom).DuplicateID == _duplicateID;
+            }
+            else
+            {
+                duplicateInclude = true;
+            }
+
+            return languageInclude && titleInclude && demoRomInclude && duplicateInclude;
         }
 
         #endregion
@@ -95,7 +111,16 @@ namespace NdsCRC_III.BusinessService
             _titleFilter = title;
             ChangeFilter(this, new EventArgs());
         }
-        
+
+        /// <summary>
+        /// Reset the title filter
+        /// </summary>
+        public void ResetTitleFilter()
+        {
+            _titleFilter = string.Empty;
+            ChangeFilter(this, new EventArgs());
+        }
+
         /// <summary>
         /// Set Language Filter
         /// </summary>
@@ -116,21 +141,31 @@ namespace NdsCRC_III.BusinessService
         }
 
         /// <summary>
-        /// Reset the title filter
-        /// </summary>
-        public void ResetTitleFilter()
-        {
-            _titleFilter = string.Empty;
-            ChangeFilter(this, new EventArgs());
-        }
-
-        /// <summary>
         /// Set demo rom visible
         /// </summary>
         /// <param name="visible">True to set it visible, false to hide it</param>
         public void SetDemoRomFilter(bool visible)
         {
             _demoRomFilter = visible;
+            ChangeFilter(this, new EventArgs());
+        }
+
+        /// <summary>
+        /// Set the Duplicate ID
+        /// </summary>
+        /// <param name="id">Duplicate ID</param>
+        public void SetDuplicateIdFilter(int id)
+        {
+            _duplicateID = id;
+            ChangeFilter(this, new EventArgs());
+        }
+
+        /// <summary>
+        /// Reset the Duplicate ID
+        /// </summary>
+        public void ResetDuplicateID()
+        {
+            _duplicateID = 0;
             ChangeFilter(this, new EventArgs());
         }
     }
