@@ -1,9 +1,14 @@
-﻿using System;
-using Equin.ApplicationFramework;
-using System.Collections.Generic;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="Filters.cs" company="Zed Byt Corp">
+//     Copyright Zed Byt Corp 2010
+// </copyright>
+//-----------------------------------------------------------------------
 namespace NdsCRC_III.BusinessService
 {
+    using System;
+    using Equin.ApplicationFramework;
+    using NdsCRC_III.TO;
+
     /// <summary>
     /// ChangeFilterEventHandler
     /// </summary>
@@ -12,20 +17,30 @@ namespace NdsCRC_III.BusinessService
     public delegate void ChangeFilterEventHandler(object sender, EventArgs e);
 
     /// <summary>
-    /// ??
+    /// Unknown
     /// </summary>
-    /// <typeparam name="T">??</typeparam>
+    /// <typeparam name="T">whatever</typeparam>
     public class Filters<T> : IItemFilter<T> where T : class
     {
+        /// <summary>
+        /// Title Filter
+        /// </summary>
+        private string _titleFilter = string.Empty;
         
+        /// <summary>
+        /// Language Filter
+        /// </summary>
+        private int _languageFilter = 0;
+        
+        /// <summary>
+        /// Demo Filter
+        /// </summary>
+        private bool _demoRomFilter = true;
+
         /// <summary>
         /// Event
         /// </summary>
         public event ChangeFilterEventHandler ChangeFilter;
-
-        private string _titleFilter = string.Empty;
-        private int _languageFilter = 0;
-        private bool _demoRomFilter = true;
 
         #region IItemFilter<T> Members
 
@@ -38,11 +53,10 @@ namespace NdsCRC_III.BusinessService
         {
             bool languageInclude = false;
             bool titleInclude = false;
-            bool DemoRomInclude = false;
+            bool demoRomInclude = false;
             if (_titleFilter != string.Empty)
             {
                 titleInclude = (item as NDS_Rom).Title.ToLower().Contains(_titleFilter.ToLower());
-
             }
             else
             {
@@ -60,14 +74,14 @@ namespace NdsCRC_III.BusinessService
 
             if (_demoRomFilter)
             {
-                DemoRomInclude = true;
+                demoRomInclude = true;
             }
             else
             {
-                DemoRomInclude = !(item as NDS_Rom).IsDemo();
+                demoRomInclude = !(item as NDS_Rom).IsDemo();
             }
 
-            return languageInclude && titleInclude && DemoRomInclude;
+            return languageInclude && titleInclude && demoRomInclude;
         }
 
         #endregion

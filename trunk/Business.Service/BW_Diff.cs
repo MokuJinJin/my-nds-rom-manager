@@ -4,17 +4,14 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace NdsCRC_III.BusinessService.BW
+namespace NdsCRC_III.BusinessService
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
-    using System.Text;
-    using System.Xml;
     using DAL;
-    using System.Xml.Serialization;
-    using System.IO;
+    using NdsCRC_III.TO;
+    using Utils;
 
     /// <summary>
     /// BackgroundWorker which makes diff with old AdvanScene data and the new one
@@ -62,15 +59,13 @@ namespace NdsCRC_III.BusinessService.BW
 
             IEqualityComparer<NDS_Rom> comparerCRC = new LambdaComparer<NDS_Rom>(
                 (o, n) =>
-                    o.RomCRC == n.RomCRC
-                );
+                    o.RomCRC == n.RomCRC);
             List<NDS_Rom> diffAll = xmlApres.DataBase.Except(xmlAvant.DataBase, comparerCRC).ToList();
             ReportProgress(45, string.Format("Found {0} differences", diffAll.Count));
 
             IEqualityComparer<NDS_Rom> comparerRomNumber = new LambdaComparer<NDS_Rom>(
                 (o, n) =>
-                    o.ReleaseNumber == n.ReleaseNumber
-                );
+                    o.ReleaseNumber == n.ReleaseNumber);
             List<NDS_Rom> diffNew = xmlApres.DataBase.Except(xmlAvant.DataBase, comparerRomNumber).ToList();
             ReportProgress(90, string.Format("Found {0} new Roms", diffNew.Count));
 
@@ -81,6 +76,7 @@ namespace NdsCRC_III.BusinessService.BW
             {
                 ReportProgress((i + 1) * 100 / diffAll.Count, string.Format("New Rom : {0}", diffNew[i].Title));
             }
+
             for (int i = 0; i < diffModified.Count; i++)
             {
                 ReportProgress((i + 1 + diffNew.Count) * 100 / diffAll.Count, string.Format("Modified Rom : {0}", diffModified[i].Title));

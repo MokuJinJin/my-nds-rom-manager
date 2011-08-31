@@ -3,8 +3,6 @@
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
-using BusinessService.BW;
-
 namespace NdsCRC_III
 {
     using System;
@@ -13,6 +11,9 @@ namespace NdsCRC_III
     using System.IO;
     using System.Net;
     using System.Windows.Forms;
+
+    using NdsCRC_III.BusinessService;
+    using NdsCRC_III.TO;
 
     /// <summary>
     /// Form for the update of Image and NFO
@@ -89,7 +90,7 @@ namespace NdsCRC_III
                 progressBar1.Value = 0;
                 label1.Text = string.Format("Download  {0} / {1}", progressBar1.Value, liste.Count);
                 MajUrl o = liste.Dequeue();
-                label2.Text = string.Format("Downloading {0}", Path.GetFileName(o.uri));
+                label2.Text = string.Format("Downloading {0}", Path.GetFileName(o.Uri));
                 DownloadFileInBackGround(o);
             }
             else
@@ -109,11 +110,11 @@ namespace NdsCRC_III
         /// <param name="majurl">link of the file</param>
         private void DownloadFileInBackGround(MajUrl majurl)
         {
-            Uri uri = new Uri(majurl.uri);
+            Uri uri = new Uri(majurl.Uri);
             client = new WebClient();
             client.DownloadFileCompleted += new AsyncCompletedEventHandler(Client_DownloadFileCompleted);
             client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);
-            client.DownloadFileAsync(uri, majurl.filepath);
+            client.DownloadFileAsync(uri, majurl.Filepath);
         }
 
         /// <summary>
@@ -138,7 +139,7 @@ namespace NdsCRC_III
             {
                 label1.Text = string.Format("Download  {0} / {1}", progressBar1.Value, progressBar1.Maximum);
                 MajUrl o = liste.Dequeue();
-                label2.Text = string.Format("Downloading {0}", Path.GetFileName(o.uri));
+                label2.Text = string.Format("Downloading {0}", Path.GetFileName(o.Uri));
                 DownloadFileInBackGround(o);
             }
             else

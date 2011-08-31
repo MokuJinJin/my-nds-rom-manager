@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace NdsCRC_III.BusinessService.BW
+namespace NdsCRC_III.BusinessService
 {
     using System;
     using System.Collections.Generic;

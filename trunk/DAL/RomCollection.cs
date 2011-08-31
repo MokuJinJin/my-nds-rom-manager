@@ -7,6 +7,7 @@ namespace NdsCRC_III.DAL
 {
     using System.Collections.Generic;
     using System.Xml.Serialization;
+    using NdsCRC_III.TO;
     
     /// <summary>
     /// Collection of Nds Rom

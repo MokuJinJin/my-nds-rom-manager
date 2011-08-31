@@ -70,7 +70,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LambdaComparer.cs" />
     <Compile Include="NDSAdvanScene.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="EnumBase.cs" />
@@ -83,6 +82,10 @@
     <ProjectReference Include="..\TO\TO.csproj">
       <Project>{70BD7979-071D-41C5-B887-7C76FF243076}</Project>
       <Name>TO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{358D1BC5-72DE-4ED8-993F-8B8EBDB03D49}</Project>
+      <Name>Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

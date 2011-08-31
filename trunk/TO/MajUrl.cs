@@ -3,7 +3,7 @@
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
-namespace BusinessService.BW
+namespace NdsCRC_III.TO
 {
     /// <summary>
     /// Class used for downloading file
@@ -13,11 +13,11 @@ namespace BusinessService.BW
         /// <summary>
         /// URI of the download
         /// </summary>
-        public string uri;
+        public string Uri { get; set; }
 
         /// <summary>
         /// File Path where to put the download
         /// </summary>
-        public string filepath;
+        public string Filepath { get; set; }
     }
 }

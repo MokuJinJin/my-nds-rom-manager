@@ -11,7 +11,7 @@ namespace NdsCRC_III
     using System.Data;
     using System.IO;
     using System.Windows.Forms;
-    using NdsCRC_III.BusinessService.BW;
+    using NdsCRC_III.BusinessService;
 
     /// <summary>
     /// Integration form

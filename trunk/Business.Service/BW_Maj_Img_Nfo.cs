@@ -3,7 +3,7 @@
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
-namespace BusinessService.BW
+namespace NdsCRC_III.BusinessService
 {
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -11,6 +11,7 @@ namespace BusinessService.BW
 
     using NdsCRC_III;
     using NdsCRC_III.DAL;
+    using NdsCRC_III.TO;
 
     /// <summary>
     /// Worker for Downloading all image and nfo
@@ -23,7 +24,7 @@ namespace BusinessService.BW
         public BW_Maj_Img_Nfo()
         {
             WorkerReportsProgress = true;
-            this.DoWork += new DoWorkEventHandler(bw_maj_img_nfo_DoWork);
+            this.DoWork += new DoWorkEventHandler(BW_maj_img_nfo_DoWork);
         }
 
         /// <summary>
@@ -31,9 +32,10 @@ namespace BusinessService.BW
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">DoWorkEventArgs</param>
-        void bw_maj_img_nfo_DoWork(object sender, DoWorkEventArgs e)
+        private void BW_maj_img_nfo_DoWork(object sender, DoWorkEventArgs e)
         {
-            Queue<MajUrl> Liste = new Queue<MajUrl>();
+            Queue<MajUrl> liste = new Queue<MajUrl>();
+
             // for (int i = 0; i < AdvanSceneDataBaseXML.AdvanSceneDataBase.Count; i++)
             for (int i = 0; i < DataAcessLayer.NdsAdvanScene.Count; i++)
             {
@@ -41,30 +43,35 @@ namespace BusinessService.BW
                 string filePath = string.Format("{0}{1}.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
                 if (!File.Exists(filePath))
                 {
-                    Liste.Enqueue(new MajUrl()
+                    liste.Enqueue(new MajUrl()
                     {
-                        uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlIco),
-                        filepath = filePath
+                        Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlIco),
+                        Filepath = filePath
                     });
                 }
+
                 filePath = string.Format("{0}{1}a.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
                 if (!File.Exists(filePath))
                 {
-                    Liste.Enqueue(new MajUrl() { uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlCover), filepath = filePath });
+                    liste.Enqueue(new MajUrl() { Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlCover), Filepath = filePath });
                 }
+
                 filePath = string.Format("{0}{1}b.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
                 if (!File.Exists(filePath))
                 {
-                    Liste.Enqueue(new MajUrl() { uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlInGame), filepath = filePath });
+                    liste.Enqueue(new MajUrl() { Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlInGame), Filepath = filePath });
                 }
+
                 filePath = string.Format("{0}{1}.nfo", NDSDirectories.PathNfo, releaseNumber.ToString("0000"));
                 if (!File.Exists(filePath))
                 {
-                    Liste.Enqueue(new MajUrl() { uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlNfo), filepath = filePath });
+                    liste.Enqueue(new MajUrl() { Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlNfo), Filepath = filePath });
                 }
+
                 ReportProgress(i * 100 / DataAcessLayer.NdsAdvanScene.Count);
             }
-            e.Result = Liste;
+
+            e.Result = liste;
         }
     }
 }

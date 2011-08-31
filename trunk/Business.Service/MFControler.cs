@@ -1,13 +1,19 @@
-﻿namespace NdsCRC_III.BusinessService
+﻿//-----------------------------------------------------------------------
+// <copyright file="MFControler.cs" company="Zed Byt Corp">
+//     Copyright Zed Byt Corp 2010
+// </copyright>
+//-----------------------------------------------------------------------
+namespace NdsCRC_III.BusinessService
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+
     using Equin.ApplicationFramework;
     using NdsCRC_III.DAL;
+    using NdsCRC_III.TO;
     using SevenZip;
-    
 
     /// <summary>
     /// Controler du Main Form
@@ -17,22 +23,34 @@
         /// <summary>
         /// Database
         /// </summary>
-        private BindingListView<NDS_Rom> AdvanSceneDataBase;
+        private BindingListView<NDS_Rom> _advanSceneDataBase;
 
         /// <summary>
         /// Collection
         /// </summary>
-        private BindingListView<NDS_Rom> Collection;
+        private BindingListView<NDS_Rom> _collection;
 
         /// <summary>
         /// Rom missing
         /// </summary>
-        private BindingListView<NDS_Rom> CollectionMissing;
+        private BindingListView<NDS_Rom> _collectionMissing;
 
         /// <summary>
         /// filters
         /// </summary>
         private Filters<NDS_Rom> f = new Filters<NDS_Rom>();
+
+        /// <summary>
+        /// Initializes a new instance of the Controler class
+        /// </summary>
+        /// <param name="startUpPath">Application Start Up Path</param>
+        public MFControler(string startUpPath)
+        {
+            // DataAcessLayer.AdvanScene.Load(startUpPath);
+            // NDSDirectories.SetStartupPath(startUpPath);
+            InitDataBase();
+            f.ChangeFilter += new ChangeFilterEventHandler(F_ChangeFilter);
+        }
 
         /// <summary>
         /// Dat Version of the database
@@ -70,7 +88,7 @@
         /// <summary>
         /// Urls of the database
         /// </summary>
-        public string datURL
+        public string DatURL
         {
             get
             {
@@ -81,7 +99,7 @@
         /// <summary>
         /// File name of the database to download
         /// </summary>
-        public string datFileName
+        public string DatFileName
         {
             get
             {
@@ -92,7 +110,7 @@
         /// <summary>
         /// URL of the datVersion file
         /// </summary>
-        public string datVersionURL
+        public string DatVersionURL
         {
             get
             {
@@ -112,27 +130,15 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the Controler class
-        /// </summary>
-        /// <param name="startUpPath">Application Start Up Path</param>
-        public MFControler(string startUpPath)
-        {
-            // DataAcessLayer.AdvanScene.Load(startUpPath);
-            // NDSDirectories.SetStartupPath(startUpPath);
-            InitDataBase();
-            f.ChangeFilter += new ChangeFilterEventHandler(f_ChangeFilter);
-        }
-
-        /// <summary>
         /// ChangeFilterEventHandler
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">EventArgs</param>
-        void f_ChangeFilter(object sender, EventArgs e)
+        private void F_ChangeFilter(object sender, EventArgs e)
         {
-            AdvanSceneDataBase.ApplyFilter(f);
-            Collection.ApplyFilter(f);
-            CollectionMissing.ApplyFilter(f);
+            _advanSceneDataBase.ApplyFilter(f);
+            _collection.ApplyFilter(f);
+            _collectionMissing.ApplyFilter(f);
         }
 
         /// <summary>
@@ -140,9 +146,9 @@
         /// </summary>
         private void InitDataBase()
         {
-            AdvanSceneDataBase = new BindingListView<NDS_Rom>(DataAcessLayer.NdsAdvanScene);
-            Collection = new BindingListView<NDS_Rom>(DataAcessLayer.NdsCollection);
-            CollectionMissing = new BindingListView<NDS_Rom>(DataAcessLayer.NdsCollectionMissing);
+            _advanSceneDataBase = new BindingListView<NDS_Rom>(DataAcessLayer.NdsAdvanScene);
+            _collection = new BindingListView<NDS_Rom>(DataAcessLayer.NdsCollection);
+            _collectionMissing = new BindingListView<NDS_Rom>(DataAcessLayer.NdsCollectionMissing);
         }
 
         /// <summary>
@@ -153,28 +159,30 @@
         {
             if (!keepSorts)
             {
-                //ListSortDescriptionCollection AdvanSceneSorts = AdvanSceneDataBase.SortDescriptions;
-                //ListSortDescriptionCollection CollectionSorts = Collection.SortDescriptions;
-                //ListSortDescriptionCollection CollectionMissingSorts = CollectionMissing.SortDescriptions;
-                //InitDataBase();
-                //AdvanSceneDataBase.ApplySort(AdvanSceneSorts);
-                //Collection.ApplySort(CollectionSorts);
-                //CollectionMissing.ApplySort(CollectionMissingSorts);
-                
-                AdvanSceneDataBase.RemoveSort();
-                Collection.RemoveSort();
-                CollectionMissing.RemoveSort();
+                /*
+                ListSortDescriptionCollection AdvanSceneSorts = AdvanSceneDataBase.SortDescriptions;
+                ListSortDescriptionCollection CollectionSorts = Collection.SortDescriptions;
+                ListSortDescriptionCollection CollectionMissingSorts = CollectionMissing.SortDescriptions;
+                InitDataBase();
+                AdvanSceneDataBase.ApplySort(AdvanSceneSorts);
+                Collection.ApplySort(CollectionSorts);
+                CollectionMissing.ApplySort(CollectionMissingSorts);
+                */
+                _advanSceneDataBase.RemoveSort();
+                _collection.RemoveSort();
+                _collectionMissing.RemoveSort();
             }
             else
             {
-                //InitDataBase();
+                // InitDataBase();
             }
+
             f.ResetLanguageFilter();
             f.ResetTitleFilter();
 
-            AdvanSceneDataBase.RemoveFilter();
-            Collection.RemoveFilter();
-            CollectionMissing.RemoveFilter();
+            _advanSceneDataBase.RemoveFilter();
+            _collection.RemoveFilter();
+            _collectionMissing.RemoveFilter();
         }
 
         /// <summary>
@@ -183,7 +191,7 @@
         /// <returns>BindingListView with the full database</returns>
         public BindingListView<NDS_Rom> GetDataBase()
         {
-            return AdvanSceneDataBase;
+            return _advanSceneDataBase;
         }
 
         /// <summary>
@@ -192,7 +200,7 @@
         /// <returns>BindingListView with the collection</returns>
         public BindingListView<NDS_Rom> GetCollection()
         {
-            return Collection;
+            return _collection;
         }
 
         /// <summary>
@@ -201,7 +209,7 @@
         /// <returns>BindingListView with the Missing rom in the Collection</returns>
         public BindingListView<NDS_Rom> GetCollectionMissing()
         {
-            return CollectionMissing;
+            return _collectionMissing;
         }
 
         /// <summary>
@@ -222,40 +230,41 @@
             {
                 File.Delete(Directory.GetParent(NDSDirectories.PathXmlDB) + "\\ADVANsCEne_NDScrc.xml.old");
             }
+
             File.Move(NDSDirectories.PathXmlDB, Directory.GetParent(NDSDirectories.PathXmlDB) + "\\ADVANsCEne_NDScrc.xml.old");
 
             SevenZipExtractor.SetLibraryPath("7z.dll");
-            SevenZipExtractor extract = new SevenZipExtractor(this.datFileName);
+            SevenZipExtractor extract = new SevenZipExtractor(this.DatFileName);
             extract.ExtractArchive(Directory.GetParent(NDSDirectories.PathXmlDB).ToString());
 
-            //ReloadAdvanSceneDataBase();
-
+            // ReloadAdvanSceneDataBase();
             File.Delete("ADVANsCEne_NDScrc.zip");
         }
 
         /// <summary>
         /// Apply Filter by title
         /// </summary>
-        /// <param name="title"></param>
+        /// <param name="title">Tilte</param>
         public void SetTitleFilter(string title)
         {
             f.SetTitleFilter(title);
-            
-            //ListSortDescriptionCollection sortsAdvanSceneDataBase = AdvanSceneDataBase.SortDescriptions;
-            //ListSortDescriptionCollection sortsCollection = Collection.SortDescriptions;
-            //ListSortDescriptionCollection sortsCollectionMissing = CollectionMissing.SortDescriptions;
-            //AdvanSceneDataBase = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParTitre(title, EnumBase.AdvanScene));
-            //Collection = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParTitre(title, EnumBase.Collection));
-            //CollectionMissing = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParTitre(title, EnumBase.CollectionMissing));
-            //AdvanSceneDataBase.ApplySort(sortsAdvanSceneDataBase);
-            //Collection.ApplySort(sortsCollection);
-            //CollectionMissing.ApplySort(sortsCollectionMissing);
+            /*
+            ListSortDescriptionCollection sortsAdvanSceneDataBase = AdvanSceneDataBase.SortDescriptions;
+            ListSortDescriptionCollection sortsCollection = Collection.SortDescriptions;
+            ListSortDescriptionCollection sortsCollectionMissing = CollectionMissing.SortDescriptions;
+            AdvanSceneDataBase = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParTitre(title, EnumBase.AdvanScene));
+            Collection = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParTitre(title, EnumBase.Collection));
+            CollectionMissing = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParTitre(title, EnumBase.CollectionMissing));
+            AdvanSceneDataBase.ApplySort(sortsAdvanSceneDataBase);
+            Collection.ApplySort(sortsCollection);
+            CollectionMissing.ApplySort(sortsCollectionMissing);
+            */
         }
 
         /// <summary>
         /// Return all Language
         /// </summary>
-        /// <returns></returns>
+        /// <returns>All languages</returns>
         public Dictionary<int, string> GetLanguages()
         {
             return LanguageXML.DicoLanguage;
@@ -276,18 +285,17 @@
         public void SetLanguageFilter(int languageCode)
         {
             f.SetLanguageFilter(languageCode);
-            
-            //ListSortDescriptionCollection sortsAdvanSceneDataBase = AdvanSceneDataBase.SortDescriptions;
-            //ListSortDescriptionCollection sortsCollection = Collection.SortDescriptions;
-            //ListSortDescriptionCollection sortsCollectionMissing = CollectionMissing.SortDescriptions;
-            //AdvanSceneDataBase = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParLangue(languageCode, EnumBase.AdvanScene));
-            //Collection = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParLangue(languageCode, EnumBase.Collection));
-            //CollectionMissing = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParLangue(languageCode, EnumBase.CollectionMissing));
-            //AdvanSceneDataBase.ApplySort(sortsAdvanSceneDataBase);
-            //Collection.ApplySort(sortsCollection);
-            //CollectionMissing.ApplySort(sortsCollectionMissing);
-
-            
+            /*
+            ListSortDescriptionCollection sortsAdvanSceneDataBase = AdvanSceneDataBase.SortDescriptions;
+            ListSortDescriptionCollection sortsCollection = Collection.SortDescriptions;
+            ListSortDescriptionCollection sortsCollectionMissing = CollectionMissing.SortDescriptions;
+            AdvanSceneDataBase = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParLangue(languageCode, EnumBase.AdvanScene));
+            Collection = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParLangue(languageCode, EnumBase.Collection));
+            CollectionMissing = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParLangue(languageCode, EnumBase.CollectionMissing));
+            AdvanSceneDataBase.ApplySort(sortsAdvanSceneDataBase);
+            Collection.ApplySort(sortsCollection);
+            CollectionMissing.ApplySort(sortsCollectionMissing);
+            */
         }
 
         /// <summary>
