@@ -267,7 +267,7 @@ namespace NdsCRC_III.BusinessService
         /// <returns>All languages</returns>
         public Dictionary<int, string> GetLanguages()
         {
-            return LanguageXML.DicoLanguage;
+            return LanguageXML.Languages;
         }
 
         /// <summary>
