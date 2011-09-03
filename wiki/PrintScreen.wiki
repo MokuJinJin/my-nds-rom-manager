@@ -3,7 +3,7 @@
 = Content =
 <wiki:toc max_depth="3" />
 
-== Information for a rom ==
+== Rom's information ==
  === In game and cover ===
 http://mokujin.org/NdsCRC/image.jpg
 
