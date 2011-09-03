@@ -7,15 +7,21 @@
  === In game and cover ===
 http://mokujin.org/NdsCRC/image.jpg
 
-   [PrintScreen#Content http://mokujin.org/NdsCRC/top.jpg]
+   [PrintScreen#Content Top]
 
  === Dumper's Nfo ===
 http://mokujin.org/NdsCRC/nfo.jpg
 
+   [PrintScreen#Content Top]
+
  === All informations ===
 http://mokujin.org/NdsCRC/information.jpg
+
+   [PrintScreen#Content Top]
 
 == Listing ==
 
  === Missing Rom ===
 http://mokujin.org/NdsCRC/missing_rom.jpg
+
+   [PrintScreen#Content Top]
