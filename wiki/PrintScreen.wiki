@@ -15,6 +15,12 @@ http://mokujin.org/NdsCRC/nfo.jpg
    [PrintScreen#Content Top]
 
  === All informations ===
+You can see 
+ * the different language present in the game
+ * officials informations like publisher
+ * technical informations like save type, dumper
+ * a link to the AdvanScene web site
+
 http://mokujin.org/NdsCRC/information.jpg
 
    [PrintScreen#Content Top]
@@ -22,6 +28,12 @@ http://mokujin.org/NdsCRC/information.jpg
 == Listing ==
 
  === Missing Rom ===
+
+You have three listing :
+ * Your collection
+ * the database
+ * your missing rom
+
 http://mokujin.org/NdsCRC/missing_rom.jpg
 
    [PrintScreen#Content Top]
