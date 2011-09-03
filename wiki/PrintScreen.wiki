@@ -1,10 +1,12 @@
 #summary Application's PrintScreen
 
+= Content =
 <wiki:toc max_depth="3" />
 
 == Information for a rom ==
  === In game and cover ===
 http://mokujin.org/NdsCRC/image.jpg
+[PrintScreen#Content]
 
  === Dumper's Nfo ===
 http://mokujin.org/NdsCRC/nfo.jpg
