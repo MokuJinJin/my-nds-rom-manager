@@ -6,7 +6,7 @@
 == Information for a rom ==
  === In game and cover ===
 http://mokujin.org/NdsCRC/image.jpg
-[PrintScreen#Content]
+[PrintScreen#Content Top]
 
  === Dumper's Nfo ===
 http://mokujin.org/NdsCRC/nfo.jpg
