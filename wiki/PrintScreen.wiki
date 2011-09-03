@@ -1,0 +1,18 @@
+#summary Application's PrintScreen
+
+<wiki:toc max_depth="3" />
+
+== Information for a rom ==
+ === In game and cover ===
+http://mokujin.org/NdsCRC/image.jpg
+
+ === Dumper's Nfo ===
+http://mokujin.org/NdsCRC/nfo.jpg
+
+ === All informations ===
+http://mokujin.org/NdsCRC/information.jpg
+
+== Listing ==
+
+ === Missing Rom ===
+http://mokujin.org/NdsCRC/missing_rom.jpg
