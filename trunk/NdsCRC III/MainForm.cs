@@ -42,18 +42,13 @@ namespace NdsCRC_III
         private MFControler _controler;
 
         /// <summary>
-        /// current Selected Rom
-        /// </summary>
-        private NDS_Rom currentSelectedRom = new NDS_Rom();
-
-        /// <summary>
         /// Constructor for MainForm
         /// </summary>
         public MainForm()
         {
             InitializeComponent();
-            _controler = new MFControler(Application.StartupPath);
-            
+            _controler = new MFControler();
+
             sourceAdvanScene.DataSource = _controler.GetDataBase();
             GridDataBase.DataSource = sourceAdvanScene;
             sourceCollection.DataSource = _controler.GetCollection();
@@ -73,139 +68,6 @@ namespace NdsCRC_III
 
             this.Text = string.Format("NdsCRC III v{0} - AdvanceSceneDat v{1} ({2})", ProductVersion, _controler.DatVersion, _controler.DatCreationDate);
         }
-
-        /*
-        private void Grid_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex != -1 && e.ColumnIndex != -1)
-            {
-                DataGridView dgv = (DataGridView)sender;
-                //lblLanguage.Text = (sender as DataGridView)["language", e.RowIndex].Value.ToString();
-                lblLanguage.DataBindings.Clear();
-                lblLanguage.DataBindings.Add("Text", dgv.DataSource, "language");
-
-                //lblCRC.Text = (sender as DataGridView)["RomCRC", e.RowIndex].Value.ToString();
-                lblCRC.DataBindings.Clear();
-                lblCRC.DataBindings.Add("Text", dgv.DataSource, "RomCRC");
-                
-                //lblGenre.Text = (sender as DataGridView)["Genre", e.RowIndex].Value.ToString();
-                lblGenre.DataBindings.Clear();
-                lblGenre.DataBindings.Add("Text", dgv.DataSource, "Genre");
-                
-                //lblPublisher.Text = (sender as DataGridView)["Publisher", e.RowIndex].Value.ToString();
-                lblPublisher.DataBindings.Clear();
-                lblPublisher.DataBindings.Add("Text", dgv.DataSource, "Publisher");
-                
-                //lblSaveType.Text = (sender as DataGridView)["SaveType", e.RowIndex].Value.ToString();
-                lblSaveType.DataBindings.Clear();
-                lblSaveType.DataBindings.Add("Text", dgv.DataSource, "SaveType");
-                
-                //lblSize.Text = (sender as DataGridView)["RomSize", e.RowIndex].Value.ToString();
-                lblSize.DataBindings.Clear();
-                lblSize.DataBindings.Add("Text", dgv.DataSource, "RomSize");
-                
-                //lblSource.Text = (sender as DataGridView)["SourceRom", e.RowIndex].Value.ToString();
-                lblSource.DataBindings.Clear();
-                lblSource.DataBindings.Add("Text", dgv.DataSource, "SourceRom");
-
-                //if ((sender as DataGridView)["duplicateid", e.RowIndex].Value.ToString() != "None")
-                //{
-                //    lblDuplicateID.Text = (sender as DataGridView)["duplicateid", e.RowIndex].Value.ToString();
-                //    btnFilterDuplicate.Enabled = true;
-                //}
-                //else
-                //{
-                //    lblDuplicateID.Text = "None";
-                //    btnFilterDuplicate.Enabled = false;
-                //} 
-                lblDuplicateID.DataBindings.Clear();
-                lblDuplicateID.DataBindings.Add("Text", dgv.DataSource, "duplicateid");
-                if (lblDuplicateID.Text == "None")
-                {
-                    btnFilterDuplicate.Enabled = true;
-                }
-                else
-                {
-                    btnFilterDuplicate.Enabled = false;
-                }
-
-                //lblReleaseNumber.Text = (sender as DataGridView)["ReleaseNumber", e.RowIndex].Value.ToString();
-                lblReleaseNumber.DataBindings.Clear();
-                lblReleaseNumber.DataBindings.Add("Text", dgv.DataSource, "ReleaseNumber");
-
-                //ImgCover.ImageLocation = NDSDirectories.PathImg + (sender as DataGridView)["ImageNumber", e.RowIndex].Value + "a.png";
-                ImgCover.DataBindings.Clear();
-                ImgCover.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgCoverPath");
-
-                //ImgInGame.ImageLocation = NDSDirectories.PathImg + (sender as DataGridView)["ImageNumber", e.RowIndex].Value + "b.png";
-                ImgInGame.DataBindings.Clear();
-                ImgInGame.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgInGamePath");
-
-                //imgLocation.Image = Flags.Images[(sender as DataGridView)["Location", e.RowIndex].Value.ToString() + ".png"];
-                imgLocation.DataBindings.Clear();
-                imgLocation.DataBindings.Add("ImageLocation", dgv.DataSource, "FlagPath");
-                
-                Encoding encoding = Encoding.GetEncoding(437);
-                //richTextBox1.DataBindings.Clear();
-                //richTextBox1.DataBindings.Add("Text", dgv.DataSource, "NfoPath");
-                //StreamReader file = new StreamReader(richTextBox1.Text, encoding);
-                //richTextBox1.LoadFile(file.BaseStream, RichTextBoxStreamType.PlainText);
-
-                //if (File.Exists(NDSDirectories.PathNfo + (sender as DataGridView)["ReleaseNumber", e.RowIndex].Value + ".nfo"))
-                //{
-                StreamReader file = new StreamReader((sender as DataGridView)["NfoPath", e.RowIndex].Value.ToString(), encoding);
-                richTextBox1.LoadFile(file.BaseStream, RichTextBoxStreamType.PlainText);
-                //}
-                //else
-                //{
-                //    richTextBox1.Clear();
-                //}
-
-                bool RomExist = bool.Parse((sender as DataGridView)["RomExist", e.RowIndex].Value.ToString());
-                if (RomExist)
-                {
-                    btnUnzip.Enabled = true;
-                    btnUnzip.Text = "Copier sur Carte";
-                }
-                else
-                {
-                    btnUnzip.Enabled = false;
-                    btnUnzip.Text = "Fichier Manquant";
-                }
-
-                #region Commentaire
-                /*
-                if ((sender as DataGridView)["RomNumber", e.RowIndex].Value.ToString() != "xxxx")
-                {
-                    currentPathSelectedRom = string.Format("{0}{3}\\({1}) {2}.7z",
-                                NDSDirectories.PathRom,
-                                (sender as DataGridView)["RomNumber", e.RowIndex].Value.ToString(),
-                                (sender as DataGridView)["title", e.RowIndex].Value.ToString(),
-                                NDSDirectories.GetDirFromReleaseNumber(int.Parse((sender as DataGridView)["RomNumber", e.RowIndex].Value.ToString()))
-                            );
-                    if (File.Exists(currentPathSelectedRom))
-                    {
-                        btnUnzip.Enabled = true;
-                        btnUnzip.Text = "Copier sur Carte";
-                    }
-                    else
-                    {
-                        btnUnzip.Enabled = false;
-                        btnUnzip.Text = "Fichier Manquant";
-                    }
-                }
-                else
-                {
-                    btnUnzip.Enabled = false;
-                    btnUnzip.Text = "Copie xxxx Disabled";
-                }
-                
-                #endregion
-
-                //MessageBox.Show(Grid["Location", e.RowIndex].Value.ToString());
-            }
-        }
-*/
 
         /// <summary>
         /// Start the integration
@@ -298,21 +160,11 @@ namespace NdsCRC_III
         /// <param name="e">EventArgs</param>
         private void BtnFilterDuplicate_Click(object sender, EventArgs e)
         {
-            _controler.SetDuplicateFilter(currentSelectedRom.DuplicateID);
+            // btnFilterDuplicate.Enabled = false;
+            // _controler.SetDuplicateFilter(_currentSelectedRom.DuplicateID);
+            _controler.SetDuplicateFilterFromCurrentRom();
+            _controler.SetCurrentGridView(string.Empty);
             SetDataSource();
-            /*
-            if (lblDuplicateID.Text != "None")
-            {
-                StringBuilder strFiltre = new StringBuilder();
-                DataView dtv = new DataView(AdvanceSceneDataBaseXML.DataBase);
-
-                strFiltre.Append("duplicateid = '" + lblDuplicateID.Text + "'");
-
-                dtv.RowFilter = strFiltre.ToString();
-                dtv.Sort = "RomNumber";
-                GridDataBase.DataSource = dtv.ToTable();
-            }
-            */
         }
 
         /// <summary>
@@ -322,109 +174,91 @@ namespace NdsCRC_III
         /// <param name="e">EventArgs</param>
         private void Grid_CurrentCellChanged(object sender, EventArgs e)
         {
-            if ((sender as DataGridView).SelectedRows.Count == 1)
+            DataGridView dgv = (DataGridView)sender;
+            if (dgv.SelectedRows.Count == 1)
             {
-                DataGridView dgv = (DataGridView)sender;
-
-                lblLanguage.DataBindings.Clear();
-                lblLanguage.DataBindings.Add("Text", dgv.DataSource, "languageString");
-
-                lblCRC.DataBindings.Clear();
-                lblCRC.DataBindings.Add("Text", dgv.DataSource, "RomCRC");
-
-                lblGenre.DataBindings.Clear();
-                lblGenre.DataBindings.Add("Text", dgv.DataSource, "Genre");
-
-                lblPublisher.DataBindings.Clear();
-                lblPublisher.DataBindings.Add("Text", dgv.DataSource, "Publisher");
-
-                lblSaveType.DataBindings.Clear();
-                lblSaveType.DataBindings.Add("Text", dgv.DataSource, "SaveType");
-
-                lblSize.DataBindings.Clear();
-                lblSize.DataBindings.Add("Text", dgv.DataSource, "RomSize");
-
-                lblSource.DataBindings.Clear();
-                lblSource.DataBindings.Add("Text", dgv.DataSource, "SourceRom");
-
-                txtDirName.DataBindings.Clear();
-                txtDirName.DataBindings.Add("Text", dgv.DataSource, "ExternalDirName");
-
-                txtFileName.DataBindings.Clear();
-                txtFileName.DataBindings.Add("Text", dgv.DataSource, "ExternalFileName");
-
-                lblDuplicateID.DataBindings.Clear();
-                lblDuplicateID.DataBindings.Add("Text", dgv.DataSource, "duplicateid");
-                
-                // if (lblDuplicateID.Text == "None")
-                if (lblDuplicateID.Text == string.Empty)
-                {
-                    btnFilterDuplicate.Enabled = true;
-                }
-                else
-                {
-                    btnFilterDuplicate.Enabled = false;
-                }
-
-                lblReleaseNumber.DataBindings.Clear();
-                lblReleaseNumber.DataBindings.Add("Text", dgv.DataSource, "ReleaseNumber");
-
-                ImgCover.DataBindings.Clear();
-                if (dgv["ImgCoverPath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
-                {
-                    ImgCover.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgCoverPath");
-                }
-                
-                ImgInGame.DataBindings.Clear();
-                if (dgv["ImgInGamePath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
-                {
-                    ImgInGame.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgInGamePath");
-                } 
-
-                imgLocation.DataBindings.Clear();
-                if (dgv["FlagPath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
-                {
-                    imgLocation.DataBindings.Add("ImageLocation", dgv.DataSource, "FlagPath");
-                } 
-
-                ImgIcon.DataBindings.Clear();
-                if (dgv["ImgIconPath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
-                {
-                    ImgIcon.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgIconPath");
-                } 
-                
-                Encoding encoding = Encoding.GetEncoding(437);
-                
-                var nfopath = dgv["NfoPath", dgv.SelectedRows[0].Index].Value;
-                if (nfopath != null)
-                {
-                    StreamReader file = new StreamReader(nfopath.ToString(), encoding);
-                    richTextBox1.LoadFile(file.BaseStream, RichTextBoxStreamType.PlainText);
-                }
-                else
-                {
-                    richTextBox1.Clear();
-                }
-
                 if (dgv["ReleaseNumber", dgv.SelectedRows[0].Index].Value != null)
                 {
-                    this.currentSelectedRom = _controler.GetRomByReleaseNumber(dgv["ReleaseNumber", dgv.SelectedRows[0].Index].Value.ToString());
+                    _controler.SetCurrentNdsRom(dgv["ReleaseNumber", dgv.SelectedRows[0].Index].Value.ToString());
                 }
 
-                if (File.Exists(this.currentSelectedRom.RomPath))
+                if (_controler.GetCurrentGridView() != dgv.Name)
                 {
-                    btnUnzip.Enabled = true;
-                    btnUnzip.Text = "Copy on Linker";
-                }
-                else
-                {
-                    btnUnzip.Enabled = false;
-                    btnUnzip.Text = "File is missing";
-                }
+                    lblLanguage.DataBindings.Clear();
+                    lblLanguage.DataBindings.Add("Text", dgv.DataSource, "languageString");
 
-                if (currentSelectedRom != null)
-                {
-                    if (currentSelectedRom.IsAllImagePresent())
+                    lblCRC.DataBindings.Clear();
+                    lblCRC.DataBindings.Add("Text", dgv.DataSource, "RomCRC");
+
+                    lblGenre.DataBindings.Clear();
+                    lblGenre.DataBindings.Add("Text", dgv.DataSource, "Genre");
+
+                    lblPublisher.DataBindings.Clear();
+                    lblPublisher.DataBindings.Add("Text", dgv.DataSource, "Publisher");
+
+                    lblSaveType.DataBindings.Clear();
+                    lblSaveType.DataBindings.Add("Text", dgv.DataSource, "SaveType");
+
+                    lblSize.DataBindings.Clear();
+                    lblSize.DataBindings.Add("Text", dgv.DataSource, "RomSize");
+
+                    lblSource.DataBindings.Clear();
+                    lblSource.DataBindings.Add("Text", dgv.DataSource, "SourceRom");
+
+                    txtDirName.DataBindings.Clear();
+                    txtDirName.DataBindings.Add("Text", dgv.DataSource, "ExternalDirName");
+
+                    txtFileName.DataBindings.Clear();
+                    txtFileName.DataBindings.Add("Text", dgv.DataSource, "ExternalFileName");
+
+                    ImgCover.DataBindings.Clear();
+                    if (dgv["ImgCoverPath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
+                    {
+                        ImgCover.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgCoverPath");
+                    }
+
+                    ImgInGame.DataBindings.Clear();
+                    if (dgv["ImgInGamePath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
+                    {
+                        ImgInGame.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgInGamePath");
+                    }
+
+                    imgLocation.DataBindings.Clear();
+                    if (dgv["FlagPath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
+                    {
+                        imgLocation.DataBindings.Add("ImageLocation", dgv.DataSource, "FlagPath");
+                    }
+
+                    ImgIcon.DataBindings.Clear();
+                    if (dgv["ImgIconPath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
+                    {
+                        ImgIcon.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgIconPath");
+                    }
+
+                    Encoding encoding = Encoding.GetEncoding(437);
+                    var nfopath = dgv["NfoPath", dgv.SelectedRows[0].Index].Value;
+                    if (nfopath != null)
+                    {
+                        StreamReader file = new StreamReader(nfopath.ToString(), encoding);
+                        richTextBox1.LoadFile(file.BaseStream, RichTextBoxStreamType.PlainText);
+                    }
+                    else
+                    {
+                        richTextBox1.Clear();
+                    }
+
+                    if (File.Exists(_controler.GetCurrentRom().RomPath))
+                    {
+                        btnUnzip.Enabled = true;
+                        btnUnzip.Text = "Copy on Linker";
+                    }
+                    else
+                    {
+                        btnUnzip.Enabled = false;
+                        btnUnzip.Text = "File is missing";
+                    }
+
+                    if (_controler.GetCurrentRom().IsAllImagePresent())
                     {
                         btnDownloadImgNfoOneRom.Enabled = false;
                     }
@@ -432,14 +266,22 @@ namespace NdsCRC_III
                     {
                         btnDownloadImgNfoOneRom.Enabled = true;
                     }
-                }
-                else
-                {
-                    btnDownloadImgNfoOneRom.Enabled = false;
+
+                    if (_controler.GetCurrentRom().IsDuplicate())
+                    {
+                        btnFilterDuplicate.Enabled = true;
+                    }
+                    else
+                    {
+                        btnFilterDuplicate.Enabled = false;
+                    }
+
+                    _controler.SetCurrentGridView(dgv.Name);
                 }
             }
             else
             {
+                _controler.SetNoCurrentRom();
                 ImgCover.ImageLocation = null;
                 ImgInGame.ImageLocation = null;
                 lblLanguage.Text = null;
@@ -449,12 +291,138 @@ namespace NdsCRC_III
                 lblSaveType.Text = null;
                 lblSize.Text = null;
                 lblSource.Text = null;
-                lblDuplicateID.Text = "None";
                 btnFilterDuplicate.Enabled = false;
+                btnDownloadImgNfoOneRom.Enabled = false;
                 imgLocation.Image = null;
                 richTextBox1.Clear();
-                lblReleaseNumber.Text = null;
             }
+            /*
+            if (_controler.GetCurrentGridView() != dgv.Name)
+            {
+                if (dgv.SelectedRows.Count == 1)
+                {
+                    if (dgv["ReleaseNumber", dgv.SelectedRows[0].Index].Value != null)
+                    {
+                        _controler.SetCurrentNdsRom(dgv["ReleaseNumber", dgv.SelectedRows[0].Index].Value.ToString());
+                    }
+
+                    lblLanguage.DataBindings.Clear();
+                    lblLanguage.DataBindings.Add("Text", dgv.DataSource, "languageString");
+
+                    lblCRC.DataBindings.Clear();
+                    lblCRC.DataBindings.Add("Text", dgv.DataSource, "RomCRC");
+
+                    lblGenre.DataBindings.Clear();
+                    lblGenre.DataBindings.Add("Text", dgv.DataSource, "Genre");
+
+                    lblPublisher.DataBindings.Clear();
+                    lblPublisher.DataBindings.Add("Text", dgv.DataSource, "Publisher");
+
+                    lblSaveType.DataBindings.Clear();
+                    lblSaveType.DataBindings.Add("Text", dgv.DataSource, "SaveType");
+
+                    lblSize.DataBindings.Clear();
+                    lblSize.DataBindings.Add("Text", dgv.DataSource, "RomSize");
+
+                    lblSource.DataBindings.Clear();
+                    lblSource.DataBindings.Add("Text", dgv.DataSource, "SourceRom");
+
+                    txtDirName.DataBindings.Clear();
+                    txtDirName.DataBindings.Add("Text", dgv.DataSource, "ExternalDirName");
+
+                    txtFileName.DataBindings.Clear();
+                    txtFileName.DataBindings.Add("Text", dgv.DataSource, "ExternalFileName");
+
+                    ImgCover.DataBindings.Clear();
+                    if (dgv["ImgCoverPath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
+                    {
+                        ImgCover.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgCoverPath");
+                    }
+
+                    ImgInGame.DataBindings.Clear();
+                    if (dgv["ImgInGamePath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
+                    {
+                        ImgInGame.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgInGamePath");
+                    }
+
+                    imgLocation.DataBindings.Clear();
+                    if (dgv["FlagPath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
+                    {
+                        imgLocation.DataBindings.Add("ImageLocation", dgv.DataSource, "FlagPath");
+                    }
+
+                    ImgIcon.DataBindings.Clear();
+                    if (dgv["ImgIconPath", dgv.SelectedRows[0].Index].Value.ToString() != string.Empty)
+                    {
+                        ImgIcon.DataBindings.Add("ImageLocation", dgv.DataSource, "ImgIconPath");
+                    }
+
+                    Encoding encoding = Encoding.GetEncoding(437);
+                    var nfopath = dgv["NfoPath", dgv.SelectedRows[0].Index].Value;
+                    if (nfopath != null)
+                    {
+                        StreamReader file = new StreamReader(nfopath.ToString(), encoding);
+                        richTextBox1.LoadFile(file.BaseStream, RichTextBoxStreamType.PlainText);
+                    }
+                    else
+                    {
+                        richTextBox1.Clear();
+                    }
+
+                    if (File.Exists(_controler.GetCurrentRom().RomPath))
+                    {
+                        btnUnzip.Enabled = true;
+                        btnUnzip.Text = "Copy on Linker";
+                    }
+                    else
+                    {
+                        btnUnzip.Enabled = false;
+                        btnUnzip.Text = "File is missing";
+                    }
+
+                    if (_controler.GetCurrentRom().IsAllImagePresent())
+                    {
+                        btnDownloadImgNfoOneRom.Enabled = false;
+                    }
+                    else
+                    {
+                        btnDownloadImgNfoOneRom.Enabled = true;
+                    }
+
+                    if (_controler.GetCurrentRom().IsDuplicate())
+                    {
+                        btnFilterDuplicate.Enabled = true;
+                    }
+                    else
+                    {
+                        btnFilterDuplicate.Enabled = false;
+                    }
+
+                    _controler.SetCurrentGridView(dgv.Name);
+                }
+                else
+                {
+                    _controler.SetNoCurrentRom();
+                    ImgCover.ImageLocation = null;
+                    ImgInGame.ImageLocation = null;
+                    lblLanguage.Text = null;
+                    lblCRC.Text = null;
+                    lblGenre.Text = null;
+                    lblPublisher.Text = null;
+                    lblSaveType.Text = null;
+                    lblSize.Text = null;
+                    lblSource.Text = null;
+                    btnFilterDuplicate.Enabled = false;
+                    btnDownloadImgNfoOneRom.Enabled = false;
+                    imgLocation.Image = null;
+                    richTextBox1.Clear();
+                }
+            }
+            else
+            {
+                _controler.SetCurrentNdsRom(dgv["ReleaseNumber", dgv.SelectedRows[0].Index].Value.ToString());
+            }
+            */
         }
 
         /// <summary>
@@ -640,12 +608,12 @@ namespace NdsCRC_III
         {
             progressBarExtract.Value = 0;
             labelExtractPercent.Text = "00%";
-            if (File.Exists(this.currentSelectedRom.RomPath))
+            if (File.Exists(_controler.GetCurrentRom().RomPath))
             {
                 folderBrowserDialogExtract.ShowDialog();
-                if (Directory.Exists(folderBrowserDialogExtract.SelectedPath) && this.currentSelectedRom.RomPath != string.Empty)
+                if (Directory.Exists(folderBrowserDialogExtract.SelectedPath) && _controler.GetCurrentRom().RomPath != string.Empty)
                 {
-                    BW_Extract bw = new BW_Extract(this.currentSelectedRom.RomPath, folderBrowserDialogExtract.SelectedPath);
+                    BW_Extract bw = new BW_Extract(_controler.GetCurrentRom().RomPath, folderBrowserDialogExtract.SelectedPath);
                     bw.ProgressChanged += new ProgressChangedEventHandler(Bw_Extract_ProgressChanged);
                     bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Bw_Extract_RunWorkerCompleted);
                     btnUnzip.Enabled = false;
@@ -764,7 +732,7 @@ namespace NdsCRC_III
             maj.FormClosed += new FormClosedEventHandler(Maj_FormClosed);
             maj.SetShowFinishMessage(false);
 
-            int releaseNumber = int.Parse(currentSelectedRom.ReleaseNumber);
+            int releaseNumber = int.Parse(_controler.GetCurrentRom().ReleaseNumber);
             string filePath = string.Format("{0}{1}.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
             Queue<MajUrl> liste = new Queue<MajUrl>();
             if (!File.Exists(filePath))
@@ -816,7 +784,7 @@ namespace NdsCRC_III
         /// <param name="e">EventArgs</param>
         private void AdvansceneLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string link = string.Format("http://www.advanscene.com/html/Releases/dbrelds.php?id={0}", currentSelectedRom.ReleaseNumber);
+            string link = string.Format("http://www.advanscene.com/html/Releases/dbrelds.php?id={0}", _controler.GetCurrentRom().ReleaseNumber);
             System.Diagnostics.Process.Start(link);
         }
 

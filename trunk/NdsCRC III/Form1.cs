@@ -43,7 +43,7 @@ namespace NdsCRC_III
         public Form1()
         {
             InitializeComponent();
-            _controler = new MFControler(Application.StartupPath);
+            _controler = new MFControler();
 
             sourceCollection.DataSource = _controler.GetCollection();
             dataGridView1.DataSource = sourceCollection;

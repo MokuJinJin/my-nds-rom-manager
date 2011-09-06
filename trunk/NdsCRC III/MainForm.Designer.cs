@@ -33,8 +33,6 @@
             this.GridCollection = new System.Windows.Forms.DataGridView();
             this.labelExtractPercent = new System.Windows.Forms.Label();
             this.btnUnzip = new System.Windows.Forms.Button();
-            this.lblReleaseNumber = new System.Windows.Forms.Label();
-            this.lblDuplicateID = new System.Windows.Forms.Label();
             this.progressBarExtract = new System.Windows.Forms.ProgressBar();
             this.btnFilterDuplicate = new System.Windows.Forms.Button();
             this.lblGenre = new System.Windows.Forms.Label();
@@ -153,26 +151,6 @@
             this.btnUnzip.UseVisualStyleBackColor = true;
             this.btnUnzip.Click += new System.EventHandler(this.BtnUnzip_Click);
             // 
-            // lblReleaseNumber
-            // 
-            this.lblReleaseNumber.AutoSize = true;
-            this.lblReleaseNumber.Location = new System.Drawing.Point(325, 385);
-            this.lblReleaseNumber.Name = "lblReleaseNumber";
-            this.lblReleaseNumber.Size = new System.Drawing.Size(93, 13);
-            this.lblReleaseNumber.TabIndex = 6;
-            this.lblReleaseNumber.Text = "lblReleaseNumber";
-            this.lblReleaseNumber.Visible = false;
-            // 
-            // lblDuplicateID
-            // 
-            this.lblDuplicateID.AutoSize = true;
-            this.lblDuplicateID.Location = new System.Drawing.Point(197, 385);
-            this.lblDuplicateID.Name = "lblDuplicateID";
-            this.lblDuplicateID.Size = new System.Drawing.Size(73, 13);
-            this.lblDuplicateID.TabIndex = 5;
-            this.lblDuplicateID.Text = "lblDuplicateID";
-            this.lblDuplicateID.Visible = false;
-            // 
             // progressBarExtract
             // 
             this.progressBarExtract.ForeColor = System.Drawing.Color.PaleGreen;
@@ -185,11 +163,11 @@
             // btnFilterDuplicate
             // 
             this.btnFilterDuplicate.Enabled = false;
-            this.btnFilterDuplicate.Location = new System.Drawing.Point(188, 351);
+            this.btnFilterDuplicate.Location = new System.Drawing.Point(96, 6);
             this.btnFilterDuplicate.Name = "btnFilterDuplicate";
-            this.btnFilterDuplicate.Size = new System.Drawing.Size(96, 23);
+            this.btnFilterDuplicate.Size = new System.Drawing.Size(141, 23);
             this.btnFilterDuplicate.TabIndex = 3;
-            this.btnFilterDuplicate.Text = "Filter Duplicate";
+            this.btnFilterDuplicate.Text = "Filter Location Duplicate";
             this.btnFilterDuplicate.UseVisualStyleBackColor = true;
             this.btnFilterDuplicate.Click += new System.EventHandler(this.BtnFilterDuplicate_Click);
             // 
@@ -408,9 +386,7 @@
             this.tabInformations.Controls.Add(this.btnDownloadImgNfoOneRom);
             this.tabInformations.Controls.Add(this.labelExtractPercent);
             this.tabInformations.Controls.Add(this.btnUnzip);
-            this.tabInformations.Controls.Add(this.lblReleaseNumber);
             this.tabInformations.Controls.Add(this.label3);
-            this.tabInformations.Controls.Add(this.lblDuplicateID);
             this.tabInformations.Controls.Add(this.label5);
             this.tabInformations.Controls.Add(this.progressBarExtract);
             this.tabInformations.Controls.Add(this.label7);
@@ -775,7 +751,6 @@
         private System.Windows.Forms.DataGridView GridCollection;
         private System.Windows.Forms.PictureBox ImgInGame;
         private System.Windows.Forms.PictureBox ImgCover;
-        private System.Windows.Forms.Label lblDuplicateID;
         private System.Windows.Forms.Button btnFilterDuplicate;
         private System.Windows.Forms.PictureBox imgLocation;
         private System.Windows.Forms.Label lblGenre;
@@ -795,7 +770,6 @@
         private System.Windows.Forms.TabPage tabImages;
         private System.Windows.Forms.TabPage tabNFO;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Label lblReleaseNumber;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnMAJ_Img_NFO;
         private System.Windows.Forms.ProgressBar progressBar1;

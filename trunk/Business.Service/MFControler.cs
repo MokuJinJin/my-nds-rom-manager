@@ -20,6 +20,7 @@ namespace NdsCRC_III.BusinessService
     /// </summary>
     public class MFControler
     {
+        #region Field
         /// <summary>
         /// Database
         /// </summary>
@@ -41,17 +42,29 @@ namespace NdsCRC_III.BusinessService
         private Filters<NDS_Rom> f = new Filters<NDS_Rom>();
 
         /// <summary>
+        /// Current selected Rom
+        /// </summary>
+        private NDS_Rom _currentNDSRom;
+
+        /// <summary>
+        /// Current selected GridView name
+        /// </summary>
+        private string _currentGridViewName;
+
+        #endregion
+
+        /// <summary>
         /// Initializes a new instance of the Controler class
         /// </summary>
-        /// <param name="startUpPath">Application Start Up Path</param>
-        public MFControler(string startUpPath)
+        public MFControler()
         {
-            // DataAcessLayer.AdvanScene.Load(startUpPath);
-            // NDSDirectories.SetStartupPath(startUpPath);
             InitDataBase();
+            _currentNDSRom = null;
+            _currentGridViewName = string.Empty;
             f.ChangeFilter += new ChangeFilterEventHandler(F_ChangeFilter);
         }
 
+        #region Property
         /// <summary>
         /// Dat Version of the database
         /// </summary>
@@ -128,66 +141,74 @@ namespace NdsCRC_III.BusinessService
                 return NDSDirectories.PathXmlDB;
             }
         }
+        #endregion
 
+        #region Current Selected
+        
         /// <summary>
-        /// ChangeFilterEventHandler
+        /// Set current selected rom from a release number
         /// </summary>
-        /// <param name="sender">sender</param>
-        /// <param name="e">EventArgs</param>
-        private void F_ChangeFilter(object sender, EventArgs e)
+        /// <param name="romReleaseNumber">Rom Release number</param>
+        public void SetCurrentNdsRom(string romReleaseNumber)
         {
-            _advanSceneDataBase.ApplyFilter(f);
-            _collection.ApplyFilter(f);
-            _collectionMissing.ApplyFilter(f);
+            _currentNDSRom = GetRomByReleaseNumber(romReleaseNumber);
         }
 
         /// <summary>
-        /// Initialize all data
+        /// No current Rom Selected
         /// </summary>
-        private void InitDataBase()
+        public void SetNoCurrentRom()
         {
-            _advanSceneDataBase = new BindingListView<NDS_Rom>(DataAcessLayer.NdsAdvanScene);
-            _collection = new BindingListView<NDS_Rom>(DataAcessLayer.NdsCollection);
-            _collectionMissing = new BindingListView<NDS_Rom>(DataAcessLayer.NdsCollectionMissing);
+            _currentNDSRom = null;
         }
 
         /// <summary>
-        /// Reset All Filters
+        /// Get the current selected Rom
         /// </summary>
-        /// <param name="keepSorts">Keeping sorts</param>
-        public void ResetAllFilters(bool keepSorts)
+        /// <returns>NDS Rom</returns>
+        public NDS_Rom GetCurrentRom()
         {
-            if (!keepSorts)
-            {
-                /*
-                ListSortDescriptionCollection AdvanSceneSorts = AdvanSceneDataBase.SortDescriptions;
-                ListSortDescriptionCollection CollectionSorts = Collection.SortDescriptions;
-                ListSortDescriptionCollection CollectionMissingSorts = CollectionMissing.SortDescriptions;
-                InitDataBase();
-                AdvanSceneDataBase.ApplySort(AdvanSceneSorts);
-                Collection.ApplySort(CollectionSorts);
-                CollectionMissing.ApplySort(CollectionMissingSorts);
-                */
-                _advanSceneDataBase.RemoveSort();
-                _collection.RemoveSort();
-                _collectionMissing.RemoveSort();
-            }
-            else
-            {
-                // InitDataBase();
-            }
-
-            f.ResetLanguageFilter();
-            f.ResetTitleFilter();
-
-            // HACK : DemoFilter always to True
-            f.SetDemoRomFilter(true);
-
-            _advanSceneDataBase.RemoveFilter();
-            _collection.RemoveFilter();
-            _collectionMissing.RemoveFilter();
+            return _currentNDSRom;
         }
 
+        /// <summary>
+        /// Check if a current rom is selected
+        /// </summary>
+        /// <returns>True if a rom is currently selected, false otherwise</returns>
+        public bool IsRomSelected()
+        {
+            return _currentNDSRom != null;
+        }
+
+        /// <summary>
+        /// Set current selected gridView
+        /// </summary>
+        /// <param name="gridViewName">Rom Release number</param>
+        public void SetCurrentGridView(string gridViewName)
+        {
+            _currentGridViewName = gridViewName;
+        }
+
+        /// <summary>
+        /// Get the current selected GridView Name
+        /// </summary>
+        /// <returns>Current GridView Name</returns>
+        public string GetCurrentGridView()
+        {
+            return _currentGridViewName;
+        }
+
+        /// <summary>
+        /// Check if a GridView is selected
+        /// </summary>
+        /// <returns>True if a GridView is currently selected, false otherwise</returns>
+        public bool IsGridViewSelected()
+        {
+            return _currentGridViewName != string.Empty;
+        }
+        #endregion
+
+        #region Accesseurs
         /// <summary>
         /// Get the full database
         /// </summary>
@@ -213,6 +234,28 @@ namespace NdsCRC_III.BusinessService
         public BindingListView<NDS_Rom> GetCollectionMissing()
         {
             return _collectionMissing;
+        }
+
+        /// <summary>
+        /// Return all Language
+        /// </summary>
+        /// <returns>All languages</returns>
+        public Dictionary<int, string> GetLanguages()
+        {
+            return LanguageXML.Languages;
+        }
+
+        #endregion
+
+        #region DataBase
+        /// <summary>
+        /// Initialize all data
+        /// </summary>
+        private void InitDataBase()
+        {
+            _advanSceneDataBase = new BindingListView<NDS_Rom>(DataAcessLayer.NdsAdvanScene);
+            _collection = new BindingListView<NDS_Rom>(DataAcessLayer.NdsCollection);
+            _collectionMissing = new BindingListView<NDS_Rom>(DataAcessLayer.NdsCollectionMissing);
         }
 
         /// <summary>
@@ -245,77 +288,11 @@ namespace NdsCRC_III.BusinessService
         }
 
         /// <summary>
-        /// Apply Filter by title
-        /// </summary>
-        /// <param name="title">Tilte</param>
-        public void SetTitleFilter(string title)
-        {
-            f.SetTitleFilter(title);
-            /*
-            ListSortDescriptionCollection sortsAdvanSceneDataBase = AdvanSceneDataBase.SortDescriptions;
-            ListSortDescriptionCollection sortsCollection = Collection.SortDescriptions;
-            ListSortDescriptionCollection sortsCollectionMissing = CollectionMissing.SortDescriptions;
-            AdvanSceneDataBase = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParTitre(title, EnumBase.AdvanScene));
-            Collection = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParTitre(title, EnumBase.Collection));
-            CollectionMissing = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParTitre(title, EnumBase.CollectionMissing));
-            AdvanSceneDataBase.ApplySort(sortsAdvanSceneDataBase);
-            Collection.ApplySort(sortsCollection);
-            CollectionMissing.ApplySort(sortsCollectionMissing);
-            */
-        }
-
-        /// <summary>
-        /// Return all Language
-        /// </summary>
-        /// <returns>All languages</returns>
-        public Dictionary<int, string> GetLanguages()
-        {
-            return LanguageXML.Languages;
-        }
-
-        /// <summary>
-        /// Set No/All Language Filter
-        /// </summary>
-        public void SetNoLanguageFilter()
-        {
-            f.ResetLanguageFilter();
-        }
-
-        /// <summary>
-        /// Set language filter on the given code 
-        /// </summary>
-        /// <param name="languageCode">language code to set the filter on</param>
-        public void SetLanguageFilter(int languageCode)
-        {
-            f.SetLanguageFilter(languageCode);
-            /*
-            ListSortDescriptionCollection sortsAdvanSceneDataBase = AdvanSceneDataBase.SortDescriptions;
-            ListSortDescriptionCollection sortsCollection = Collection.SortDescriptions;
-            ListSortDescriptionCollection sortsCollectionMissing = CollectionMissing.SortDescriptions;
-            AdvanSceneDataBase = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParLangue(languageCode, EnumBase.AdvanScene));
-            Collection = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParLangue(languageCode, EnumBase.Collection));
-            CollectionMissing = new BindingListView<NDS_Rom>(AdvanSceneDataBaseXML.DataBaseFiltreParLangue(languageCode, EnumBase.CollectionMissing));
-            AdvanSceneDataBase.ApplySort(sortsAdvanSceneDataBase);
-            Collection.ApplySort(sortsCollection);
-            CollectionMissing.ApplySort(sortsCollectionMissing);
-            */
-        }
-
-        /// <summary>
         /// Test -> Repair the collection
         /// </summary>
         public void RepairCollection()
         {
             DataAcessLayer.RepairCollection();
-        }
-
-        /// <summary>
-        /// Set the filter Demo rom  visible
-        /// </summary>
-        /// <param name="visible">True to see the Demo Rom, false to hide it</param>
-        public void SetFilterDemo(bool visible)
-        {
-            f.SetDemoRomFilter(visible);
         }
 
         /// <summary>
@@ -328,7 +305,22 @@ namespace NdsCRC_III.BusinessService
             NDS_Rom rom = DataAcessLayer.NdsAdvanScene.Single(r => r.ReleaseNumber == releaseNumber);
             return rom;
         }
+        #endregion
 
+        #region Filters
+
+        /// <summary>
+        /// ChangeFilterEventHandler
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
+        private void F_ChangeFilter(object sender, EventArgs e)
+        {
+            _advanSceneDataBase.ApplyFilter(f);
+            _collection.ApplyFilter(f);
+            _collectionMissing.ApplyFilter(f);
+        }
+        
         /// <summary>
         /// Set the Duplicate ID Filter
         /// </summary>
@@ -337,5 +329,86 @@ namespace NdsCRC_III.BusinessService
         {
             f.SetDuplicateIdFilter(id);
         }
+
+        /// <summary>
+        /// Set the Duplicate ID Filter from the current rom
+        /// </summary>
+        public void SetDuplicateFilterFromCurrentRom()
+        {
+            f.SetDuplicateIdFilter(_currentNDSRom.DuplicateID);
+        }
+
+        /// <summary>
+        /// Set the filter Demo rom  visible
+        /// </summary>
+        /// <param name="visible">True to see the Demo Rom, false to hide it</param>
+        public void SetFilterDemo(bool visible)
+        {
+            f.SetDemoRomFilter(visible);
+        }
+
+        /// <summary>
+        /// Apply Filter by title
+        /// </summary>
+        /// <param name="title">Tilte</param>
+        public void SetTitleFilter(string title)
+        {
+            f.SetTitleFilter(title);
+        }
+
+        /// <summary>
+        /// Set language filter on the given code 
+        /// </summary>
+        /// <param name="languageCode">language code to set the filter on</param>
+        public void SetLanguageFilter(int languageCode)
+        {
+            f.SetLanguageFilter(languageCode);
+        }
+
+        /// <summary>
+        /// Set No/All Language Filter
+        /// </summary>
+        public void SetNoLanguageFilter()
+        {
+            f.ResetLanguageFilter();
+        }
+
+        /// <summary>
+        /// Set no duplicate filter
+        /// </summary>
+        public void SetNoDuplicateFilter()
+        {
+            f.ResetDuplicateID();
+        }
+        
+        /// <summary>
+        /// Reset All Filters
+        /// </summary>
+        /// <param name="keepSorts">Keeping sorts</param>
+        public void ResetAllFilters(bool keepSorts)
+        {
+            if (!keepSorts)
+            {
+                _advanSceneDataBase.RemoveSort();
+                _collection.RemoveSort();
+                _collectionMissing.RemoveSort();
+            }
+            else
+            {
+                // InitDataBase();
+            }
+
+            f.ResetLanguageFilter();
+            f.ResetTitleFilter();
+
+            // HACK : DemoFilter always to True
+            f.SetDemoRomFilter(true);
+
+            _advanSceneDataBase.RemoveFilter();
+            _collection.RemoveFilter();
+            _collectionMissing.RemoveFilter();
+        }
+
+        #endregion
     }
 }
