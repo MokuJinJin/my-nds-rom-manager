@@ -63,7 +63,6 @@
             this.grpGameInfo = new System.Windows.Forms.GroupBox();
             this.tabDataBaseUpdateInfo = new System.Windows.Forms.TabPage();
             this.ListboxDataBaseUpdate = new System.Windows.Forms.ListBox();
-            this.btnMAJ_Img_NFO = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnRepair = new System.Windows.Forms.Button();
             this.labelUpdatePercent = new System.Windows.Forms.Label();
@@ -79,8 +78,12 @@
             this.tabMissing = new System.Windows.Forms.TabPage();
             this.GridMissing = new System.Windows.Forms.DataGridView();
             this.chk_DemoRomVisibility = new System.Windows.Forms.CheckBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.lblReleaseNumber = new System.Windows.Forms.Label();
+            this.lblDumpDate = new System.Windows.Forms.Label();
             this.ImgInGame = new System.Windows.Forms.PictureBox();
             this.ImgCover = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -88,13 +91,15 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.ImgIcon = new System.Windows.Forms.PictureBox();
+            this.ImgWifi = new System.Windows.Forms.PictureBox();
             this.ImgLocation = new System.Windows.Forms.PictureBox();
             this.btnUpdateDBImg = new System.Windows.Forms.Button();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.btnMAJ_Img_NFO = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridCollection)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
@@ -113,6 +118,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridMissing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImgInGame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImgCover)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -120,10 +126,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImgIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImgWifi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImgLocation)).BeginInit();
             this.SuspendLayout();
             // 
@@ -224,7 +232,7 @@
             // 
             this.lblSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSource.AutoSize = true;
-            this.lblSource.Location = new System.Drawing.Point(33, 26);
+            this.lblSource.Location = new System.Drawing.Point(126, 26);
             this.lblSource.Name = "lblSource";
             this.lblSource.Size = new System.Drawing.Size(51, 13);
             this.lblSource.TabIndex = 1;
@@ -379,6 +387,8 @@
             // 
             // grpRelease
             // 
+            this.grpRelease.Controls.Add(this.lblDumpDate);
+            this.grpRelease.Controls.Add(this.pictureBox12);
             this.grpRelease.Controls.Add(this.lblSource);
             this.grpRelease.Controls.Add(this.pictureBox3);
             this.grpRelease.Controls.Add(this.txtFileName);
@@ -490,11 +500,14 @@
             // 
             // grpGameInfo
             // 
+            this.grpGameInfo.Controls.Add(this.pictureBox11);
+            this.grpGameInfo.Controls.Add(this.lblReleaseNumber);
             this.grpGameInfo.Controls.Add(this.lblLanguage);
             this.grpGameInfo.Controls.Add(this.pictureBox9);
             this.grpGameInfo.Controls.Add(this.pictureBox10);
             this.grpGameInfo.Controls.Add(this.pictureBox5);
             this.grpGameInfo.Controls.Add(this.ImgIcon);
+            this.grpGameInfo.Controls.Add(this.ImgWifi);
             this.grpGameInfo.Controls.Add(this.ImgLocation);
             this.grpGameInfo.Controls.Add(this.btnFilterDuplicate);
             this.grpGameInfo.Controls.Add(this.lblGenre);
@@ -530,18 +543,6 @@
             this.ListboxDataBaseUpdate.Name = "ListboxDataBaseUpdate";
             this.ListboxDataBaseUpdate.Size = new System.Drawing.Size(473, 368);
             this.ListboxDataBaseUpdate.TabIndex = 0;
-            // 
-            // btnMAJ_Img_NFO
-            // 
-            this.btnMAJ_Img_NFO.BackgroundImage = global::NdsCRC_III.Properties.Resources.update_image;
-            this.btnMAJ_Img_NFO.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnMAJ_Img_NFO.Location = new System.Drawing.Point(167, 5);
-            this.btnMAJ_Img_NFO.Name = "btnMAJ_Img_NFO";
-            this.btnMAJ_Img_NFO.Size = new System.Drawing.Size(32, 32);
-            this.btnMAJ_Img_NFO.TabIndex = 23;
-            this.toolTip.SetToolTip(this.btnMAJ_Img_NFO, "Update All Images/NFOs");
-            this.btnMAJ_Img_NFO.UseVisualStyleBackColor = true;
-            this.btnMAJ_Img_NFO.Click += new System.EventHandler(this.BtnMAJ_Img_NFO_Click);
             // 
             // progressBar1
             // 
@@ -709,6 +710,32 @@
             this.chk_DemoRomVisibility.UseVisualStyleBackColor = true;
             this.chk_DemoRomVisibility.CheckedChanged += new System.EventHandler(this.Chk_DemoRomVisibility_CheckedChanged);
             // 
+            // toolTip
+            // 
+            this.toolTip.IsBalloon = true;
+            this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip.ToolTipTitle = "Informations :";
+            // 
+            // lblReleaseNumber
+            // 
+            this.lblReleaseNumber.AutoSize = true;
+            this.lblReleaseNumber.Location = new System.Drawing.Point(107, 21);
+            this.lblReleaseNumber.Name = "lblReleaseNumber";
+            this.lblReleaseNumber.Size = new System.Drawing.Size(93, 13);
+            this.lblReleaseNumber.TabIndex = 38;
+            this.lblReleaseNumber.Text = "lblReleaseNumber";
+            this.toolTip.SetToolTip(this.lblReleaseNumber, "Release Number");
+            // 
+            // lblDumpDate
+            // 
+            this.lblDumpDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDumpDate.AutoSize = true;
+            this.lblDumpDate.Location = new System.Drawing.Point(31, 26);
+            this.lblDumpDate.Name = "lblDumpDate";
+            this.lblDumpDate.Size = new System.Drawing.Size(68, 13);
+            this.lblDumpDate.TabIndex = 1;
+            this.lblDumpDate.Text = "lblDumpDate";
+            // 
             // ImgInGame
             // 
             this.ImgInGame.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -732,11 +759,22 @@
             this.ImgCover.TabIndex = 17;
             this.ImgCover.TabStop = false;
             // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox12.Image = global::NdsCRC_III.Properties.Resources.dump_date;
+            this.pictureBox12.Location = new System.Drawing.Point(9, 23);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox12.TabIndex = 36;
+            this.pictureBox12.TabStop = false;
+            this.toolTip.SetToolTip(this.pictureBox12, "Dump Date");
+            // 
             // pictureBox3
             // 
             this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
-            this.pictureBox3.Location = new System.Drawing.Point(11, 23);
+            this.pictureBox3.Location = new System.Drawing.Point(104, 23);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(16, 16);
             this.pictureBox3.TabIndex = 36;
@@ -809,6 +847,18 @@
             this.pictureBox1.TabStop = false;
             this.toolTip.SetToolTip(this.pictureBox1, "Save type");
             // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox11.Image = global::NdsCRC_III.Properties.Resources.release;
+            this.pictureBox11.Location = new System.Drawing.Point(95, 19);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox11.TabIndex = 2;
+            this.pictureBox11.TabStop = false;
+            this.toolTip.SetToolTip(this.pictureBox11, "Release Number");
+            this.pictureBox11.DoubleClick += new System.EventHandler(this.ImgLocation_DoubleClick);
+            // 
             // pictureBox9
             // 
             this.pictureBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -853,6 +903,18 @@
             this.ImgIcon.TabStop = false;
             this.toolTip.SetToolTip(this.ImgIcon, "Game Icon");
             // 
+            // ImgWifi
+            // 
+            this.ImgWifi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImgWifi.Image = global::NdsCRC_III.Properties.Resources.wifi;
+            this.ImgWifi.Location = new System.Drawing.Point(73, 19);
+            this.ImgWifi.Name = "ImgWifi";
+            this.ImgWifi.Size = new System.Drawing.Size(16, 16);
+            this.ImgWifi.TabIndex = 2;
+            this.ImgWifi.TabStop = false;
+            this.toolTip.SetToolTip(this.ImgWifi, "Wifi");
+            this.ImgWifi.DoubleClick += new System.EventHandler(this.ImgLocation_DoubleClick);
+            // 
             // ImgLocation
             // 
             this.ImgLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -876,9 +938,17 @@
             this.btnUpdateDBImg.UseVisualStyleBackColor = true;
             this.btnUpdateDBImg.Click += new System.EventHandler(this.CheckDatVersion);
             // 
-            // toolTip
+            // btnMAJ_Img_NFO
             // 
-            this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.btnMAJ_Img_NFO.BackgroundImage = global::NdsCRC_III.Properties.Resources.update_image;
+            this.btnMAJ_Img_NFO.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMAJ_Img_NFO.Location = new System.Drawing.Point(167, 5);
+            this.btnMAJ_Img_NFO.Name = "btnMAJ_Img_NFO";
+            this.btnMAJ_Img_NFO.Size = new System.Drawing.Size(32, 32);
+            this.btnMAJ_Img_NFO.TabIndex = 23;
+            this.toolTip.SetToolTip(this.btnMAJ_Img_NFO, "Update All Images/NFOs");
+            this.btnMAJ_Img_NFO.UseVisualStyleBackColor = true;
+            this.btnMAJ_Img_NFO.Click += new System.EventHandler(this.BtnMAJ_Img_NFO_Click);
             // 
             // MainForm
             // 
@@ -920,6 +990,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridMissing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImgInGame)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImgCover)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
@@ -927,10 +998,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImgIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImgWifi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImgLocation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1003,7 +1076,12 @@
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.Button btnUpdateDBImg;
+        private System.Windows.Forms.PictureBox ImgWifi;
+        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.Label lblReleaseNumber;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Label lblDumpDate;
+        private System.Windows.Forms.PictureBox pictureBox12;
     }
 }
 
