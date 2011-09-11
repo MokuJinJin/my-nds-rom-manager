@@ -314,6 +314,8 @@ namespace NdsCRC_III
                 lblSerial.Text = currentRom.Serial;
                 lblInternalName.Text = currentRom.InternalName;
                 lblVersion.Text = currentRom.Version;
+                lblReleaseNumber.Text = currentRom.ReleaseNumber;
+                lblDumpDate.Text = currentRom.DumpDate;
 
                 txtDirName.Text = currentRom.ExternalDirName;
                 txtFileName.Text = currentRom.ExternalFileName;
@@ -323,6 +325,15 @@ namespace NdsCRC_III
                 ImgLocation.ImageLocation = currentRom.FlagPath;
                 ImgIcon.ImageLocation = currentRom.ImgIconPath;
                 
+                if (currentRom.IsWifi())
+                {
+                    ImgWifi.Image = Properties.Resources.wifi;
+                }
+                else
+                {
+                    ImgWifi.Image = Properties.Resources.wifi_no;
+                }
+
                 richTextBox1.LoadFile(new StreamReader(currentRom.NfoPath, Encoding.GetEncoding(437)).BaseStream, RichTextBoxStreamType.PlainText);
 
                 if (File.Exists(_controler.GetCurrentRom().RomPath))
@@ -374,6 +385,8 @@ namespace NdsCRC_III
                 lblSerial.Text = string.Empty;
                 lblInternalName.Text = string.Empty;
                 lblVersion.Text = string.Empty;
+                lblReleaseNumber.Text = string.Empty;
+                lblDumpDate.Text = string.Empty;
                 
                 txtDirName.Text = string.Empty;
                 txtFileName.Text = string.Empty;
@@ -382,6 +395,7 @@ namespace NdsCRC_III
                 ImgInGame.ImageLocation = string.Empty;
                 ImgLocation.ImageLocation = string.Empty;
                 ImgIcon.ImageLocation = string.Empty;
+                ImgWifi.ImageLocation = string.Empty;
 
                 richTextBox1.Clear();
 

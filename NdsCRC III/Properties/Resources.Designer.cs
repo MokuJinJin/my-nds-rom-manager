@@ -74,6 +74,13 @@ namespace NdsCRC_III.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap dump_date {
+            get {
+                object obj = ResourceManager.GetObject("dump_date", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap dumper {
             get {
                 object obj = ResourceManager.GetObject("dumper", resourceCulture);
@@ -130,6 +137,13 @@ namespace NdsCRC_III.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap release {
+            get {
+                object obj = ResourceManager.GetObject("release", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap savetype {
             get {
                 object obj = ResourceManager.GetObject("savetype", resourceCulture);
@@ -161,6 +175,20 @@ namespace NdsCRC_III.Properties {
         internal static System.Drawing.Bitmap version {
             get {
                 object obj = ResourceManager.GetObject("version", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap wifi {
+            get {
+                object obj = ResourceManager.GetObject("wifi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap wifi_no {
+            get {
+                object obj = ResourceManager.GetObject("wifi_no", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
