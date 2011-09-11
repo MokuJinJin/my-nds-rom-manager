@@ -17,8 +17,6 @@ namespace NdsCRC_III.TO
     [XmlRoot("NDS_Rom")]
     public class NDS_Rom
     {
-        // : IEquatable<NDS_Rom>
-
         /// <summary>
         /// Constructor for NDS_Rom
         /// </summary>
@@ -404,44 +402,5 @@ namespace NdsCRC_III.TO
         /// External Dir name
         /// </summary>
         public string ExternalDirName { get; set; }
-
-        #region IEquatable<NDS_Rom> Members : Not used ?
-        /*
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        public bool Equals(NDS_Rom other)
-        {
-            // Check whether the compared object is null.
-            if (Object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            // Check whether the compared object references the same data.
-            if (Object.ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            // Check whether the roms' properties are equal.
-            return ReleaseNumber.Equals(other.ReleaseNumber) && RomCRC.Equals(other.RomCRC);
-        }
-
-        public override int GetHashCode()
-        {
-            // Get hash code for the releaseNumber field if it is not null.
-            int hashreleaseNumber = ReleaseNumber == null ? 0 : ReleaseNumber.GetHashCode();
-
-            // Get hash code for the RomCRC field.
-            int hashRomCRC = RomCRC.GetHashCode();
-
-            // Calculate the hash code for the rom.
-            return hashreleaseNumber ^ hashRomCRC;
-        }
-        */
-        #endregion
     }
 }

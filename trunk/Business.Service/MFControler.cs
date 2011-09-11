@@ -65,16 +65,6 @@ namespace NdsCRC_III.BusinessService
         }
 
         #region Property
-        /// <summary>
-        /// Dat Version of the database
-        /// </summary>
-        public string DatVersion
-        {
-            get
-            {
-                return DataAcessLayer.DatVersion;
-            }
-        }
 
         /// <summary>
         /// Date of the creation of the Advanscene database
@@ -88,13 +78,13 @@ namespace NdsCRC_III.BusinessService
         }
 
         /// <summary>
-        /// Path to the new rom
+        /// File name of the database to download
         /// </summary>
-        public string PathNewRom
+        public string DatFileName
         {
             get
             {
-                return NDSDirectories.PathNewRom;
+                return DataAcessLayer.URLs["datFileName"];
             }
         }
 
@@ -108,15 +98,14 @@ namespace NdsCRC_III.BusinessService
                 return DataAcessLayer.URLs["datURL"];
             }
         }
-
         /// <summary>
-        /// File name of the database to download
+        /// Dat Version of the database
         /// </summary>
-        public string DatFileName
+        public string DatVersion
         {
             get
             {
-                return DataAcessLayer.URLs["datFileName"];
+                return DataAcessLayer.DatVersion;
             }
         }
         
@@ -128,6 +117,17 @@ namespace NdsCRC_III.BusinessService
             get
             {
                 return DataAcessLayer.URLs["datVersionURL"];
+            }
+        }
+
+        /// <summary>
+        /// Path to the new rom
+        /// </summary>
+        public string PathNewRom
+        {
+            get
+            {
+                return NDSDirectories.PathNewRom;
             }
         }
         
@@ -320,7 +320,16 @@ namespace NdsCRC_III.BusinessService
             _collection.ApplyFilter(f);
             _collectionMissing.ApplyFilter(f);
         }
-        
+
+        /// <summary>
+        /// Check if duplicate filter is active
+        /// </summary>
+        /// <returns>True if duplicate filter is active, false otherwise</returns>
+        public bool IsDuplicateFilterActive()
+        {
+            return f.DuplicateFilterActive();
+        }
+
         /// <summary>
         /// Set the Duplicate ID Filter
         /// </summary>
