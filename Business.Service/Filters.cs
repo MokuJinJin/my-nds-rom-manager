@@ -168,5 +168,14 @@ namespace NdsCRC_III.BusinessService
             _duplicateID = 0;
             ChangeFilter(this, new EventArgs());
         }
+
+        /// <summary>
+        /// Check if duplicate filter is active
+        /// </summary>
+        /// <returns>True if duplicate filter is active, false otherwise</returns>
+        public bool DuplicateFilterActive()
+        {
+            return _duplicateID != 0;
+        }
     }
 }

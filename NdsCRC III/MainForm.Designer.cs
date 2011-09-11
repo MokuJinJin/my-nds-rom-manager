@@ -62,7 +62,7 @@
             this.btnDownloadImgNfoOneRom = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.imgLocation = new System.Windows.Forms.PictureBox();
+            this.ImgLocation = new System.Windows.Forms.PictureBox();
             this.tabDataBaseUpdateInfo = new System.Windows.Forms.TabPage();
             this.ListboxDataBaseUpdate = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -90,7 +90,7 @@
             this.tabNFO.SuspendLayout();
             this.tabInformations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImgIcon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgLocation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImgLocation)).BeginInit();
             this.tabDataBaseUpdateInfo.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabCollection.SuspendLayout();
@@ -168,6 +168,7 @@
             this.btnFilterDuplicate.Size = new System.Drawing.Size(141, 23);
             this.btnFilterDuplicate.TabIndex = 3;
             this.btnFilterDuplicate.Text = "Filter Location Duplicate";
+            this.btnFilterDuplicate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFilterDuplicate.UseVisualStyleBackColor = true;
             this.btnFilterDuplicate.Click += new System.EventHandler(this.BtnFilterDuplicate_Click);
             // 
@@ -403,7 +404,7 @@
             this.tabInformations.Controls.Add(this.lblPublisher);
             this.tabInformations.Controls.Add(this.lblSize);
             this.tabInformations.Controls.Add(this.lblSaveType);
-            this.tabInformations.Controls.Add(this.imgLocation);
+            this.tabInformations.Controls.Add(this.ImgLocation);
             this.tabInformations.Location = new System.Drawing.Point(4, 22);
             this.tabInformations.Name = "tabInformations";
             this.tabInformations.Padding = new System.Windows.Forms.Padding(3);
@@ -485,15 +486,15 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "DirName :";
             // 
-            // imgLocation
+            // ImgLocation
             // 
-            this.imgLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.imgLocation.Location = new System.Drawing.Point(50, 6);
-            this.imgLocation.Name = "imgLocation";
-            this.imgLocation.Size = new System.Drawing.Size(16, 16);
-            this.imgLocation.TabIndex = 2;
-            this.imgLocation.TabStop = false;
-            this.imgLocation.DoubleClick += new System.EventHandler(this.ImgLocation_DoubleClick);
+            this.ImgLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImgLocation.Location = new System.Drawing.Point(50, 6);
+            this.ImgLocation.Name = "ImgLocation";
+            this.ImgLocation.Size = new System.Drawing.Size(16, 16);
+            this.ImgLocation.TabIndex = 2;
+            this.ImgLocation.TabStop = false;
+            this.ImgLocation.DoubleClick += new System.EventHandler(this.ImgLocation_DoubleClick);
             // 
             // tabDataBaseUpdateInfo
             // 
@@ -732,7 +733,7 @@
             this.tabInformations.ResumeLayout(false);
             this.tabInformations.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImgIcon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgLocation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImgLocation)).EndInit();
             this.tabDataBaseUpdateInfo.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabCollection.ResumeLayout(false);
@@ -752,7 +753,7 @@
         private System.Windows.Forms.PictureBox ImgInGame;
         private System.Windows.Forms.PictureBox ImgCover;
         private System.Windows.Forms.Button btnFilterDuplicate;
-        private System.Windows.Forms.PictureBox imgLocation;
+        private System.Windows.Forms.PictureBox ImgLocation;
         private System.Windows.Forms.Label lblGenre;
         private System.Windows.Forms.Label lblCRC;
         private System.Windows.Forms.Label lblSource;
