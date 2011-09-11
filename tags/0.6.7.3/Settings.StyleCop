@@ -1,0 +1,93 @@
+<StyleCopSettings Version="4.3">
+  <GlobalSettings>
+    <StringProperty Name="MergeSettingsFiles">NoMerge</StringProperty>
+  </GlobalSettings>
+  <Parsers>
+    <Parser ParserId="Microsoft.StyleCop.CSharp.CsParser">
+      <ParserSettings>
+        <BooleanProperty Name="AnalyzeDesignerFiles">False</BooleanProperty>
+      </ParserSettings>
+    </Parser>
+  </Parsers>
+  <Analyzers>
+    <Analyzer AnalyzerId="Microsoft.StyleCop.CSharp.NamingRules">
+      <Rules>
+        <Rule Name="FieldNamesMustNotBeginWithUnderscore">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
+      <AnalyzerSettings>
+        <CollectionProperty Name="Hungarian">
+          <Value>nb</Value>
+          <Value>oc</Value>
+          <Value>ok</Value>
+          <Value>os</Value>
+          <Value>si</Value>
+          <Value>xl</Value>
+        </CollectionProperty>
+      </AnalyzerSettings>
+    </Analyzer>
+    <Analyzer AnalyzerId="Microsoft.StyleCop.CSharp.DocumentationRules">
+      <Rules>
+        <Rule Name="ConstructorSummaryDocumentationMustBeginWithStandardText">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+        <Rule Name="PropertySummaryDocumentationMustMatchAccessors">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+        <Rule Name="DocumentationTextMustContainWhitespace">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+        <Rule Name="DocumentationTextMustMeetMinimumCharacterLength">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
+      <AnalyzerSettings />
+    </Analyzer>
+    <Analyzer AnalyzerId="Microsoft.StyleCop.CSharp.OrderingRules">
+      <Rules>
+        <Rule Name="ElementsMustBeOrderedByAccess">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
+      <AnalyzerSettings />
+    </Analyzer>
+    <Analyzer AnalyzerId="Microsoft.StyleCop.CSharp.ReadabilityRules">
+      <Rules>
+        <Rule Name="PrefixLocalCallsWithThis">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+        <Rule Name="DoNotPlaceRegionsWithinElements">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
+      <AnalyzerSettings />
+    </Analyzer>
+    <Analyzer AnalyzerId="Microsoft.StyleCop.CSharp.MaintainabilityRules">
+      <Rules>
+        <Rule Name="FileMayOnlyContainASingleClass">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
+      <AnalyzerSettings />
+    </Analyzer>
+  </Analyzers>
+</StyleCopSettings>

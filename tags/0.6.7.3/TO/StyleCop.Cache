@@ -1,0 +1,66 @@
+<stylecopresultscache>
+  <version>10</version>
+  <project key="-294180157">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <project key="-1607398437">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="EnumImgRom.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/26/2011 23:23:44</timestamp>
+      <milliseconds>889</milliseconds>
+    </settings>
+    <timestamp>08/30/2011 21:13:31</timestamp>
+    <milliseconds>359</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name=".NETFramework,Version=v4.0.AssemblyAttributes.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/30/2011 23:29:02</timestamp>
+      <milliseconds>390</milliseconds>
+    </settings>
+    <timestamp>06/13/2011 21:29:09</timestamp>
+    <milliseconds>437</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-1894519277">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="MajUrl.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/30/2011 23:29:02</timestamp>
+      <milliseconds>390</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 22:05:32</timestamp>
+    <milliseconds>671</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/30/2011 23:29:02</timestamp>
+      <milliseconds>390</milliseconds>
+    </settings>
+    <timestamp>08/12/2011 19:12:20</timestamp>
+    <milliseconds>531</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Directories.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/30/2011 23:29:02</timestamp>
+      <milliseconds>390</milliseconds>
+    </settings>
+    <timestamp>08/12/2011 19:12:20</timestamp>
+    <milliseconds>515</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NDS_Rom.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/30/2011 23:29:02</timestamp>
+      <milliseconds>390</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 22:05:37</timestamp>
+    <milliseconds>250</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>

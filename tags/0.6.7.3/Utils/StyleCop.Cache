@@ -1,0 +1,48 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/30/2011 23:29:02</timestamp>
+      <milliseconds>390</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 21:33:02</timestamp>
+    <milliseconds>125</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.DocumentationRules" rule="FileMustHaveHeader" ruleCheckId="SA1633">
+        <context>The file has no header, the header Xml is invalid, or the header is not located at the top of the file.</context>
+        <line>1</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name=".NETFramework,Version=v4.0.AssemblyAttributes.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/30/2011 23:29:02</timestamp>
+      <milliseconds>390</milliseconds>
+    </settings>
+    <timestamp>06/13/2011 21:29:09</timestamp>
+    <milliseconds>437</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="1669523673">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="CRC32.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/30/2011 23:29:02</timestamp>
+      <milliseconds>390</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 22:04:10</timestamp>
+    <milliseconds>625</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LambdaComparer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/30/2011 23:29:02</timestamp>
+      <milliseconds>390</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 22:00:52</timestamp>
+    <milliseconds>906</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>

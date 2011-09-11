@@ -1,0 +1,120 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/30/2011 23:29:02</timestamp>
+      <milliseconds>390</milliseconds>
+    </settings>
+    <timestamp>08/12/2011 19:12:20</timestamp>
+    <milliseconds>781</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.DocumentationRules" rule="FileMustHaveHeader" ruleCheckId="SA1633">
+        <context>The file has no header, the header Xml is invalid, or the header is not located at the top of the file.</context>
+        <line>1</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="CRC32.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/31/2011 22:01:52</timestamp>
+      <milliseconds>359</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 21:37:03</timestamp>
+    <milliseconds>218</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="MajUrl.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/31/2011 22:01:52</timestamp>
+      <milliseconds>359</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 22:05:08</timestamp>
+    <milliseconds>328</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name=".NETFramework,Version=v4.0.AssemblyAttributes.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/31/2011 22:01:52</timestamp>
+      <milliseconds>359</milliseconds>
+    </settings>
+    <timestamp>06/13/2011 21:29:09</timestamp>
+    <milliseconds>437</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-864100936">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="BW_Diff.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/31/2011 22:01:52</timestamp>
+      <milliseconds>359</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 22:09:26</timestamp>
+    <milliseconds>437</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BW_Extract.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/31/2011 22:01:52</timestamp>
+      <milliseconds>359</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 22:09:30</timestamp>
+    <milliseconds>937</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BW_Maj_Img_Nfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/31/2011 22:01:52</timestamp>
+      <milliseconds>359</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 22:09:33</timestamp>
+    <milliseconds>468</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BW_VerifyCRCFiles.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/31/2011 22:01:52</timestamp>
+      <milliseconds>359</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 22:09:36</timestamp>
+    <milliseconds>62</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Filters.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/31/2011 22:01:52</timestamp>
+      <milliseconds>359</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 22:08:16</timestamp>
+    <milliseconds>875</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="MFControler.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/31/2011 22:01:52</timestamp>
+      <milliseconds>359</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 22:08:58</timestamp>
+    <milliseconds>671</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BW_Integration.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/31/2011 22:01:52</timestamp>
+      <milliseconds>359</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 22:09:32</timestamp>
+    <milliseconds>562</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Settings.Designer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/31/2011 22:01:52</timestamp>
+      <milliseconds>359</milliseconds>
+    </settings>
+    <timestamp>08/12/2011 19:12:20</timestamp>
+    <milliseconds>781</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>
