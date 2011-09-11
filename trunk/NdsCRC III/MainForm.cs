@@ -100,7 +100,7 @@ namespace NdsCRC_III
                 _controler.SetDuplicateFilterFromCurrentRom();
                 btnFilterDuplicate.Text = "Reset Filter Location Duplicate";
             }
-            
+
             _controler.SetCurrentGridView(string.Empty);
             SetDataSource();
         }
@@ -122,7 +122,7 @@ namespace NdsCRC_III
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">EventArgs</param>
-        private void Button4_Click(object sender, EventArgs e)
+        private void RepairCollection_Click(object sender, EventArgs e)
         {
             _controler.RepairCollection();
             MessageBox.Show("Done");
@@ -133,7 +133,7 @@ namespace NdsCRC_III
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">EventArgs</param>
-        private void Button1_Click(object sender, EventArgs e)
+        private void DonwloadOneRomImage_Click(object sender, EventArgs e)
         {
             MAJ_Img_Nfo maj = new MAJ_Img_Nfo();
             maj.FormClosed += new FormClosedEventHandler(Maj_FormClosed);
@@ -144,11 +144,7 @@ namespace NdsCRC_III
             Queue<MajUrl> liste = new Queue<MajUrl>();
             if (!File.Exists(filePath))
             {
-                liste.Enqueue(new MajUrl()
-                {
-                    Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlIco),
-                    Filepath = filePath
-                });
+                liste.Enqueue(new MajUrl() { Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlIco), Filepath = filePath });
             }
 
             filePath = string.Format("{0}{1}a.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
@@ -220,6 +216,7 @@ namespace NdsCRC_III
             tabDataBase.Text = string.Format("DataBase ({0} roms)", _controler.GetDataBase().Count);
             tabMissing.Text = string.Format("Missing ({0} roms)", _controler.GetCollectionMissing().Count);
         }
+        
         /// <summary>
         /// IntegrationNDS Close Event
         /// </summary>
@@ -314,12 +311,18 @@ namespace NdsCRC_III
                 lblSaveType.Text = currentRom.SaveType;
                 lblSize.Text = currentRom.RomSize;
                 lblSource.Text = currentRom.SourceRom;
+                lblSerial.Text = currentRom.Serial;
+                lblInternalName.Text = currentRom.InternalName;
+                lblVersion.Text = currentRom.Version;
+
                 txtDirName.Text = currentRom.ExternalDirName;
                 txtFileName.Text = currentRom.ExternalFileName;
+                
                 ImgCover.ImageLocation = currentRom.ImgCoverPath;
                 ImgInGame.ImageLocation = currentRom.ImgInGamePath;
                 ImgLocation.ImageLocation = currentRom.FlagPath;
                 ImgIcon.ImageLocation = currentRom.ImgIconPath;
+                
                 richTextBox1.LoadFile(new StreamReader(currentRom.NfoPath, Encoding.GetEncoding(437)).BaseStream, RichTextBoxStreamType.PlainText);
 
                 if (File.Exists(_controler.GetCurrentRom().RomPath))
@@ -360,7 +363,7 @@ namespace NdsCRC_III
             else
             {
                 _controler.SetNoCurrentRom();
-                
+
                 lblLanguage.Text = string.Empty;
                 lblCRC.Text = string.Empty;
                 lblGenre.Text = string.Empty;
@@ -368,14 +371,18 @@ namespace NdsCRC_III
                 lblSaveType.Text = string.Empty;
                 lblSize.Text = string.Empty;
                 lblSource.Text = string.Empty;
+                lblSerial.Text = string.Empty;
+                lblInternalName.Text = string.Empty;
+                lblVersion.Text = string.Empty;
+                
                 txtDirName.Text = string.Empty;
                 txtFileName.Text = string.Empty;
-                
+
                 ImgCover.ImageLocation = string.Empty;
                 ImgInGame.ImageLocation = string.Empty;
                 ImgLocation.ImageLocation = string.Empty;
                 ImgIcon.ImageLocation = string.Empty;
-                
+
                 richTextBox1.Clear();
 
                 btnUnzip.Enabled = false;

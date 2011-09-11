@@ -39,7 +39,7 @@ namespace NdsCRC_III.BusinessService
         /// <summary>
         /// filters
         /// </summary>
-        private Filters<NDS_Rom> f = new Filters<NDS_Rom>();
+        private Filters<NDS_Rom> _filters = new Filters<NDS_Rom>();
 
         /// <summary>
         /// Current selected Rom
@@ -61,7 +61,7 @@ namespace NdsCRC_III.BusinessService
             InitDataBase();
             _currentNDSRom = null;
             _currentGridViewName = string.Empty;
-            f.ChangeFilter += new ChangeFilterEventHandler(F_ChangeFilter);
+            _filters.ChangeFilter += new ChangeFilterEventHandler(F_ChangeFilter);
         }
 
         #region Property
@@ -98,6 +98,7 @@ namespace NdsCRC_III.BusinessService
                 return DataAcessLayer.URLs["datURL"];
             }
         }
+
         /// <summary>
         /// Dat Version of the database
         /// </summary>
@@ -316,9 +317,9 @@ namespace NdsCRC_III.BusinessService
         /// <param name="e">EventArgs</param>
         private void F_ChangeFilter(object sender, EventArgs e)
         {
-            _advanSceneDataBase.ApplyFilter(f);
-            _collection.ApplyFilter(f);
-            _collectionMissing.ApplyFilter(f);
+            _advanSceneDataBase.ApplyFilter(_filters);
+            _collection.ApplyFilter(_filters);
+            _collectionMissing.ApplyFilter(_filters);
         }
 
         /// <summary>
@@ -327,7 +328,7 @@ namespace NdsCRC_III.BusinessService
         /// <returns>True if duplicate filter is active, false otherwise</returns>
         public bool IsDuplicateFilterActive()
         {
-            return f.DuplicateFilterActive();
+            return _filters.DuplicateFilterActive();
         }
 
         /// <summary>
@@ -336,7 +337,7 @@ namespace NdsCRC_III.BusinessService
         /// <param name="id">duplicate id</param>
         public void SetDuplicateFilter(int id)
         {
-            f.SetDuplicateIdFilter(id);
+            _filters.SetDuplicateIdFilter(id);
         }
 
         /// <summary>
@@ -344,7 +345,7 @@ namespace NdsCRC_III.BusinessService
         /// </summary>
         public void SetDuplicateFilterFromCurrentRom()
         {
-            f.SetDuplicateIdFilter(_currentNDSRom.DuplicateID);
+            _filters.SetDuplicateIdFilter(_currentNDSRom.DuplicateID);
         }
 
         /// <summary>
@@ -353,7 +354,7 @@ namespace NdsCRC_III.BusinessService
         /// <param name="visible">True to see the Demo Rom, false to hide it</param>
         public void SetFilterDemo(bool visible)
         {
-            f.SetDemoRomFilter(visible);
+            _filters.SetDemoRomFilter(visible);
         }
 
         /// <summary>
@@ -362,7 +363,7 @@ namespace NdsCRC_III.BusinessService
         /// <param name="title">Tilte</param>
         public void SetTitleFilter(string title)
         {
-            f.SetTitleFilter(title);
+            _filters.SetTitleFilter(title);
         }
 
         /// <summary>
@@ -371,7 +372,7 @@ namespace NdsCRC_III.BusinessService
         /// <param name="languageCode">language code to set the filter on</param>
         public void SetLanguageFilter(int languageCode)
         {
-            f.SetLanguageFilter(languageCode);
+            _filters.SetLanguageFilter(languageCode);
         }
 
         /// <summary>
@@ -379,7 +380,7 @@ namespace NdsCRC_III.BusinessService
         /// </summary>
         public void SetNoLanguageFilter()
         {
-            f.ResetLanguageFilter();
+            _filters.ResetLanguageFilter();
         }
 
         /// <summary>
@@ -387,7 +388,7 @@ namespace NdsCRC_III.BusinessService
         /// </summary>
         public void SetNoDuplicateFilter()
         {
-            f.ResetDuplicateID();
+            _filters.ResetDuplicateID();
         }
         
         /// <summary>
@@ -407,11 +408,11 @@ namespace NdsCRC_III.BusinessService
                 // InitDataBase();
             }
 
-            f.ResetLanguageFilter();
-            f.ResetTitleFilter();
+            _filters.ResetLanguageFilter();
+            _filters.ResetTitleFilter();
 
             // HACK : DemoFilter always to True
-            f.SetDemoRomFilter(true);
+            _filters.SetDemoRomFilter(true);
 
             _advanSceneDataBase.RemoveFilter();
             _collection.RemoveFilter();

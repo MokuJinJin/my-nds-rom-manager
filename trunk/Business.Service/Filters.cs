@@ -22,16 +22,17 @@ namespace NdsCRC_III.BusinessService
     /// <typeparam name="T">whatever</typeparam>
     public class Filters<T> : IItemFilter<T> where T : class
     {
+        #region Fields
         /// <summary>
         /// Title Filter
         /// </summary>
         private string _titleFilter = string.Empty;
-        
+
         /// <summary>
         /// Language Filter
         /// </summary>
         private int _languageFilter = 0;
-        
+
         /// <summary>
         /// Demo Filter
         /// </summary>
@@ -41,11 +42,14 @@ namespace NdsCRC_III.BusinessService
         /// Duplicate Filter
         /// </summary>
         private int _duplicateID = 0;
+        #endregion
 
+        #region Event
         /// <summary>
         /// Event
         /// </summary>
         public event ChangeFilterEventHandler ChangeFilter;
+        #endregion
 
         #region IItemFilter<T> Members
 
@@ -69,7 +73,7 @@ namespace NdsCRC_III.BusinessService
             {
                 titleInclude = true;
             }
-            
+
             if (_languageFilter != 0)
             {
                 languageInclude = (item as NDS_Rom).LanguageCode.Contains(_languageFilter);
@@ -102,6 +106,7 @@ namespace NdsCRC_III.BusinessService
 
         #endregion
 
+        #region Title
         /// <summary>
         /// Set the title filter
         /// </summary>
@@ -120,7 +125,9 @@ namespace NdsCRC_III.BusinessService
             _titleFilter = string.Empty;
             ChangeFilter(this, new EventArgs());
         }
+        #endregion
 
+        #region Language
         /// <summary>
         /// Set Language Filter
         /// </summary>
@@ -139,7 +146,9 @@ namespace NdsCRC_III.BusinessService
             _languageFilter = 0;
             ChangeFilter(this, new EventArgs());
         }
+        #endregion
 
+        #region Demo
         /// <summary>
         /// Set demo rom visible
         /// </summary>
@@ -149,7 +158,9 @@ namespace NdsCRC_III.BusinessService
             _demoRomFilter = visible;
             ChangeFilter(this, new EventArgs());
         }
+        #endregion
 
+        #region Duplicate
         /// <summary>
         /// Set the Duplicate ID
         /// </summary>
@@ -177,5 +188,6 @@ namespace NdsCRC_III.BusinessService
         {
             return _duplicateID != 0;
         }
+        #endregion
     }
 }
