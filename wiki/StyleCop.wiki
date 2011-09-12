@@ -1,5 +1,6 @@
 #summary StyleCop v4.4
 #labels Phase-Design,Phase-Implementation
+#sidebar TableOfContents
 
 = Introduction =
 
