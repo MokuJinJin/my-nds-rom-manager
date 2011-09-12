@@ -1,5 +1,5 @@
 #summary v0.6.7.3
-#labels Featured,Phase-Support
+#labels Phase-Support
 
 = Features ==
 
