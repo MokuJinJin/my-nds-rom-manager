@@ -1,4 +1,5 @@
 #summary Application's PrintScreen
+#labels Phase-Support
 
 = Content =
 <wiki:toc max_depth="3" />
