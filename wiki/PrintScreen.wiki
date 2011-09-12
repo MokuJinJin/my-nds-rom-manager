@@ -1,5 +1,6 @@
 #summary Application's PrintScreen
 #labels Phase-Support
+#sidebar TableOfContents
 
 = Content =
 <wiki:toc max_depth="3" />
