@@ -1,11 +1,18 @@
-#summary v0.6.6
+#summary v0.6.7.3
+#labels Featured,Phase-Support
 
 = Features ==
 
+== NdsCRC v0.6.7.3 ==
+
+  * All informations of a rom visible. (Issue #10)
+  * New Interface for Informations of a rom
+  * Download images/nfos only for the selected rom (Issue #3)
+
 == NdsCRC v0.6.6 ==
 
-  * Show/Hide Demo Rom 
-  * Faster update check modifications
+  * Show/Hide Demo Rom (Issue #2)
+  * Faster update check modifications (Issue #7)
 
 == NdsCRC v0.6.5.2 ==
 
