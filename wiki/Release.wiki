@@ -1,5 +1,7 @@
 #summary Release - How to
 #labels Featured,Phase-Deploy
+#sidebar TableOfContents
+
 = Introduction =
 
 Since the 0.6.7.3 release, i've made a release for new users and another for Update.
