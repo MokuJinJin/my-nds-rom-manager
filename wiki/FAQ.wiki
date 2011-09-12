@@ -1,5 +1,7 @@
 #summary FAQ & Help
 #labels Phase-Support
+#sidebar TableOfContents
+
 
 = FAQ & Help =
 
