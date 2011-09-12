@@ -1,5 +1,6 @@
 #summary DataBase web site
 #labels Phase-Support
+#sidebar TableOfContents
 
 = Introduction =
 
