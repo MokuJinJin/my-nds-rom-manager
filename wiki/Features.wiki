@@ -1,5 +1,6 @@
 #summary v0.6.7.3
 #labels Featured,Phase-Support
+#sidebar TableOfContents
 
 = Features ==
 
