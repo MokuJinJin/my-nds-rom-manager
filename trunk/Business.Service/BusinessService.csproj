@@ -8,8 +8,8 @@
     <ProjectGuid>{C6612BE8-18EF-4B8D-85C7-A0228B6BF339}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessService</RootNamespace>
-    <AssemblyName>BusinessService</AssemblyName>
+    <RootNamespace>NdsCRC_III.BusinessService</RootNamespace>
+    <AssemblyName>NdsCRC_III.BusinessService</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -42,7 +42,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Debug\BusinessService.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\NdsCRC_III.BusinessService.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -52,7 +52,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Release\BusinessService.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\NdsCRC_III.BusinessService.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Equin.ApplicationFramework.BindingListView, Version=1.2.3975.39170, Culture=neutral, processorArchitecture=MSIL">
