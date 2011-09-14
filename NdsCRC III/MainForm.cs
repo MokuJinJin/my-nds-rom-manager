@@ -9,11 +9,15 @@ namespace NdsCRC_III
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Drawing;
+    using System.Globalization;
     using System.IO;
+    using System.Reflection;
+    using System.Resources;
     using System.Text;
     using System.Windows.Forms;
 
     using NdsCRC_III.BusinessService;
+    using NdsCRC_III.Cultures;
     using NdsCRC_III.TO;
 
     /// <summary>
@@ -48,6 +52,14 @@ namespace NdsCRC_III
         {
             InitializeComponent();
             _controler = new MFControler();
+
+            Lang.Culture = CultureInfo.CreateSpecificCulture("fr");
+            /*
+            string fr = Lang.TabDataBase;
+
+            Lang.Culture = CultureInfo.CreateSpecificCulture("en");
+            string en = Lang.TabDataBase;
+            */
 
             sourceAdvanScene.DataSource = _controler.GetDataBase();
             GridDataBase.DataSource = sourceAdvanScene;
@@ -93,12 +105,12 @@ namespace NdsCRC_III
             if (_controler.IsDuplicateFilterActive())
             {
                 _controler.SetNoDuplicateFilter();
-                btnFilterDuplicate.Text = "Filter Location Duplicate";
+                btnFilterDuplicate.Text = Lang.btnFilterDuplicate_Apply;
             }
             else
             {
                 _controler.SetDuplicateFilterFromCurrentRom();
-                btnFilterDuplicate.Text = "Reset Filter Location Duplicate";
+                btnFilterDuplicate.Text = Lang.btnFilterDuplicate_Reset;
             }
 
             _controler.SetCurrentGridView(string.Empty);
@@ -212,11 +224,11 @@ namespace NdsCRC_III
         /// </summary>
         private void SetLblNbRom()
         {
-            tabCollection.Text = string.Format("Collection ({0} roms)", _controler.GetCollection().Count);
-            tabDataBase.Text = string.Format("DataBase ({0} roms)", _controler.GetDataBase().Count);
-            tabMissing.Text = string.Format("Missing ({0} roms)", _controler.GetCollectionMissing().Count);
+            tabCollection.Text = string.Format("{0} ({1} roms)", Lang.TabCollection, _controler.GetCollection().Count);
+            tabDataBase.Text = string.Format("{0} ({1} roms)", Lang.TabDataBase, _controler.GetDataBase().Count);
+            tabMissing.Text = string.Format("{0} ({1} roms)", Lang.TabMissing, _controler.GetCollectionMissing().Count);
         }
-        
+
         /// <summary>
         /// IntegrationNDS Close Event
         /// </summary>
@@ -319,12 +331,12 @@ namespace NdsCRC_III
 
                 txtDirName.Text = currentRom.ExternalDirName;
                 txtFileName.Text = currentRom.ExternalFileName;
-                
+
                 ImgCover.ImageLocation = currentRom.ImgCoverPath;
                 ImgInGame.ImageLocation = currentRom.ImgInGamePath;
                 ImgLocation.ImageLocation = currentRom.FlagPath;
                 ImgIcon.ImageLocation = currentRom.ImgIconPath;
-                
+
                 if (currentRom.IsWifi())
                 {
                     ImgWifi.Image = Properties.Resources.wifi;
@@ -361,12 +373,19 @@ namespace NdsCRC_III
                 if (_controler.GetCurrentRom().IsDuplicate())
                 {
                     btnFilterDuplicate.Enabled = true;
-                    btnFilterDuplicate.Text = "Filter Location Duplicate";
+                    if (_controler.IsDuplicateFilterActive())
+                    {
+                        btnFilterDuplicate.Text = Lang.btnFilterDuplicate_Reset;
+                    }
+                    else
+                    {
+                        btnFilterDuplicate.Text = Lang.btnFilterDuplicate_Apply;
+                    }
                 }
                 else
                 {
                     btnFilterDuplicate.Enabled = false;
-                    btnFilterDuplicate.Text = "No Duplicate Location";
+                    btnFilterDuplicate.Text = Lang.btnFilterDuplicate_None;
                 }
 
                 _controler.SetCurrentGridView(dgv.Name);
@@ -387,7 +406,7 @@ namespace NdsCRC_III
                 lblVersion.Text = string.Empty;
                 lblReleaseNumber.Text = string.Empty;
                 lblDumpDate.Text = string.Empty;
-                
+
                 txtDirName.Text = string.Empty;
                 txtFileName.Text = string.Empty;
 

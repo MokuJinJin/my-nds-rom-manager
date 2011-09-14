@@ -8,8 +8,8 @@
     <ProjectGuid>{70BD7979-071D-41C5-B887-7C76FF243076}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TO</RootNamespace>
-    <AssemblyName>TO</AssemblyName>
+    <RootNamespace>NdsCRC_III.TO</RootNamespace>
+    <AssemblyName>NdsCRC_III.TO</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -42,7 +42,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Debug\TO.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\NdsCRC_III.TO.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -52,7 +52,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Release\TO.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\NdsCRC_III.TO.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Equin.ApplicationFramework.BindingListView, Version=1.2.3975.39170, Culture=neutral, processorArchitecture=MSIL">
