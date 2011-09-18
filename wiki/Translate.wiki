@@ -7,7 +7,7 @@ Since 0.6.8.2 (r84), the translation is available.
 
 *This page will be modified as the development goes.*
 
-*This How-to is only for those who can compile the r85 binary.*
+*This How-to is only for those who can compile the r97 binary.*
 
 == How to translate ? ==
 
