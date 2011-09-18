@@ -5,8 +5,11 @@
 
 Since 0.6.8.2 (r84), the translation is available.
 
+*This page will be modified as the development goes.*
 
-== Default Language Xml (r84)==
+*This How-to is only for those who can compile the r84 binary.*
+
+== How to translate ? ==
 
 {{{
 <?xml version="1.0" encoding="utf-8"?>
