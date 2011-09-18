@@ -1,0 +1,34 @@
+#summary How to translate the Application
+
+= Introduction =
+
+Since 0.6.8.2 (r84), the translation is available.
+
+
+= Default Language Xml (r84)=
+
+{{{
+<?xml version="1.0" encoding="utf-8"?>
+<Language xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="English">
+  <translate>
+    <data name="btnFilterDuplicate_Apply">
+    <value>Filter Location Duplicate</value>
+  </data>
+  <data name="btnFilterDuplicate_None">
+    <value>No Duplicate Location</value>
+  </data>
+  <data name="btnFilterDuplicate_Reset">
+    <value>Reset Filter Location Duplicate</value>
+  </data>
+  <data name="TabCollection">
+    <value>My Collection</value>
+  </data>
+  <data name="TabDataBase">
+    <value>DataBase</value>
+  </data>
+  <data name="TabMissing">
+    <value>Missing Roms</value>
+  </data>
+  </translate>
+</Language>
+}}}
