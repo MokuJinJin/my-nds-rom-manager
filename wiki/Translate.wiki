@@ -12,23 +12,23 @@ Since 0.6.8.2 (r84), the translation is available.
 <Language name="English">
   <translate>
     <data name="btnFilterDuplicate_Apply">
-    <value>Filter Location Duplicate</value>
-  </data>
-  <data name="btnFilterDuplicate_None">
-    <value>No Duplicate Location</value>
-  </data>
-  <data name="btnFilterDuplicate_Reset">
-    <value>Reset Filter Location Duplicate</value>
-  </data>
-  <data name="TabCollection">
-    <value>My Collection</value>
-  </data>
-  <data name="TabDataBase">
-    <value>DataBase</value>
-  </data>
-  <data name="TabMissing">
-    <value>Missing Roms</value>
-  </data>
+		<value>Filter Location Duplicate</value>
+	</data>
+	<data name="btnFilterDuplicate_None">
+		<value>No Duplicate Location</value>
+	</data>
+	<data name="btnFilterDuplicate_Reset">
+		<value>Reset Filter Location Duplicate</value>
+	</data>
+	<data name="TabCollection">
+		<value>My Collection</value>
+	</data>
+	<data name="TabDataBase">
+		<value>DataBase</value>
+	</data>
+	<data name="TabMissing">
+		<value>Missing Roms</value>
+	</data>
   </translate>
 </Language>
 }}}
