@@ -5,7 +5,7 @@
 Since 0.6.8.2 (r84), the translation is available.
 
 
-= Default Language Xml (r84)=
+== Default Language Xml (r84)==
 
 {{{
 <?xml version="1.0" encoding="utf-8"?>
@@ -32,3 +32,6 @@ Since 0.6.8.2 (r84), the translation is available.
   </translate>
 </Language>
 }}}
+
+Change the value, save it under a new file.
+Name this file with this codes : [http://www.csharp-examples.net/culture-names/ Culture-Names]
