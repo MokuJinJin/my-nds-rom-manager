@@ -271,3 +271,26 @@ zu-ZA       zu-ZA       Zulu (South Africa)
 }}}
 
 For exemple : el.xml for Greek.
+
+Modify your NDSCrc_III.xml like this:
+
+{{{
+<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Path StartupPath="true">
+    <img>\data\img\</img>
+    <nfo>\data\nfo\</nfo>
+    <rom>\data\roms\</rom>
+    <trash>\trash\</trash>
+    <temp>\data\temp\</temp>
+    <newrom>\NewRom\</newrom>
+    <unknowrom>\UnknowRom\</unknowrom>
+    <AlreadyHave>\AlreadyHave\</AlreadyHave>
+    <Flags>\data\flags\</Flags>
+    <HaveDB>\data\xml\Collection.xml</HaveDB>
+    <DB>\data\Xml\ADVANsCEne_NDScrc.xml</DB>
+    <Language>\data\lang\</Language>
+  </Path>
+  <Culture>el</Culture>
+</configuration>
+}}}
