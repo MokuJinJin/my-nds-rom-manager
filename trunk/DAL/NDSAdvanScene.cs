@@ -6,6 +6,7 @@
 
 namespace NdsCRC_III.DAL
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Xml;
@@ -54,7 +55,7 @@ namespace NdsCRC_III.DAL
         /// <summary>
         /// AdvanScene xml creation date
         /// </summary>
-        public string DatCreationDate { get; private set; }
+        public DateTime DatCreationDate { get; private set; }
 
         /// <summary>
         /// Load Listing of roms
@@ -63,7 +64,7 @@ namespace NdsCRC_III.DAL
         public void Load(string path)
         {
             URLs = new Dictionary<string, string>();
-            DatCreationDate = new FileInfo(path).LastWriteTime.ToLongDateString();
+            DatCreationDate = new FileInfo(path).LastWriteTime;
             xmlread = XmlReader.Create(path);
             xdoc = new XmlDocument();
             xdoc.Load(xmlread);

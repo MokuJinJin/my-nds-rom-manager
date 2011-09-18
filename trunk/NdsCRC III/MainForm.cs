@@ -9,9 +9,9 @@ namespace NdsCRC_III
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Drawing;
-    using System.Globalization;
     using System.IO;
     using System.Text;
+    using System.Threading;
     using System.Windows.Forms;
     using NdsCRC_III.BusinessService;
     using NdsCRC_III.TO;
@@ -50,6 +50,8 @@ namespace NdsCRC_III
         {
             InitializeComponent();
             _controler = new MFControler();
+
+            Thread.CurrentThread.CurrentCulture = Parameter.Config.Culture;
 
             sourceAdvanScene.DataSource = _controler.GetDataBase();
             GridDataBase.DataSource = sourceAdvanScene;
@@ -215,9 +217,9 @@ namespace NdsCRC_III
         private void SetLblNbRom()
         {
             // tabCollection.Text = string.Format("{0} ({1} roms)", Lang.TabCollection, _controler.GetCollection().Count);
-            tabCollection.Text = string.Format("{0} ({1} roms)", Parameter.Lang.GetTranslate("TabCollection"), _controler.GetCollection().Count);
-            tabDataBase.Text = string.Format("{0} ({1} roms)", Parameter.Lang.GetTranslate("TabDataBase"), _controler.GetDataBase().Count);
-            tabMissing.Text = string.Format("{0} ({1} roms)", Parameter.Lang.GetTranslate("TabMissing"), _controler.GetCollectionMissing().Count);
+            tabCollection.Text = string.Format("{0} ({1} {2})", Parameter.Lang.GetTranslate("TabCollection"), _controler.GetCollection().Count, Parameter.Lang.GetTranslate("Roms"));
+            tabDataBase.Text = string.Format("{0} ({1} {2})", Parameter.Lang.GetTranslate("TabDataBase"), _controler.GetDataBase().Count, Parameter.Lang.GetTranslate("Roms"));
+            tabMissing.Text = string.Format("{0} ({1} {2})", Parameter.Lang.GetTranslate("TabMissing"), _controler.GetCollectionMissing().Count, Parameter.Lang.GetTranslate("Roms"));
         }
 
         /// <summary>
@@ -342,23 +344,23 @@ namespace NdsCRC_III
                 if (File.Exists(_controler.GetCurrentRom().RomPath))
                 {
                     btnUnzip.Enabled = true;
-                    btnUnzip.Text = "Copy on Linker";
+                    btnUnzip.Text = Parameter.Lang.GetTranslate("btnUnzip_Enabled");
                 }
                 else
                 {
                     btnUnzip.Enabled = false;
-                    btnUnzip.Text = "File is missing";
+                    btnUnzip.Text = Parameter.Lang.GetTranslate("btnUnzip_Disabled");
                 }
 
                 if (_controler.GetCurrentRom().IsAllImagePresent())
                 {
                     btnDownloadImgNfoOneRom.Enabled = false;
-                    btnDownloadImgNfoOneRom.Text = "All image present";
+                    btnDownloadImgNfoOneRom.Text = Parameter.Lang.GetTranslate("btnDownloadImgNfoOneRom_Disabled");
                 }
                 else
                 {
                     btnDownloadImgNfoOneRom.Enabled = true;
-                    btnDownloadImgNfoOneRom.Text = "Download Img/Nfo";
+                    btnDownloadImgNfoOneRom.Text = Parameter.Lang.GetTranslate("btnDownloadImgNfoOneRom_Enabled");
                 }
 
                 if (_controler.GetCurrentRom().IsDuplicate())
@@ -410,11 +412,11 @@ namespace NdsCRC_III
                 richTextBox1.Clear();
 
                 btnUnzip.Enabled = false;
-                btnUnzip.Text = "No Rom selected";
+                btnUnzip.Text = Parameter.Lang.GetTranslate("btnUnzip_NoRom");
                 btnDownloadImgNfoOneRom.Enabled = false;
-                btnDownloadImgNfoOneRom.Text = "No Rom selected";
+                btnDownloadImgNfoOneRom.Text = Parameter.Lang.GetTranslate("btnDownloadImgNfoOneRom_NoRom");
                 btnFilterDuplicate.Enabled = false;
-                btnFilterDuplicate.Text = "No Rom selected";
+                btnFilterDuplicate.Text = Parameter.Lang.GetTranslate("btnFilterDuplicate_NoRom");
             }
         }
 
@@ -427,7 +429,7 @@ namespace NdsCRC_III
             downloadXml.Disposed += new EventHandler(DLXml_Disposed);
 
             // DLXml.Show("http://www.advanscene.com/offline/datas/ADVANsCEne_NDScrc.zip", "ADVANsCEne_NDScrc.zip", "Downloading Database ...");
-            downloadXml.Show(_controler.DatURL, _controler.DatFileName, "Downloading Database ...");
+            downloadXml.Show(_controler.DatURL, _controler.DatFileName, Parameter.Lang.GetTranslate("downloadXmlDataBase"));
         }
 
         /// <summary>
@@ -440,7 +442,7 @@ namespace NdsCRC_III
             downloadXml.Disposed += new EventHandler(CheckDatVersion);
 
             // DLXml.Show("http://www.advanscene.com/offline/datas/ADVANsCEne_NDScrc.zip", "ADVANsCEne_NDScrc.zip", "Downloading Database ...");
-            downloadXml.ShowHidden(_controler.DatVersionURL, string.Format("{0}\\ADVANsCEne_NDScrc_Version.txt", Application.StartupPath), "Downloading Version ...");
+            downloadXml.ShowHidden(_controler.DatVersionURL, string.Format("{0}\\ADVANsCEne_NDScrc_Version.txt", Application.StartupPath), Parameter.Lang.GetTranslate("downloadTxtVersionDataBase"));
         }
 
         /// <summary>
@@ -455,7 +457,7 @@ namespace NdsCRC_III
                 string[] version = File.ReadAllLines("ADVANsCEne_NDScrc_Version.txt");
                 if (version[0] == _controler.DatVersion)
                 {
-                    MessageBox.Show("DataBase is up to date", "Database version " + _controler.DatVersion, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Parameter.Lang.GetTranslate("DataBaseUpToDate"), string.Format("{0} {1}", Parameter.Lang.GetTranslate("DataBaseUpToDatePopupTitle"), _controler.DatVersion), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     File.Delete("ADVANsCEne_NDScrc_Version.txt");
                 }
                 else
@@ -503,7 +505,7 @@ namespace NdsCRC_III
             maj.Show();
             maj.StartDownloadAllMissingFiles();
 
-            MessageBox.Show("Update Complete.", "DataBase Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Parameter.Lang.GetTranslate("DataBaseUpdateComplete"), Parameter.Lang.GetTranslate("DataBaseUpdateCompletePopupTitle"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             tabControl1.SelectedIndex = 4;
         }
 
@@ -593,7 +595,7 @@ namespace NdsCRC_III
             }
             else
             {
-                MessageBox.Show("Fichier non présent", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Parameter.Lang.GetTranslate("UnzipMissingFile"), Parameter.Lang.GetTranslate("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -604,7 +606,7 @@ namespace NdsCRC_III
         /// <param name="e">RunWorkerCompletedEventArgs</param>
         private void Bw_Extract_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Copie Fini", "Copie Rom", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Parameter.Lang.GetTranslate("UnzipComplete"), Parameter.Lang.GetTranslate("UnzipCompletePopupTitle"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             progressBarExtract.Value = 0;
             labelExtractPercent.Text = "00%";
             btnUnzip.Enabled = true;

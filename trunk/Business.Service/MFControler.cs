@@ -70,7 +70,7 @@ namespace NdsCRC_III.BusinessService
         /// <summary>
         /// Date of the creation of the Advanscene database
         /// </summary>
-        public string DatCreationDate
+        public DateTime DatCreationDate
         {
             get
             {
