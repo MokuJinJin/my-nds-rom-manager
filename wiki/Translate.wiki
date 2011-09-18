@@ -7,7 +7,7 @@ Since 0.6.8.2 (r84), the translation is available.
 
 *This page will be modified as the development goes.*
 
-*This How-to is only for those who can compile the r84 binary.*
+*This How-to is only for those who can compile the r85 binary.*
 
 == How to translate ? ==
 
@@ -15,24 +15,102 @@ Since 0.6.8.2 (r84), the translation is available.
 <?xml version="1.0" encoding="utf-8"?>
 <Language name="English">
   <translate>
+    <data name="TabCollection">
+      <value>My Collection</value>
+    </data>
+    <data name="TabDataBase">
+      <value>DataBase</value>
+    </data>
+    <data name="TabMissing">
+      <value>Missing Roms</value>
+    </data>
+    <data name="Roms">
+      <value>Roms</value>
+    </data>
     <data name="btnFilterDuplicate_Apply">
-		<value>Filter Location Duplicate</value>
-	</data>
-	<data name="btnFilterDuplicate_None">
-		<value>No Duplicate Location</value>
-	</data>
-	<data name="btnFilterDuplicate_Reset">
-		<value>Reset Filter Location Duplicate</value>
-	</data>
-	<data name="TabCollection">
-		<value>My Collection</value>
-	</data>
-	<data name="TabDataBase">
-		<value>DataBase</value>
-	</data>
-	<data name="TabMissing">
-		<value>Missing Roms</value>
-	</data>
+      <value>Filter Location Duplicate</value>
+    </data>
+    <data name="btnFilterDuplicate_None">
+      <value>No Duplicate Location</value>
+    </data>
+    <data name="btnFilterDuplicate_Reset">
+      <value>Reset Filter Location Duplicate</value>
+    </data>
+    <data name="btnFilterDuplicate_NoRom">
+      <value>No Rom selected</value>
+    </data>
+    <data name="btnUnzip_Enabled">
+      <value>Copy on Linker</value>
+    </data>
+    <data name="btnUnzip_Disabled">
+      <value>File is missing</value>
+    </data>
+    <data name="btnUnzip_NoRom">
+      <value>No Rom selected</value>
+    </data>
+    <data name="btnDownloadImgNfoOneRom_Enabled">
+      <value>Download Img/Nfo</value>
+    </data>
+    <data name="btnDownloadImgNfoOneRom_Disabled">
+      <value>All image present</value>
+    </data>
+    <data name="btnDownloadImgNfoOneRom_NoRom">
+      <value>No Rom selected</value>
+    </data>
+    <data name="downloadXmlDataBase">
+      <value>Downloading Database ...</value>
+    </data>
+    <data name="downloadTxtVersionDataBase">
+      <value>Downloading Version ...</value>
+    </data>
+    <data name="DataBaseUpToDate">
+      <value>DataBase is up to date.</value>
+    </data>
+    <data name="DataBaseUpToDatePopupTitle">
+      <value>Database version</value>
+    </data>
+    <data name="DataBaseUpdateComplete">
+      <value>Update Complete.</value>
+    </data>
+    <data name="DataBaseUpdateCompletePopupTitle">
+      <value>DataBase Update</value>
+    </data>
+    <data name="UnzipMissingFile">
+      <value>File is missing</value>
+    </data>
+    <data name="UnzipComplete">
+      <value>Unzip Complete.</value>
+    </data>
+    <data name="UnzipCompletePopupTitle">
+      <value>Unzip Rom</value>
+    </data>
+    <data name="IntegrateColumnWhatHappenTitle">
+      <value>What happen</value>
+    </data>
+    <data name="IntegrateColumnFileNameTitle">
+      <value>File name</value>
+    </data>
+    <data name="IntegrateColumnRomNameTitle">
+      <value>Rom name</value>
+    </data>
+    <data name="IntegrateColumnCRCTitle">
+      <value>CRC</value>
+    </data>
+    <data name="IntegrateColumnRomNumberTitle">
+      <value>Rom number</value>
+    </data>
+    <data name="IntegrateNdsFileFound">
+      <value>Found {0} NDS file.</value>
+    </data>
+    <data name="IntegrateNoNdsFileFound">
+      <value>No Nds Rom Files found.</value>
+    </data>
+    <data name="Error">
+      <value>Error</value>
+    </data>
+    <data name="Quit">
+      <value>Quit</value>
+    </data>
   </translate>
 </Language>
 }}}
