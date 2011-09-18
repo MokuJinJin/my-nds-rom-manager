@@ -5,6 +5,7 @@
    * [Release]
    * [PrintScreen]
    * [FAQ]
+   * [Translate]
  * Developers
    * [AdvanScene]
    * [StyleCop]
