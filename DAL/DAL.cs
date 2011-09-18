@@ -5,11 +5,11 @@
 //-----------------------------------------------------------------------
 namespace NdsCRC_III.DAL
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Xml.Serialization;
-
     using NdsCRC_III.TO;
     using Utils;
     using Utils.Configuration;
@@ -89,7 +89,7 @@ namespace NdsCRC_III.DAL
         /// <summary>
         /// AdvanScene xml creation date
         /// </summary>
-        public static string DatCreationDate
+        public static DateTime DatCreationDate
         {
             get
             {

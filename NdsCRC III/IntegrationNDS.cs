@@ -12,6 +12,7 @@ namespace NdsCRC_III
     using System.IO;
     using System.Windows.Forms;
     using NdsCRC_III.BusinessService;
+    using Utils.Configuration;
 
     /// <summary>
     /// Integration form
@@ -32,7 +33,7 @@ namespace NdsCRC_III
         /// DataTable for the avancement
         /// </summary>
         private DataTable avancement = new DataTable();
-        
+
         /// <summary>
         /// Constructor for IntegrationNDS
         /// </summary>
@@ -40,11 +41,11 @@ namespace NdsCRC_III
         public IntegrationNDS(string path)
         {
             InitializeComponent();
-            avancement.Columns.Add("WhatHappen");
-            avancement.Columns.Add("FileName");
-            avancement.Columns.Add("RomName");
-            avancement.Columns.Add("CRC");
-            avancement.Columns.Add("RomNumber");
+            avancement.Columns.Add(Parameter.Lang.GetTranslate("IntegrateColumnWhatHappenTitle"));
+            avancement.Columns.Add(Parameter.Lang.GetTranslate("IntegrateColumnFileNameTitle"));
+            avancement.Columns.Add(Parameter.Lang.GetTranslate("IntegrateColumnRomNameTitle"));
+            avancement.Columns.Add(Parameter.Lang.GetTranslate("IntegrateColumnCRCTitle"));
+            avancement.Columns.Add(Parameter.Lang.GetTranslate("IntegrateColumnRomNumberTitle"));
 
             pathToScan = path;
         }
@@ -83,7 +84,7 @@ namespace NdsCRC_III
 
             if (files.Count > 0)
             {
-                listBox1.Items.Add("Found " + files.Count.ToString() + " NDS file.");
+                listBox1.Items.Add(string.Format(Parameter.Lang.GetTranslate("IntegrateNdsFileFound"), files.Count));
                 bw = new BW_Integration(files);
                 bw.ProgressChanged += new ProgressChangedEventHandler(Bw_ProgressChanged);
                 bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Bw_RunWorkerCompleted);
@@ -91,9 +92,9 @@ namespace NdsCRC_III
             }
             else
             {
-                listBox1.Items.Add("No Rom Files found");
+                listBox1.Items.Add(Parameter.Lang.GetTranslate("IntegrateNoNdsFileFound"));
                 MajListBox();
-                btnAbort.Text = "Quit";
+                btnAbort.Text = Parameter.Lang.GetTranslate("Quit");
             }
         }
 
@@ -115,7 +116,7 @@ namespace NdsCRC_III
             }
 
             MajListBox();
-            btnAbort.Text = "Quit";
+            btnAbort.Text = Parameter.Lang.GetTranslate("Quit");
         }
 
         /// <summary>
@@ -176,9 +177,9 @@ namespace NdsCRC_III
         {
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
         }
-        
+
         #region Closing
-        
+
         /// <summary>
         /// IntegrationNDS_FormClosing, cancel the worker
         /// </summary>
@@ -186,7 +187,7 @@ namespace NdsCRC_III
         /// <param name="e">FormClosingEventArgs</param>
         private void IntegrationNDS_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (btnAbort.Text != "Quit")
+            if (btnAbort.Text != Parameter.Lang.GetTranslate("Quit"))
             {
                 bw.CancelAsync();
             }
@@ -199,7 +200,7 @@ namespace NdsCRC_III
         /// <param name="e">EventArgs</param>
         private void BtnAbort_Click(object sender, EventArgs e)
         {
-            if (btnAbort.Text == "Quit")
+            if (btnAbort.Text == Parameter.Lang.GetTranslate("Quit"))
             {
                 Close();
             }
