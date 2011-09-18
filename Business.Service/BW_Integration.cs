@@ -15,6 +15,8 @@ namespace NdsCRC_III.BusinessService
     using NdsCRC_III.TO;
     using SevenZip;
     using Utils;
+    using Utils.Configuration;
+    using Utils.Directories;
 
     /// <summary>
     /// Type advance
@@ -261,8 +263,8 @@ namespace NdsCRC_III.BusinessService
                     szip.Extracting += new EventHandler<ProgressEventArgs>(Szip_Extracting);
                     szip.ExtractionFinished += new EventHandler<EventArgs>(Szip_ExtractionFinished);
                     szip.FileExtractionStarted += new EventHandler<FileInfoEventArgs>(Szip_FileExtractionStarted);
-                    szip.ExtractFiles(NDSDirectories.PathTemp, new int[] { adata.Index });
-                    NdsFileIntegration(string.Format("{0}{1}", NDSDirectories.PathTemp, adata.FileName), sevenZipCRC);
+                    szip.ExtractFiles(Parameter.Config.Paths.DirTemp, new int[] { adata.Index });
+                    NdsFileIntegration(string.Format("{0}{1}", Parameter.Config.Paths.DirTemp, adata.FileName), sevenZipCRC);
                 }
                 else
                 {
@@ -337,7 +339,7 @@ namespace NdsCRC_III.BusinessService
                             romBadDump.title,
                             complementNomXXXX);
                         */
-                        string badDump = string.Format("{0}{1}", NDSDirectories.PathTrash, Path.GetFileName(romBadDump.RomPath));
+                        string badDump = string.Format("{0}{1}", Parameter.Config.Paths.DirTrash, Path.GetFileName(romBadDump.RomPath));
                         if (File.Exists(badDump))
                         {
                             File.Delete(badDump);
@@ -356,12 +358,12 @@ namespace NdsCRC_III.BusinessService
 
                     ReportProgress(tos.Avance(infoAvancement), tos);
 
-                    Directory.CreateDirectory(NDSDirectories.PathTemp + crc.ToUpper());
+                    Directory.CreateDirectory(Parameter.Config.Paths.DirTemp + crc.ToUpper());
 
-                    string source = string.Format("{0}{1}\\{2}{3}.nds", NDSDirectories.PathTemp, crc.ToUpper(), romInfo.Title, complementNomXXXX);
+                    string source = string.Format("{0}{1}\\{2}{3}.nds", Parameter.Config.Paths.DirTemp, crc.ToUpper(), romInfo.Title, complementNomXXXX);
                     File.Move(file, source);
 
-                    string zipFile = string.Format("{0}({1}) {2}{3}.7z", NDSDirectories.PathTemp, romInfo.RomNumber, romInfo.Title, complementNomXXXX);
+                    string zipFile = string.Format("{0}({1}) {2}{3}.7z", Parameter.Config.Paths.DirTemp, romInfo.RomNumber, romInfo.Title, complementNomXXXX);
                     try
                     {
                         ZipRom(zipFile, source);
@@ -372,7 +374,7 @@ namespace NdsCRC_III.BusinessService
                         tos.SetRomInfoIntegration(infoAvancement, Path.GetFileName(file));
                         ReportProgress(tos.PourcentageAvancement(), tos);
 
-                        NDSDirectories.ArchiveRom(zipFile, romInfo.RomNumber);
+                        Directories.ArchiveRom(zipFile, romInfo.RomNumber);
                         DataAcessLayer.NdsCollection.Add(romInfo);
                         DataAcessLayer.SaveCollectionXML();
                     }
@@ -404,12 +406,12 @@ namespace NdsCRC_III.BusinessService
         private void RomNotFound(string file, string crc)
         {
             tos.SetIntituleTraitement(string.Format("CRC : {0} => Not found in DataBase", crc.ToUpper()));
-            if (File.Exists(NDSDirectories.PathUnknowRom + crc.ToUpper() + "-" + Path.GetFileName(file)))
+            if (File.Exists(Parameter.Config.Paths.DirUnknowRom + crc.ToUpper() + "-" + Path.GetFileName(file)))
             {
-                File.Delete(NDSDirectories.PathUnknowRom + crc.ToUpper() + "-" + Path.GetFileName(file));
+                File.Delete(Parameter.Config.Paths.DirUnknowRom + crc.ToUpper() + "-" + Path.GetFileName(file));
             }
 
-            File.Move(file, NDSDirectories.PathUnknowRom + crc.ToUpper() + "-" + Path.GetFileName(file));
+            File.Move(file, Parameter.Config.Paths.DirUnknowRom + crc.ToUpper() + "-" + Path.GetFileName(file));
             tos.SetRomInfoIntegration(TypeAvancement.RomNotFound, Path.GetFileName(file));
             ReportProgress(tos.Avance(TypeAvancement.RomNotFound), tos);
         }
@@ -426,7 +428,7 @@ namespace NdsCRC_III.BusinessService
             tos.SetRomInfoIntegration(TypeAvancement.RomAlreadyHave, Path.GetFileName(file));
 
             ReportProgress(tos.Avance(TypeAvancement.RomAlreadyHave), tos);
-            File.Move(file, NDSDirectories.PathAlreadyHave + Path.GetFileName(file));
+            File.Move(file, Parameter.Config.Paths.DirAlreadyHave + Path.GetFileName(file));
         }
 
         /// <summary>

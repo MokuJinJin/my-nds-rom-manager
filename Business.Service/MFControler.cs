@@ -14,6 +14,7 @@ namespace NdsCRC_III.BusinessService
     using NdsCRC_III.DAL;
     using NdsCRC_III.TO;
     using SevenZip;
+    using Utils.Configuration;
 
     /// <summary>
     /// Controler du Main Form
@@ -121,27 +122,6 @@ namespace NdsCRC_III.BusinessService
             }
         }
 
-        /// <summary>
-        /// Path to the new rom
-        /// </summary>
-        public string PathNewRom
-        {
-            get
-            {
-                return NDSDirectories.PathNewRom;
-            }
-        }
-        
-        /// <summary>
-        /// Path of the Advanscene database of the hardrive
-        /// </summary>
-        public string PathXmlDB
-        {
-            get
-            {
-                return NDSDirectories.PathXmlDB;
-            }
-        }
         #endregion
 
         #region Current Selected
@@ -273,16 +253,16 @@ namespace NdsCRC_III.BusinessService
         /// </summary>
         public void ExtractNewDataBase()
         {
-            if (File.Exists(Directory.GetParent(NDSDirectories.PathXmlDB) + "\\ADVANsCEne_NDScrc.xml.old"))
+            if (File.Exists(Directory.GetParent(Parameter.Config.Paths.XmlDataBase) + "\\ADVANsCEne_NDScrc.xml.old"))
             {
-                File.Delete(Directory.GetParent(NDSDirectories.PathXmlDB) + "\\ADVANsCEne_NDScrc.xml.old");
+                File.Delete(Directory.GetParent(Parameter.Config.Paths.XmlDataBase) + "\\ADVANsCEne_NDScrc.xml.old");
             }
 
-            File.Move(NDSDirectories.PathXmlDB, Directory.GetParent(NDSDirectories.PathXmlDB) + "\\ADVANsCEne_NDScrc.xml.old");
+            File.Move(Parameter.Config.Paths.XmlDataBase, Directory.GetParent(Parameter.Config.Paths.XmlDataBase) + "\\ADVANsCEne_NDScrc.xml.old");
 
             SevenZipExtractor.SetLibraryPath("7z.dll");
             SevenZipExtractor extract = new SevenZipExtractor(this.DatFileName);
-            extract.ExtractArchive(Directory.GetParent(NDSDirectories.PathXmlDB).ToString());
+            extract.ExtractArchive(Directory.GetParent(Parameter.Config.Paths.XmlDataBase).ToString());
 
             // ReloadAdvanSceneDataBase();
             File.Delete("ADVANsCEne_NDScrc.zip");

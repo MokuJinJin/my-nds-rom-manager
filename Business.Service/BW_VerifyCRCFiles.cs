@@ -15,6 +15,7 @@ namespace NdsCRC_III.BusinessService
     using NdsCRC_III.DAL;
     using NdsCRC_III.TO;
     using SevenZip;
+    using Utils.Configuration;
 
     /// <summary>
     /// Worker to verify CRC of the all rom collection
@@ -50,7 +51,7 @@ namespace NdsCRC_III.BusinessService
         private void BW_VerifyCRCFiles_DoWork(object sender, DoWorkEventArgs e)
         {
             List<NDS_Rom> newCollection = new List<NDS_Rom>();
-            List<string> files = Directory.GetFiles(NDSDirectories.PathRom, "*.7z", SearchOption.AllDirectories).ToList<string>();
+            List<string> files = Directory.GetFiles(Parameter.Config.Paths.DirNdsRom, "*.7z", SearchOption.AllDirectories).ToList<string>();
             files.Sort();
             SevenZipExtractor.SetLibraryPath("7z.dll");
             int nbFiles = files.Count;
@@ -124,7 +125,7 @@ namespace NdsCRC_III.BusinessService
             }
 
             XmlSerializer xs = new XmlSerializer(typeof(List<NDS_Rom>));
-            string path = NDSDirectories.PathXmlHaveDB.Replace("Collection.xml", "NewCollection.xml");
+            string path = Parameter.Config.Paths.XmlCollection.Replace("Collection.xml", "NewCollection.xml");
             using (StreamWriter wr = new StreamWriter(path))
             {
                 xs.Serialize(wr, newCollection);

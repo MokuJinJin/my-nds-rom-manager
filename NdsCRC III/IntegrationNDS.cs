@@ -19,7 +19,7 @@ namespace NdsCRC_III
     public partial class IntegrationNDS : Form
     {
         /// <summary>
-        /// path to scna for new rom ??
+        /// path to scan for new rom ??
         /// </summary>
         private string pathToScan;
 

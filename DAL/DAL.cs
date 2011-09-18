@@ -12,6 +12,7 @@ namespace NdsCRC_III.DAL
 
     using NdsCRC_III.TO;
     using Utils;
+    using Utils.Configuration;
 
     /// <summary>
     /// Data Access Layer
@@ -21,7 +22,7 @@ namespace NdsCRC_III.DAL
         /// <summary>
         /// List of Rom collection
         /// </summary>
-        private static NDSCollection _ndsCollection;
+        private static Collection _ndsCollection;
 
         /// <summary>
         /// Advanscene DataBase
@@ -33,13 +34,21 @@ namespace NdsCRC_III.DAL
         /// </summary>
         static DataAcessLayer()
         {
-            _ndsCollection = new NDSCollection();
-            XmlSerializer xs = new XmlSerializer(typeof(List<NDS_Rom>));
-            using (StreamReader rd = new StreamReader(NDSDirectories.PathXmlHaveDB))
+            _ndsCollection = new Collection();
+            /*
+            XmlSerializer xs = new XmlSerializer(typeof(Collection));
+            using (StreamReader rd = new StreamReader(Parameter.Config.Paths.XmlCollection))
             {
-                _ndsCollection.DataBase = xs.Deserialize(rd) as List<NDS_Rom>;
+                _ndsCollection = xs.Deserialize(rd) as Collection;
             }
+            */
 
+            XmlSerializer xs = new XmlSerializer(typeof(List<NDS_Rom>));
+            using (StreamReader rd = new StreamReader(Parameter.Config.Paths.XmlCollection))
+            {
+                _ndsCollection.NdsDataBase = xs.Deserialize(rd) as List<NDS_Rom>;
+            }
+            
             // NdsCollectionMissing = _NdsAdvanScene.DataBase.Except(_NdsCollection.DataBase).ToList();
             _ndsAdvanScene = new NDSAdvanScene();
         }
@@ -51,7 +60,7 @@ namespace NdsCRC_III.DAL
         {
             get
             {
-                return _ndsCollection.DataBase;
+                return _ndsCollection.NdsDataBase;
             }
         }
 
@@ -107,7 +116,7 @@ namespace NdsCRC_III.DAL
             get
             {
                 IEqualityComparer<NDS_Rom> cmp = new LambdaComparer<NDS_Rom>((x, y) => x.ReleaseNumber == y.ReleaseNumber);
-                return _ndsAdvanScene.DataBase.Except(_ndsCollection.DataBase, cmp).ToList();
+                return _ndsAdvanScene.DataBase.Except(_ndsCollection.NdsDataBase, cmp).ToList();
             }
         }
 
@@ -149,7 +158,7 @@ namespace NdsCRC_III.DAL
         /// <returns>true if founded, false otherwise</returns>
         public static bool IsCRCInCollection(string crc)
         {
-            if (FindCRC(crc, _ndsCollection.DataBase) != null)
+            if (FindCRC(crc, _ndsCollection.NdsDataBase) != null)
             {
                 return true;
             }
@@ -166,7 +175,7 @@ namespace NdsCRC_III.DAL
         /// <returns>Founded NDS Rom, null otherwise</returns>
         public static NDS_Rom GetCollectionRom(string romNumber)
         {
-            return GetRomByRomNumber(romNumber, _ndsCollection.DataBase);
+            return GetRomByRomNumber(romNumber, _ndsCollection.NdsDataBase);
         }
 
         /// <summary>
@@ -197,7 +206,7 @@ namespace NdsCRC_III.DAL
         /// <returns>True if founded, false otherwise</returns>
         public static bool IsRomNumberInCollection(string romNumber)
         {
-            if (GetRomByRomNumber(romNumber, _ndsCollection.DataBase) != null)
+            if (GetRomByRomNumber(romNumber, _ndsCollection.NdsDataBase) != null)
             {
                 return true;
             }
@@ -213,9 +222,9 @@ namespace NdsCRC_III.DAL
         public static void SaveCollectionXML()
         {
             XmlSerializer xs = new XmlSerializer(typeof(List<NDS_Rom>));
-            using (StreamWriter wr = new StreamWriter(NDSDirectories.PathXmlHaveDB))
+            using (StreamWriter wr = new StreamWriter(Parameter.Config.Paths.XmlCollection))
             {
-                xs.Serialize(wr, _ndsCollection.DataBase);
+                xs.Serialize(wr, _ndsCollection.NdsDataBase);
             }
         }
 
@@ -225,12 +234,12 @@ namespace NdsCRC_III.DAL
         public static void RepairCollection()
         {
             // foreach (NDS_Rom rom in _ndsCollection.DataBase)
-            for (int i = 0; i < _ndsCollection.DataBase.Count; i++)
+            for (int i = 0; i < _ndsCollection.NdsDataBase.Count; i++)
             {
-                NDS_Rom romDB = FindCRCDataBase(_ndsCollection.DataBase[i].RomCRC);
+                NDS_Rom romDB = FindCRCDataBase(_ndsCollection.NdsDataBase[i].RomCRC);
                 if (romDB != null)
                 {
-                    _ndsCollection.DataBase[i] = romDB;
+                    _ndsCollection.NdsDataBase[i] = romDB;
                 }
             }
 
@@ -284,7 +293,7 @@ namespace NdsCRC_III.DAL
                     database = _ndsAdvanScene.DataBase;
                     break;
                 case EnumBase.Collection:
-                    database = _ndsCollection.DataBase;
+                    database = _ndsCollection.NdsDataBase;
                     break;
                 case EnumBase.CollectionMissing:
                     database = NdsCollectionMissing;
