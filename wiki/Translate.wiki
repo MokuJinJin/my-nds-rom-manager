@@ -33,5 +33,6 @@ Since 0.6.8.2 (r84), the translation is available.
 </Language>
 }}}
 
-Change the value, save it under a new file.
+Change the value, save it under a new xml file.
 Name this file with this codes : [http://www.csharp-examples.net/culture-names/ Culture-Names]
+For exemple : el.xml for Greek.
