@@ -10,6 +10,7 @@ namespace NdsCRC_III.DAL
     using System.IO;
     using System.Xml;
     using NdsCRC_III.TO;
+    using Utils.Configuration;
 
     /// <summary>
     /// Data Access Layer to AdvanScene XML DataBase
@@ -76,7 +77,7 @@ namespace NdsCRC_III.DAL
         /// </summary>
         public void Load()
         {
-            Load(NDSDirectories.PathXmlDB);
+            Load(Parameter.Config.Paths.XmlDataBase);
         }
 
         /// <summary>

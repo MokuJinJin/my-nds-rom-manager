@@ -5,11 +5,12 @@
 //-----------------------------------------------------------------------
 namespace NdsCRC_III.TO
 {
-    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.IO;
     using System.Xml.Serialization;
+    using Utils.Configuration;
+    using Utils.Directories;
 
     /// <summary>
     /// Class of NDS Rom
@@ -177,7 +178,7 @@ namespace NdsCRC_III.TO
             {
                 return string.Format(
                                 "{0}{1}a.png",
-                                NDSDirectories.PathImg,
+                                Parameter.Config.Paths.DirImage,
                                 this.ImageNumber);
             }
         }
@@ -197,7 +198,7 @@ namespace NdsCRC_III.TO
                 {
                     return string.Format(
                         "{0}defaultb.png",
-                        NDSDirectories.PathImg);
+                        Parameter.Config.Paths.DirImage);
                 }
             }
         }
@@ -211,7 +212,7 @@ namespace NdsCRC_III.TO
             {
                 return string.Format(
                             "{0}{1}b.png",
-                            NDSDirectories.PathImg,
+                            Parameter.Config.Paths.DirImage,
                             this.ImageNumber);
             }
         }
@@ -231,7 +232,7 @@ namespace NdsCRC_III.TO
                 {
                     return string.Format(
                         "{0}default.png",
-                        NDSDirectories.PathImg);
+                        Parameter.Config.Paths.DirImage);
                 }
             }
         }
@@ -245,7 +246,7 @@ namespace NdsCRC_III.TO
             {
                 return string.Format(
                                 "{0}{1}.png",
-                                NDSDirectories.PathImg,
+                                Parameter.Config.Paths.DirImage,
                                 this.ImageNumber);
             }
         }
@@ -257,7 +258,7 @@ namespace NdsCRC_III.TO
         {
             get
             {
-                return string.Format("{0}{1}.png", NDSDirectories.PathFlags, this.Location);
+                return string.Format("{0}{1}.png", Parameter.Config.Paths.DirImageFlag, this.Location);
             }
         }
 
@@ -276,7 +277,7 @@ namespace NdsCRC_III.TO
                 {
                     return string.Format(
                         "{0}default.nfo",
-                        NDSDirectories.PathNfo);
+                        Parameter.Config.Paths.DirNFO);
                 }
             }
         }
@@ -290,7 +291,7 @@ namespace NdsCRC_III.TO
             {
                 return string.Format(
                                 "{0}{1}.nfo",
-                                NDSDirectories.PathNfo,
+                                Parameter.Config.Paths.DirNFO,
                                 this.ReleaseNumber);
             }
         }
@@ -310,8 +311,8 @@ namespace NdsCRC_III.TO
 
                 return string.Format(
                          "{0}{1}\\({2}) {3}{4}.7z",
-                         NDSDirectories.PathRom,
-                         NDSDirectories.GetDirFromReleaseNumber(this.RomNumber),
+                         Parameter.Config.Paths.DirNdsRom,
+                         Directories.GetDirFromReleaseNumber(this.RomNumber),
                          this.RomNumber,
                          this.Title,
                          complementNomDemo);
@@ -336,7 +337,18 @@ namespace NdsCRC_III.TO
         {
             get
             {
-                return Bitmap.FromFile(this.ImgIconPath);
+                // TODO : why there is an InsufisantMemoryException ?
+                Image i = null;
+                try
+                {
+                    i = Bitmap.FromFile(this.ImgIconPath);
+                }
+                catch (System.Exception)
+                {
+                    // throw;
+                }
+
+                return i;
             }
         }
 

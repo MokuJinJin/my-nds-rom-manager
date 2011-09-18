@@ -13,21 +13,21 @@ namespace NdsCRC_III.DAL
     /// Collection of Nds Rom
     /// </summary>
     [XmlRoot("NDSCollection")]
-    public class NDSCollection
+    public class Collection
     {
         /// <summary>
         /// Constructor for NDSCollection
         /// </summary>
-        public NDSCollection()
+        public Collection()
         {
-            DataBase = new List<NDS_Rom>();
+            NdsDataBase = new List<NDS_Rom>();
         }
 
         /// <summary>
         /// List of roms
         /// </summary>
-        [XmlArray("Collection")]
-        [XmlArrayItem("NdsRom")]
-        public List<NDS_Rom> DataBase { get; set; }
+        [XmlArray("NDSCollection")]
+        [XmlArrayItem("NDS_Rom")]
+        public List<NDS_Rom> NdsDataBase { get; set; }
     }
 }

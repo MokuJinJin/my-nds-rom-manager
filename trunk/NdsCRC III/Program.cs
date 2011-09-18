@@ -7,6 +7,7 @@ namespace NdsCRC_III
 {
     using System;
     using System.Windows.Forms;
+    using Utils.Configuration;
 
     /// <summary>
     /// Program Class
@@ -21,7 +22,9 @@ namespace NdsCRC_III
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            NDSDirectories.SetStartupPath(Application.StartupPath);
+
+            Parameter.Initializer(Application.StartupPath);
+            
             Application.Run(new MainForm());
 
             // Application.Run(new Form1());

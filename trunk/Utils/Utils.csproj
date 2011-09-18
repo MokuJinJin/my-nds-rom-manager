@@ -40,11 +40,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\Configuration.cs" />
+    <Compile Include="Culture\Language.cs" />
+    <Compile Include="Configuration\Parameter.cs" />
+    <Compile Include="Configuration\Paths.cs" />
     <Compile Include="CRC32.cs" />
+    <Compile Include="Culture\Translate.cs" />
+    <Compile Include="Directory\Directories.cs" />
+    <Compile Include="Directory\DirectoryEnum.cs" />
     <Compile Include="LambdaComparer.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <None Include="Resources\en.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(ProgramFiles)\MSBuild\Microsoft\StyleCop\v4.4\Microsoft.SourceAnalysis.targets" />

@@ -11,14 +11,12 @@ namespace NdsCRC_III
     using System.Drawing;
     using System.Globalization;
     using System.IO;
-    using System.Reflection;
-    using System.Resources;
     using System.Text;
     using System.Windows.Forms;
-
     using NdsCRC_III.BusinessService;
-    using NdsCRC_III.Cultures;
     using NdsCRC_III.TO;
+    using Utils.Configuration;
+    using Utils.Directories;
 
     /// <summary>
     /// Main Form
@@ -53,14 +51,6 @@ namespace NdsCRC_III
             InitializeComponent();
             _controler = new MFControler();
 
-            Lang.Culture = CultureInfo.CreateSpecificCulture("fr");
-            /*
-            string fr = Lang.TabDataBase;
-
-            Lang.Culture = CultureInfo.CreateSpecificCulture("en");
-            string en = Lang.TabDataBase;
-            */
-
             sourceAdvanScene.DataSource = _controler.GetDataBase();
             GridDataBase.DataSource = sourceAdvanScene;
             sourceCollection.DataSource = _controler.GetCollection();
@@ -89,7 +79,7 @@ namespace NdsCRC_III
         /// <param name="e">EventArgs</param>
         private void BtnGetNewRom_Click(object sender, EventArgs e)
         {
-            IntegrationNDS f = new IntegrationNDS(_controler.PathNewRom);
+            IntegrationNDS f = new IntegrationNDS(Parameter.Config.Paths.DirNewRom);
             btnGetNewRom.Enabled = false;
             f.FormClosed += new FormClosedEventHandler(F_FormClosed);
             f.Show();
@@ -105,12 +95,12 @@ namespace NdsCRC_III
             if (_controler.IsDuplicateFilterActive())
             {
                 _controler.SetNoDuplicateFilter();
-                btnFilterDuplicate.Text = Lang.btnFilterDuplicate_Apply;
+                btnFilterDuplicate.Text = Parameter.Lang.GetTranslate("btnFilterDuplicate_Apply");
             }
             else
             {
                 _controler.SetDuplicateFilterFromCurrentRom();
-                btnFilterDuplicate.Text = Lang.btnFilterDuplicate_Reset;
+                btnFilterDuplicate.Text = Parameter.Lang.GetTranslate("btnFilterDuplicate_Reset");
             }
 
             _controler.SetCurrentGridView(string.Empty);
@@ -152,29 +142,29 @@ namespace NdsCRC_III
             maj.SetShowFinishMessage(false);
 
             int releaseNumber = int.Parse(_controler.GetCurrentRom().ReleaseNumber);
-            string filePath = string.Format("{0}{1}.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
+            string filePath = string.Format("{0}{1}.png", Parameter.Config.Paths.DirImage, releaseNumber.ToString("0000"));
             Queue<MajUrl> liste = new Queue<MajUrl>();
             if (!File.Exists(filePath))
             {
-                liste.Enqueue(new MajUrl() { Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlIco), Filepath = filePath });
+                liste.Enqueue(new MajUrl() { Uri = Directories.GetUriFor(releaseNumber, DirectoriesEnum.UrlIco), Filepath = filePath });
             }
 
-            filePath = string.Format("{0}{1}a.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
+            filePath = string.Format("{0}{1}a.png", Parameter.Config.Paths.DirImage, releaseNumber.ToString("0000"));
             if (!File.Exists(filePath))
             {
-                liste.Enqueue(new MajUrl() { Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlCover), Filepath = filePath });
+                liste.Enqueue(new MajUrl() { Uri = Directories.GetUriFor(releaseNumber, DirectoriesEnum.UrlCover), Filepath = filePath });
             }
 
-            filePath = string.Format("{0}{1}b.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
+            filePath = string.Format("{0}{1}b.png", Parameter.Config.Paths.DirImage, releaseNumber.ToString("0000"));
             if (!File.Exists(filePath))
             {
-                liste.Enqueue(new MajUrl() { Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlInGame), Filepath = filePath });
+                liste.Enqueue(new MajUrl() { Uri = Directories.GetUriFor(releaseNumber, DirectoriesEnum.UrlInGame), Filepath = filePath });
             }
 
-            filePath = string.Format("{0}{1}.nfo", NDSDirectories.PathNfo, releaseNumber.ToString("0000"));
+            filePath = string.Format("{0}{1}.nfo", Parameter.Config.Paths.DirImage, releaseNumber.ToString("0000"));
             if (!File.Exists(filePath))
             {
-                liste.Enqueue(new MajUrl() { Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlNfo), Filepath = filePath });
+                liste.Enqueue(new MajUrl() { Uri = Directories.GetUriFor(releaseNumber, DirectoriesEnum.UrlNfo), Filepath = filePath });
             }
 
             maj.Bw_RunWorkerCompleted(null, new RunWorkerCompletedEventArgs(liste, null, false));
@@ -224,9 +214,10 @@ namespace NdsCRC_III
         /// </summary>
         private void SetLblNbRom()
         {
-            tabCollection.Text = string.Format("{0} ({1} roms)", Lang.TabCollection, _controler.GetCollection().Count);
-            tabDataBase.Text = string.Format("{0} ({1} roms)", Lang.TabDataBase, _controler.GetDataBase().Count);
-            tabMissing.Text = string.Format("{0} ({1} roms)", Lang.TabMissing, _controler.GetCollectionMissing().Count);
+            // tabCollection.Text = string.Format("{0} ({1} roms)", Lang.TabCollection, _controler.GetCollection().Count);
+            tabCollection.Text = string.Format("{0} ({1} roms)", Parameter.Lang.GetTranslate("TabCollection"), _controler.GetCollection().Count);
+            tabDataBase.Text = string.Format("{0} ({1} roms)", Parameter.Lang.GetTranslate("TabDataBase"), _controler.GetDataBase().Count);
+            tabMissing.Text = string.Format("{0} ({1} roms)", Parameter.Lang.GetTranslate("TabMissing"), _controler.GetCollectionMissing().Count);
         }
 
         /// <summary>
@@ -375,17 +366,17 @@ namespace NdsCRC_III
                     btnFilterDuplicate.Enabled = true;
                     if (_controler.IsDuplicateFilterActive())
                     {
-                        btnFilterDuplicate.Text = Lang.btnFilterDuplicate_Reset;
+                        btnFilterDuplicate.Text = Parameter.Lang.GetTranslate("btnFilterDuplicate_Reset");
                     }
                     else
                     {
-                        btnFilterDuplicate.Text = Lang.btnFilterDuplicate_Apply;
+                        btnFilterDuplicate.Text = Parameter.Lang.GetTranslate("btnFilterDuplicate_Apply");
                     }
                 }
                 else
                 {
                     btnFilterDuplicate.Enabled = false;
-                    btnFilterDuplicate.Text = Lang.btnFilterDuplicate_None;
+                    btnFilterDuplicate.Text = Parameter.Lang.GetTranslate("btnFilterDuplicate_None");
                 }
 
                 _controler.SetCurrentGridView(dgv.Name);
@@ -488,7 +479,7 @@ namespace NdsCRC_III
             _controler.ExtractNewDataBase();
 
             ListboxDataBaseUpdate.Items.Clear();
-            BW_Diff bw = new BW_Diff(Directory.GetParent(_controler.PathXmlDB) + "\\ADVANsCEne_NDScrc.xml.old", _controler.PathXmlDB);
+            BW_Diff bw = new BW_Diff(Directory.GetParent(Parameter.Config.Paths.XmlDataBase) + "\\ADVANsCEne_NDScrc.xml.old", Parameter.Config.Paths.XmlDataBase);
             bw.ProgressChanged += new ProgressChangedEventHandler(Bw_ProgressChanged);
             bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Bw_RunWorkerCompleted);
             bw.RunWorkerAsync();
@@ -501,7 +492,7 @@ namespace NdsCRC_III
         /// <param name="e">RunWorkerCompletedEventArgs</param>
         private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            File.Delete(Directory.GetParent(_controler.PathXmlDB) + "\\ADVANsCEne_NDScrc.xml.old");
+            File.Delete(Directory.GetParent(Parameter.Config.Paths.XmlDataBase) + "\\ADVANsCEne_NDScrc.xml.old");
             File.Delete(string.Format("{0}\\ADVANsCEne_NDScrc_Version.txt", Application.StartupPath));
 
             this.Text = string.Format("NdsCRC III v{0} - AdvanceSceneDat v{1} ({2})", ProductVersion, _controler.DatVersion, _controler.DatCreationDate);
@@ -530,7 +521,8 @@ namespace NdsCRC_III
                 string s = (string)e.UserState;
                 string[] split = s.Split('|');
                 ListboxDataBaseUpdate.Items.Add(split[0]);
-                File.AppendAllText(NDSDirectories.PathUpdateDataBaseLogFile, string.Format("{0}{1}", split[0], Environment.NewLine));
+                string fileName = string.Format("{0}\\UpdateDataBaseLog_{1}_{2}_{3}.txt", Parameter.StartupPath, DateTime.Now.Year, DateTime.Now.Month.ToString("00"), DateTime.Now.Day.ToString("00"));
+                File.AppendAllText(fileName, string.Format("{0}{1}", split[0], Environment.NewLine));
 
                 // ListboxDataBaseUpdate.Items.Add(split[1]);
                 // File.AppendAllText(NDSDirectories.PathUpdateDataBaseLogFile, split[1]);

@@ -8,10 +8,10 @@ namespace NdsCRC_III.BusinessService
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
-
-    using NdsCRC_III;
     using NdsCRC_III.DAL;
     using NdsCRC_III.TO;
+    using Utils.Configuration;
+    using Utils.Directories;
 
     /// <summary>
     /// Worker for Downloading all image and nfo
@@ -40,32 +40,32 @@ namespace NdsCRC_III.BusinessService
             for (int i = 0; i < DataAcessLayer.NdsAdvanScene.Count; i++)
             {
                 int releaseNumber = int.Parse(DataAcessLayer.NdsAdvanScene[i].ReleaseNumber);
-                string filePath = string.Format("{0}{1}.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
+                string filePath = string.Format("{0}{1}.png", Parameter.Config.Paths.DirImage, releaseNumber.ToString("0000"));
                 if (!File.Exists(filePath))
                 {
                     liste.Enqueue(new MajUrl()
                     {
-                        Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlIco),
+                        Uri = Directories.GetUriFor(releaseNumber, DirectoriesEnum.UrlIco),
                         Filepath = filePath
                     });
                 }
 
-                filePath = string.Format("{0}{1}a.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
+                filePath = string.Format("{0}{1}a.png", Parameter.Config.Paths.DirImage, releaseNumber.ToString("0000"));
                 if (!File.Exists(filePath))
                 {
-                    liste.Enqueue(new MajUrl() { Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlCover), Filepath = filePath });
+                    liste.Enqueue(new MajUrl() { Uri = Directories.GetUriFor(releaseNumber, DirectoriesEnum.UrlCover), Filepath = filePath });
                 }
 
-                filePath = string.Format("{0}{1}b.png", NDSDirectories.PathImg, releaseNumber.ToString("0000"));
+                filePath = string.Format("{0}{1}b.png", Parameter.Config.Paths.DirImage, releaseNumber.ToString("0000"));
                 if (!File.Exists(filePath))
                 {
-                    liste.Enqueue(new MajUrl() { Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlInGame), Filepath = filePath });
+                    liste.Enqueue(new MajUrl() { Uri = Directories.GetUriFor(releaseNumber, DirectoriesEnum.UrlInGame), Filepath = filePath });
                 }
 
-                filePath = string.Format("{0}{1}.nfo", NDSDirectories.PathNfo, releaseNumber.ToString("0000"));
+                filePath = string.Format("{0}{1}.nfo", Parameter.Config.Paths.DirNFO, releaseNumber.ToString("0000"));
                 if (!File.Exists(filePath))
                 {
-                    liste.Enqueue(new MajUrl() { Uri = NDSDirectories.GetUriFor(releaseNumber, NDSDirectoriesEnum.UrlNfo), Filepath = filePath });
+                    liste.Enqueue(new MajUrl() { Uri = Directories.GetUriFor(releaseNumber, DirectoriesEnum.UrlNfo), Filepath = filePath });
                 }
 
                 ReportProgress(i * 100 / DataAcessLayer.NdsAdvanScene.Count);
