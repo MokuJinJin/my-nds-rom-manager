@@ -107,12 +107,12 @@ namespace NdsCRC_III
         {
             if (e.Cancelled)
             {
-                listBox1.Items.Add("Aborted.");
-                this.Text = "Aborted - IntegrationNDS";
+                listBox1.Items.Add(Parameter.Lang.GetTranslate("Aborted"));
+                this.Text = string.Format("{0} - {1}", Parameter.Lang.GetTranslate("Aborted"), Parameter.Lang.GetTranslate("Integrate-Nds"));
             }
             else
             {
-                this.Text = "Complete - IntegrationNDS";
+                this.Text = string.Format("{0} - {1}", Parameter.Lang.GetTranslate("Completed"), Parameter.Lang.GetTranslate("Integrate-Nds"));
             }
 
             MajListBox();
@@ -131,7 +131,7 @@ namespace NdsCRC_III
             {
                 case TypeTOSortie.General:
                     progressBar1.Value = e.ProgressPercentage;
-                    this.Text = string.Format("{0}% - IntegrationNDS", e.ProgressPercentage.ToString("00"));
+                    this.Text = string.Format("{0}% - {1}", e.ProgressPercentage.ToString("00"), Parameter.Lang.GetTranslate("Integrate-Nds"));
 
                     if (tos.WhatHappen != TypeAvancement.Nothing)
                     {
