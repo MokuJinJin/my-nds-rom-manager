@@ -15,7 +15,7 @@ namespace NdsCRC_III.DAL
     using Utils.Configuration;
 
     /// <summary>
-    /// Data Access Layer
+    /// DataAcessLayer
     /// </summary>
     public static class DataAcessLayer
     {

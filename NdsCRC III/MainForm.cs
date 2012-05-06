@@ -39,6 +39,11 @@ namespace NdsCRC_III
         private BindingSource sourceMissing = new BindingSource();
 
         /// <summary>
+        /// sourceFilter
+        /// </summary>
+        private BindingSource sourceFilter = new BindingSource();
+
+        /// <summary>
         /// Controler of the form
         /// </summary>
         private MFControler _controler;
@@ -60,9 +65,16 @@ namespace NdsCRC_III
             sourceMissing.DataSource = _controler.GetCollectionMissing();
             GridMissing.DataSource = sourceMissing;
 
+            sourceFilter.DataSource = _controler.GetFilterLocation();
+            GridFilterLocation.DataSource = sourceFilter;
+
             InitDataGrid(GridCollection);
             InitDataGrid(GridDataBase);
             InitDataGrid(GridMissing);
+
+            InitDataGrid(GridFilterLocation);
+
+            tabFilterLocation.Hide();
 
             cbxLanguages.DataSource = new BindingSource(_controler.GetLanguages(), null);
             cbxLanguages.DisplayMember = "Value";
@@ -94,6 +106,14 @@ namespace NdsCRC_III
         /// <param name="e">EventArgs</param>
         private void BtnFilterDuplicate_Click(object sender, EventArgs e)
         {
+            NDS_Rom currentRom = _controler.GetCurrentRom();
+            string tabname = string.Format("{0} #{1}", Parameter.Lang.GetTranslate("TabFilterLocation"), currentRom.RomNumber);
+
+            TabPage tab = tabControl2.TabPages[3];
+            tab.Show();
+            tab.Name = tabname;
+            
+            /*
             if (_controler.IsDuplicateFilterActive())
             {
                 _controler.SetNoDuplicateFilter();
@@ -107,6 +127,7 @@ namespace NdsCRC_III
 
             _controler.SetCurrentGridView(string.Empty);
             SetDataSource();
+            */
         }
 
         /// <summary>
@@ -163,7 +184,7 @@ namespace NdsCRC_III
                 liste.Enqueue(new MajUrl() { Uri = Directories.GetUriFor(releaseNumber, DirectoriesEnum.UrlInGame), Filepath = filePath });
             }
 
-            filePath = string.Format("{0}{1}.nfo", Parameter.Config.Paths.DirImage, releaseNumber.ToString("0000"));
+            filePath = string.Format("{0}{1}.nfo", Parameter.Config.Paths.DirNFO, releaseNumber.ToString("0000"));
             if (!File.Exists(filePath))
             {
                 liste.Enqueue(new MajUrl() { Uri = Directories.GetUriFor(releaseNumber, DirectoriesEnum.UrlNfo), Filepath = filePath });
@@ -320,7 +341,7 @@ namespace NdsCRC_III
                 lblInternalName.Text = currentRom.InternalName;
                 lblVersion.Text = currentRom.Version;
                 lblReleaseNumber.Text = currentRom.ReleaseNumber;
-                lblDumpDate.Text = currentRom.DumpDate;
+                lblDumpDate.Text = currentRom.DumpDate.ToShortDateString();
 
                 txtDirName.Text = currentRom.ExternalDirName;
                 txtFileName.Text = currentRom.ExternalFileName;
@@ -664,6 +685,9 @@ namespace NdsCRC_III
                     break;
                 case 2:
                     Grid_CurrentCellChanged(GridMissing, new EventArgs());
+                    break;
+                case 3:
+                    Grid_CurrentCellChanged(GridFilterLocation, new EventArgs());
                     break;
             }
 

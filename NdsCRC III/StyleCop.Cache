@@ -1,84 +1,93 @@
 <stylecopresultscache>
   <version>10</version>
+  <project key="-1789492440">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="Program.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>09/17/2011 23:36:43</timestamp>
+    <milliseconds>921</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>09/18/2011 03:11:29</timestamp>
+    <milliseconds>546</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Resources.Designer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>09/15/2011 00:33:18</timestamp>
+    <milliseconds>171</milliseconds>
+    <violations />
+  </sourcecode>
   <sourcecode name=".NETFramework,Version=v4.0.AssemblyAttributes.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
     </settings>
     <timestamp>06/13/2011 21:29:09</timestamp>
     <milliseconds>437</milliseconds>
     <violations />
   </sourcecode>
-  <project key="-1789492440">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
-  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
-    </settings>
-    <timestamp>08/31/2011 01:56:26</timestamp>
-    <milliseconds>703</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="Program.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
-    </settings>
-    <timestamp>08/27/2011 00:14:25</timestamp>
-    <milliseconds>881</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="Resources.Designer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
-    </settings>
-    <timestamp>08/12/2011 19:18:43</timestamp>
-    <milliseconds>140</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="Form1.Designer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
     </settings>
     <timestamp>08/26/2011 23:55:07</timestamp>
     <milliseconds>584</milliseconds>
     <violations />
   </sourcecode>
+  <sourcecode name="MAJ_Img_Nfo.Designer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>08/30/2011 23:27:41</timestamp>
+    <milliseconds>812</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Form1.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>09/06/2011 23:17:28</timestamp>
+    <milliseconds>921</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="MAJ_Img_Nfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>08/31/2011 22:05:45</timestamp>
+    <milliseconds>453</milliseconds>
+    <violations />
+  </sourcecode>
   <sourcecode name="Download.designer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
     </settings>
     <timestamp>08/12/2011 19:12:20</timestamp>
     <milliseconds>718</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="IntegrationNDS.designer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
-    </settings>
-    <timestamp>08/26/2011 23:54:11</timestamp>
-    <milliseconds>694</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="Form1.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
-    </settings>
-    <timestamp>08/30/2011 23:34:57</timestamp>
-    <milliseconds>218</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="Download.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
     </settings>
     <timestamp>08/12/2011 19:12:20</timestamp>
     <milliseconds>718</milliseconds>
@@ -86,74 +95,65 @@
   </sourcecode>
   <sourcecode name="MainForm.Designer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
     </settings>
-    <timestamp>08/31/2011 01:32:46</timestamp>
-    <milliseconds>421</milliseconds>
+    <timestamp>10/02/2011 01:35:20</timestamp>
+    <milliseconds>640</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="MAJ_Img_Nfo.Designer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+  <sourcecode name="IntegrationNDS.designer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
     </settings>
-    <timestamp>08/30/2011 23:27:41</timestamp>
-    <milliseconds>812</milliseconds>
+    <timestamp>08/26/2011 23:54:11</timestamp>
+    <milliseconds>694</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="Settings.Designer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
     </settings>
     <timestamp>08/12/2011 19:12:20</timestamp>
     <milliseconds>640</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="IntegrationNDS.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
-    </settings>
-    <timestamp>08/31/2011 21:36:24</timestamp>
-    <milliseconds>468</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="VerifyCRCFiles.Designer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
-    </settings>
-    <timestamp>08/26/2011 23:45:50</timestamp>
-    <milliseconds>312</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="VerifyCRCFiles.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
     </settings>
     <timestamp>08/31/2011 21:38:16</timestamp>
     <milliseconds>390</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="MAJ_Img_Nfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+  <sourcecode name="VerifyCRCFiles.Designer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
     </settings>
-    <timestamp>08/31/2011 22:05:45</timestamp>
-    <milliseconds>453</milliseconds>
+    <timestamp>08/26/2011 23:45:50</timestamp>
+    <milliseconds>312</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IntegrationNDS.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>09/18/2011 22:06:15</timestamp>
+    <milliseconds>399</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="MainForm.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>08/30/2011 23:29:03</timestamp>
-      <milliseconds>531</milliseconds>
+      <timestamp>09/17/2011 22:35:18</timestamp>
+      <milliseconds>656</milliseconds>
     </settings>
-    <timestamp>08/31/2011 22:06:39</timestamp>
-    <milliseconds>546</milliseconds>
+    <timestamp>10/02/2011 01:57:27</timestamp>
+    <milliseconds>687</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

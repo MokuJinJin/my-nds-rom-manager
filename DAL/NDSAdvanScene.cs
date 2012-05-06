@@ -233,7 +233,7 @@ namespace NdsCRC_III.DAL
                         rom.Genre = xndd.InnerText;
                         break;
                     case "dumpdate":
-                        rom.DumpDate = xndd.InnerText;
+                        rom.DumpDate = DateTime.Parse(xndd.InnerText);
                         break;
                     case "internalname":
                         rom.InternalName = xndd.InnerText;

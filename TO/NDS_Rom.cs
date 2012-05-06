@@ -5,13 +5,14 @@
 //-----------------------------------------------------------------------
 namespace NdsCRC_III.TO
 {
+    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.IO;
     using System.Xml.Serialization;
     using Utils.Configuration;
     using Utils.Directories;
-
+    
     /// <summary>
     /// Class of NDS Rom
     /// </summary>
@@ -111,7 +112,7 @@ namespace NdsCRC_III.TO
         /// <summary>
         /// Date of the dump/release
         /// </summary>
-        public string DumpDate { get; set; }
+        public DateTime DumpDate { get; set; }
         
         /// <summary>
         /// Rom's Internal Name

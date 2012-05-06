@@ -36,6 +36,11 @@ namespace NdsCRC_III.BusinessService
         /// Rom missing
         /// </summary>
         private BindingListView<NDS_Rom> _collectionMissing;
+        
+        /// <summary>
+        /// Rom filter location
+        /// </summary>
+        private BindingListView<NDS_Rom> _filterLocation;
 
         /// <summary>
         /// filters
@@ -200,6 +205,15 @@ namespace NdsCRC_III.BusinessService
         }
 
         /// <summary>
+        /// Get the Filter Location
+        /// </summary>
+        /// <returns>BindingListView with filter location</returns>
+        public BindingListView<NDS_Rom> GetFilterLocation()
+        {
+            return _filterLocation;
+        }
+
+        /// <summary>
         /// Get the collection database
         /// </summary>
         /// <returns>BindingListView with the collection</returns>
@@ -237,6 +251,7 @@ namespace NdsCRC_III.BusinessService
             _advanSceneDataBase = new BindingListView<NDS_Rom>(DataAcessLayer.NdsAdvanScene);
             _collection = new BindingListView<NDS_Rom>(DataAcessLayer.NdsCollection);
             _collectionMissing = new BindingListView<NDS_Rom>(DataAcessLayer.NdsCollectionMissing);
+            _filterLocation = new BindingListView<NDS_Rom>(new List<NDS_Rom>());
         }
 
         /// <summary>
@@ -317,15 +332,8 @@ namespace NdsCRC_III.BusinessService
         /// <param name="id">duplicate id</param>
         public void SetDuplicateFilter(int id)
         {
-            _filters.SetDuplicateIdFilter(id);
-        }
-
-        /// <summary>
-        /// Set the Duplicate ID Filter from the current rom
-        /// </summary>
-        public void SetDuplicateFilterFromCurrentRom()
-        {
-            _filters.SetDuplicateIdFilter(_currentNDSRom.DuplicateID);
+            // _filters.SetDuplicateIdFilter(id);
+            _filterLocation = new BindingListView<NDS_Rom>(DataAcessLayer.NdsAdvanScene.Where(r => r.DuplicateID == id).ToList());
         }
 
         /// <summary>

@@ -1,0 +1,30 @@
+<Configuration>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="C6612BE8-18EF-4B8D-85C7-A0228B6BF339/f:MFControler.cs" caret="6912" fromTop="13" />
+      <File id="F2C95455-459E-41D2-9628-7FF76EF2ACF0/f:DAL.cs" caret="1778" fromTop="22" />
+      <File id="593B1F78-D7E1-4BD9-B7A5-8AE5BD04C5DA/f:MainForm.cs" caret="2491" fromTop="13" />
+      <File id="F2C95455-459E-41D2-9628-7FF76EF2ACF0/f:NDSAdvanScene.cs" caret="1819" fromTop="13" />
+      <File id="C6612BE8-18EF-4B8D-85C7-A0228B6BF339/f:BW_Diff.cs" caret="2735" fromTop="13" />
+      <File id="593B1F78-D7E1-4BD9-B7A5-8AE5BD04C5DA/f:Program.cs" caret="877" fromTop="13" />
+    </RecentFiles>
+    <RecentEdits />
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir>C:\Program Files\NUnit 2.5.10\bin\net-2.0\lib</NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+</Configuration>
