@@ -29,7 +29,7 @@ namespace Utils.Configuration
         /// <summary>
         /// Used to manipulate directory during serialisation
         /// </summary>
-        [XmlIgnore()]
+        [XmlIgnore]
         public bool SerializationOntheWay
         {
             get
@@ -69,7 +69,7 @@ namespace Utils.Configuration
         /// <summary>
         /// Culture for MultiLanguage
         /// </summary>
-        [XmlIgnore()]
+        [XmlIgnore]
         public CultureInfo Culture 
         { 
             get 

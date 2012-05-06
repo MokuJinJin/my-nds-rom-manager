@@ -100,6 +100,8 @@
             this.GridMissing = new System.Windows.Forms.DataGridView();
             this.chk_DemoRomVisibility = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tabFilterLocation = new System.Windows.Forms.TabPage();
+            this.GridFilterLocation = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.GridCollection)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
@@ -133,6 +135,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridDataBase)).BeginInit();
             this.tabMissing.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridMissing)).BeginInit();
+            this.tabFilterLocation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridFilterLocation)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGetNewRom
@@ -853,6 +857,7 @@
             this.tabControl2.Controls.Add(this.tabCollection);
             this.tabControl2.Controls.Add(this.tabDataBase);
             this.tabControl2.Controls.Add(this.tabMissing);
+            this.tabControl2.Controls.Add(this.tabFilterLocation);
             this.tabControl2.Location = new System.Drawing.Point(1, 48);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -950,6 +955,35 @@
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip.ToolTipTitle = "Informations :";
             // 
+            // tabFilterLocation
+            // 
+            this.tabFilterLocation.Controls.Add(this.GridFilterLocation);
+            this.tabFilterLocation.Location = new System.Drawing.Point(4, 22);
+            this.tabFilterLocation.Name = "tabFilterLocation";
+            this.tabFilterLocation.Padding = new System.Windows.Forms.Padding(3);
+            this.tabFilterLocation.Size = new System.Drawing.Size(510, 412);
+            this.tabFilterLocation.TabIndex = 3;
+            this.tabFilterLocation.Text = "tabFilterLocation";
+            this.tabFilterLocation.UseVisualStyleBackColor = true;
+            // 
+            // GridFilterLocation
+            // 
+            this.GridFilterLocation.AllowUserToAddRows = false;
+            this.GridFilterLocation.AllowUserToDeleteRows = false;
+            this.GridFilterLocation.AllowUserToOrderColumns = true;
+            this.GridFilterLocation.AllowUserToResizeRows = false;
+            this.GridFilterLocation.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.GridFilterLocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridFilterLocation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GridFilterLocation.Location = new System.Drawing.Point(3, 3);
+            this.GridFilterLocation.MultiSelect = false;
+            this.GridFilterLocation.Name = "GridFilterLocation";
+            this.GridFilterLocation.ReadOnly = true;
+            this.GridFilterLocation.RowHeadersVisible = false;
+            this.GridFilterLocation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GridFilterLocation.Size = new System.Drawing.Size(504, 406);
+            this.GridFilterLocation.TabIndex = 4;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1005,6 +1039,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridDataBase)).EndInit();
             this.tabMissing.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridMissing)).EndInit();
+            this.tabFilterLocation.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridFilterLocation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1082,6 +1118,8 @@
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Label lblDumpDate;
         private System.Windows.Forms.PictureBox pictureBox12;
+        private System.Windows.Forms.TabPage tabFilterLocation;
+        private System.Windows.Forms.DataGridView GridFilterLocation;
     }
 }
 

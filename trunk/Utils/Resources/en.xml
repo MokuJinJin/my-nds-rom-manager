@@ -25,6 +25,9 @@
     <data name="btnFilterDuplicate_NoRom">
       <value>No Rom selected</value>
     </data>
+    <data name="TabFilterLocation">
+      <value>Filter Location</value>
+    </data>
     <data name="btnUnzip_Enabled">
       <value>Copy on Linker</value>
     </data>
