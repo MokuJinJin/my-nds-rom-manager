@@ -136,13 +136,13 @@ namespace NdsCRC_III
                     if (tos.WhatHappen != TypeAvancement.Nothing)
                     {
                         DataRow dr = avancement.NewRow();
-                        dr["WhatHappen"] = tos.WhatHappen.ToString();
-                        dr["FileName"] = tos.FileName;
+                        dr[Parameter.Lang.GetTranslate("IntegrateColumnWhatHappenTitle")] = tos.WhatHappen.ToString();
+                        dr[Parameter.Lang.GetTranslate("IntegrateColumnFileNameTitle")] = tos.FileName;
                         if (tos.RomInfo != null)
                         {
-                            dr["RomName"] = tos.RomInfo.Title;
-                            dr["CRC"] = tos.RomInfo.RomCRC;
-                            dr["RomNumber"] = tos.RomInfo.RomNumber;
+                            dr[Parameter.Lang.GetTranslate("IntegrateColumnRomNameTitle")] = tos.RomInfo.Title;
+                            dr[Parameter.Lang.GetTranslate("IntegrateColumnCRCTitle")] = tos.RomInfo.RomCRC;
+                            dr[Parameter.Lang.GetTranslate("IntegrateColumnRomNumberTitle")] = tos.RomInfo.RomNumber;
                         }
 
                         avancement.Rows.Add(dr);

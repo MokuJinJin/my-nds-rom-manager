@@ -61,6 +61,7 @@ namespace NdsCRC_III
             Thread.CurrentThread.CurrentCulture = Parameter.Config.Culture;
 
             sourceAdvanScene.DataSource = _controler.GetDataBase();
+            
             GridDataBase.DataSource = sourceAdvanScene;
             sourceCollection.DataSource = _controler.GetCollection();
             GridCollection.DataSource = sourceCollection;
