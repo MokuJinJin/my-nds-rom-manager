@@ -48,6 +48,7 @@
     <Compile Include="Culture\Translate.cs" />
     <Compile Include="Directory\Directories.cs" />
     <Compile Include="Directory\DirectoryEnum.cs" />
+    <Compile Include="Html.cs" />
     <Compile Include="LambdaComparer.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

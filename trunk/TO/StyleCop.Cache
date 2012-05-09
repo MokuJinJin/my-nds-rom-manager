@@ -5,29 +5,41 @@
   </project>
   <sourcecode name="MajUrl.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>08/31/2011 22:05:32</timestamp>
-    <milliseconds>671</milliseconds>
+    <timestamp>05/06/2012 08:49:40</timestamp>
+    <milliseconds>0</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="AssemblyInfo.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>08/12/2011 19:12:20</timestamp>
-    <milliseconds>531</milliseconds>
+    <timestamp>05/06/2012 08:49:40</timestamp>
+    <milliseconds>0</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name=".NETFramework,Version=v4.0.AssemblyAttributes.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>11/09/2011 20:49:26</timestamp>
+    <milliseconds>238</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="NDS_Rom.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>10/02/2011 01:01:46</timestamp>
-    <milliseconds>906</milliseconds>
+    <timestamp>05/06/2012 08:52:20</timestamp>
+    <milliseconds>0</milliseconds>
     <violations />
   </sourcecode>
+  <project key="-907284647">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
 </stylecopresultscache>

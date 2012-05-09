@@ -3,13 +3,31 @@
   <project key="1691668724">
     <configuration>DEBUG;TRACE</configuration>
   </project>
+  <sourcecode name="NDSAdvanScene.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>05/06/2012 08:52:20</timestamp>
+    <milliseconds>0</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="EnumBase.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>05/06/2012 08:49:40</timestamp>
+    <milliseconds>0</milliseconds>
+    <violations />
+  </sourcecode>
   <sourcecode name="DAL.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>11/12/2011 20:01:16</timestamp>
-    <milliseconds>885</milliseconds>
+    <timestamp>05/06/2012 08:52:20</timestamp>
+    <milliseconds>0</milliseconds>
     <violations>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="FileHeaderFileNameDocumentationMustMatchTypeName" ruleCheckId="SA1649">
         <context>The file attribute in the file header's copyright tag must contain the name of the first type in the file and can be any of these: "DataAcessLayer", "DataAcessLayer"</context>
@@ -18,58 +36,40 @@
       </violation>
     </violations>
   </sourcecode>
-  <sourcecode name="EnumBase.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
-    </settings>
-    <timestamp>08/12/2011 19:12:20</timestamp>
-    <milliseconds>468</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="LocationXML.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>08/30/2011 23:23:58</timestamp>
-    <milliseconds>703</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="AssemblyInfo.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
-    </settings>
-    <timestamp>08/12/2011 19:12:20</timestamp>
-    <milliseconds>484</milliseconds>
+    <timestamp>05/06/2012 08:49:40</timestamp>
+    <milliseconds>0</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="LanguageXML.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>08/31/2011 23:58:21</timestamp>
-    <milliseconds>453</milliseconds>
+    <timestamp>05/06/2012 08:49:40</timestamp>
+    <milliseconds>0</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="NDSAdvanScene.cs" parser="StyleCop.CSharp.CsParser">
+  <sourcecode name="AssemblyInfo.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>10/02/2011 01:00:51</timestamp>
-    <milliseconds>781</milliseconds>
+    <timestamp>05/06/2012 08:49:40</timestamp>
+    <milliseconds>0</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="RomCollection.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>09/18/2011 01:33:42</timestamp>
-    <milliseconds>906</milliseconds>
+    <timestamp>05/06/2012 08:49:40</timestamp>
+    <milliseconds>0</milliseconds>
     <violations>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="FileHeaderFileNameDocumentationMustMatchTypeName" ruleCheckId="SA1649">
         <context>The file attribute in the file header's copyright tag must contain the name of the first type in the file and can be any of these: "Collection", "Collection"</context>
@@ -78,4 +78,16 @@
       </violation>
     </violations>
   </sourcecode>
+  <sourcecode name=".NETFramework,Version=v4.0.AssemblyAttributes.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>11/09/2011 20:49:26</timestamp>
+    <milliseconds>238</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-556923866">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
 </stylecopresultscache>
