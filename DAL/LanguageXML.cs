@@ -101,15 +101,18 @@ namespace NdsCRC_III.DAL
         public static string GetLanguage(int languageCode)
         {
             string ret = "N/A";
-            if (_dicoLanguage.ContainsKey(languageCode)) 
+            if (languageCode > 0)
             {
-                ret = _dicoLanguage[languageCode].ToString(); 
-            }
-            else
-            {
-                SetLanguageString(languageCode, languageList.Count - 1);
-                ret = stringLanguage.Remove(stringLanguage.Length - 2, 2);
-                stringLanguage = string.Empty;
+                if (_dicoLanguage.ContainsKey(languageCode))
+                {
+                    ret = _dicoLanguage[languageCode].ToString();
+                }
+                else
+                {
+                    SetLanguageString(languageCode, languageList.Count - 1);
+                    ret = stringLanguage.Remove(stringLanguage.Length - 2, 2);
+                    stringLanguage = string.Empty;
+                }
             }
 
             return ret;
@@ -143,24 +146,27 @@ namespace NdsCRC_III.DAL
         public static List<int> GetLanguagesList(int languages)
         {
             List<int> l = new List<int>();
-            if (_dicoLanguage.ContainsKey(languages))
+            if (languages > 0)
             {
-                l.Add(languages);
-                return l;
-            }
-            else
-            {
-                int index = languageList.Count - 1;
-                while (languages < languageList[index])
+                if (_dicoLanguage.ContainsKey(languages))
                 {
-                    index--;
+                    l.Add(languages);
+                    return l;
                 }
-
-                l.Add(languageList[index]);
-                languages -= languageList[index];
-                if (languages != 0)
+                else
                 {
-                    l.AddRange(GetLanguagesList(languages));
+                    int index = languageList.Count - 1;
+                    while (languages < languageList[index])
+                    {
+                        index--;
+                    }
+
+                    l.Add(languageList[index]);
+                    languages -= languageList[index];
+                    if (languages != 0)
+                    {
+                        l.AddRange(GetLanguagesList(languages));
+                    }
                 }
             }
 
