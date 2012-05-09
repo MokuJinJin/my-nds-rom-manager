@@ -47,7 +47,7 @@
     <Compile Include="CRC32.cs" />
     <Compile Include="Culture\Translate.cs" />
     <Compile Include="Directory\Directories.cs" />
-    <Compile Include="Directory\DirectoryEnum.cs" />
+    <Compile Include="Directory\DirectoriesEnum.cs" />
     <Compile Include="Html.cs" />
     <Compile Include="LambdaComparer.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

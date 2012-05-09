@@ -1,9 +1,17 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="Html.cs" company="Zed Byt Corp">
+//     Copyright Zed Byt Corp 2012
+// </copyright>
+//-----------------------------------------------------------------------
+
 namespace Utils
 {
     using System.IO;
     using System.Net;
     
+    /// <summary>
+    /// Class which helps with the Html/Web
+    /// </summary>
     public static class Html
     {
         /// <summary>
@@ -15,18 +23,20 @@ namespace Utils
         public static string GetHtmlFromUri(string resource)
         {
             string html = string.Empty;
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(resource);
-            using (HttpWebResponse resp = (HttpWebResponse)req.GetResponse())
+            var req = (HttpWebRequest)WebRequest.Create(resource);
+            using (var resp = (HttpWebResponse)req.GetResponse())
             {
-                bool isSuccess = (int)resp.StatusCode < 299 && (int)resp.StatusCode >= 200;
-                if (isSuccess)
+                var success = (int)resp.StatusCode < 299 && (int)resp.StatusCode >= 200;
+                
+                if (success)
                 {
-                    using (StreamReader reader = new StreamReader(resp.GetResponseStream()))
+                    using (var reader = new StreamReader(resp.GetResponseStream()))
                     {
                         html = reader.ReadToEnd();
                     }
                 }
             }
+
             return html;
         } 
     }

@@ -1,13 +1,14 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="RomCollection.cs" company="Zed Byt Corp">
+// <copyright file="Collection.cs" company="Zed Byt Corp">
 //     Copyright Zed Byt Corp 2011
 // </copyright>
 //-----------------------------------------------------------------------
+
 namespace NdsCRC_III.DAL
 {
     using System.Collections.Generic;
     using System.Xml.Serialization;
-    using NdsCRC_III.TO;
+    using TO;
     
     /// <summary>
     /// Collection of Nds Rom

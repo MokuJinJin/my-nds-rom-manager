@@ -3,11 +3,12 @@
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Utils.Directories
+
+namespace Utils.Directory
 {
     using System;
     using System.IO;
-    using Utils.Configuration;
+    using Configuration;
 
     /// <summary>
     /// Directories Utils
@@ -168,30 +169,30 @@ namespace Utils.Directories
             switch (dir)
             {
                 case DirectoriesEnum.Img:
-                    if (!Directory.Exists(Parameter.Config.Paths.DirImage))
+                    if (!System.IO.Directory.Exists(Parameter.Config.Paths.DirImage))
                     {
-                        Directory.CreateDirectory(Parameter.Config.Paths.DirImage);
+                        System.IO.Directory.CreateDirectory(Parameter.Config.Paths.DirImage);
                     }
 
                     break;
                 case DirectoriesEnum.NewRom:
-                    if (!Directory.Exists(Parameter.Config.Paths.DirNewRom))
+                    if (!System.IO.Directory.Exists(Parameter.Config.Paths.DirNewRom))
                     {
-                        Directory.CreateDirectory(Parameter.Config.Paths.DirNewRom);
+                        System.IO.Directory.CreateDirectory(Parameter.Config.Paths.DirNewRom);
                     }
 
                     break;
                 case DirectoriesEnum.Nfo:
-                    if (!Directory.Exists(Parameter.Config.Paths.DirNFO))
+                    if (!System.IO.Directory.Exists(Parameter.Config.Paths.DirNFO))
                     {
-                        Directory.CreateDirectory(Parameter.Config.Paths.DirNFO);
+                        System.IO.Directory.CreateDirectory(Parameter.Config.Paths.DirNFO);
                     }
 
                     break;
                 case DirectoriesEnum.Trash:
-                    if (!Directory.Exists(Parameter.Config.Paths.DirTrash))
+                    if (!System.IO.Directory.Exists(Parameter.Config.Paths.DirTrash))
                     {
-                        Directory.CreateDirectory(Parameter.Config.Paths.DirTrash);
+                        System.IO.Directory.CreateDirectory(Parameter.Config.Paths.DirTrash);
                     }
 
                     break;
@@ -214,9 +215,9 @@ namespace Utils.Directories
                 dirFromReleaseNumber = GetDirFromReleaseNumber(releaseNumber);
             }
 
-            if (!Directory.Exists(Parameter.Config.Paths.DirNdsRom + dirFromReleaseNumber))
+            if (!System.IO.Directory.Exists(Parameter.Config.Paths.DirNdsRom + dirFromReleaseNumber))
             {
-                Directory.CreateDirectory(Parameter.Config.Paths.DirNdsRom + dirFromReleaseNumber);
+                System.IO.Directory.CreateDirectory(Parameter.Config.Paths.DirNdsRom + dirFromReleaseNumber);
             }
         }
     }
