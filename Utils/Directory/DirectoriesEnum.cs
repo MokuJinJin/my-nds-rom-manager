@@ -1,9 +1,9 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="DirectoryEnum.cs" company="Zed Byt Corp">
+// <copyright file="DirectoriesEnum.cs" company="Zed Byt Corp">
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Utils.Directories
+namespace Utils.Directory
 {
     /// <summary>
     /// Listing of Directories

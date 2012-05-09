@@ -1,8 +1,9 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="DAL.cs" company="Zed Byt Corp">
+// <copyright file="DataAcessLayer.cs" company="Zed Byt Corp">
 //     Copyright Zed Byt Corp 2011
 // </copyright>
 //-----------------------------------------------------------------------
+
 namespace NdsCRC_III.DAL
 {
     using System;
@@ -10,7 +11,7 @@ namespace NdsCRC_III.DAL
     using System.IO;
     using System.Linq;
     using System.Xml.Serialization;
-    using NdsCRC_III.TO;
+    using TO;
     using Utils;
     using Utils.Configuration;
 

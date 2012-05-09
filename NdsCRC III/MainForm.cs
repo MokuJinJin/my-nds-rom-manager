@@ -4,9 +4,6 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System.Net;
-using Utils;
-
 namespace NdsCRC_III
 {
     using System;
@@ -17,10 +14,11 @@ namespace NdsCRC_III
     using System.Text;
     using System.Threading;
     using System.Windows.Forms;
-    using NdsCRC_III.BusinessService;
-    using NdsCRC_III.TO;
+    using BusinessService;
+    using TO;
+    using Utils;
     using Utils.Configuration;
-    using Utils.Directories;
+    using Utils.Directory;
 
     /// <summary>
     /// Main Form
@@ -86,7 +84,7 @@ namespace NdsCRC_III
 
             SetLblNbRom();
 
-            this.Text = string.Format("NdsCRC III v{0} - AdvanceSceneDat v{1} ({2})", ProductVersion, _controler.DatVersion, _controler.DatCreationDate);
+            Text = string.Format("NdsCRC III v{0} - AdvanceSceneDat v{1} ({2})", ProductVersion, _controler.DatVersion, _controler.DatCreationDate);
         }
 
         #region Button Event and clicks
@@ -116,7 +114,7 @@ namespace NdsCRC_III
             TabPage tab = tabControl2.TabPages[3];
             tab.Show();
             tab.Name = tabname;
-            
+
             /*
             if (_controler.IsDuplicateFilterActive())
             {
@@ -241,7 +239,6 @@ namespace NdsCRC_III
         /// </summary>
         private void SetLblNbRom()
         {
-            // tabCollection.Text = string.Format("{0} ({1} roms)", Lang.TabCollection, _controler.GetCollection().Count);
             tabCollection.Text = string.Format("{0} ({1} {2})", Parameter.Lang.GetTranslate("TabCollection"), _controler.GetCollection().Count, Parameter.Lang.GetTranslate("Roms"));
             tabDataBase.Text = string.Format("{0} ({1} {2})", Parameter.Lang.GetTranslate("TabDataBase"), _controler.GetDataBase().Count, Parameter.Lang.GetTranslate("Roms"));
             tabMissing.Text = string.Format("{0} ({1} {2})", Parameter.Lang.GetTranslate("TabMissing"), _controler.GetCollectionMissing().Count, Parameter.Lang.GetTranslate("Roms"));
@@ -458,7 +455,7 @@ namespace NdsCRC_III
             // http://www.advanscene.com/offline/version/ADVANsCEne_NDScrc.txt
             Download downloadXml = new Download(true);
             downloadXml.Disposed += new EventHandler(CheckDatVersion);
-            
+
             // DLXml.Show("http://www.advanscene.com/offline/datas/ADVANsCEne_NDScrc.zip", "ADVANsCEne_NDScrc.zip", "Downloading Database ...");
             downloadXml.ShowHidden(_controler.DatVersionURL, string.Format("{0}\\ADVANsCEne_NDScrc_Version.txt", Application.StartupPath), Parameter.Lang.GetTranslate("downloadTxtVersionDataBase"));
         }
@@ -470,37 +467,23 @@ namespace NdsCRC_III
         /// <param name="e">EventArgs</param>
         private void CheckDatVersion(object sender, EventArgs e)
         {
-            string actualDatVersion = Html.GetHtmlFromUri(_controler.DatVersionURL);
-            if (actualDatVersion == _controler.DatVersion)
+            try
             {
-                MessageBox.Show(Parameter.Lang.GetTranslate("DataBaseUpToDate"), string.Format("{0} {1}", Parameter.Lang.GetTranslate("DataBaseUpToDatePopupTitle"), _controler.DatVersion), MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                UpdateDatabase();
-            }
+                string actualDatVersion = Html.GetHtmlFromUri(_controler.DatVersionURL);
 
-            #region Commentaire
-            /*
-            if (File.Exists(string.Format("{0}\\ADVANsCEne_NDScrc_Version.txt", Application.StartupPath)))
-            {
-                string[] version = File.ReadAllLines("ADVANsCEne_NDScrc_Version.txt");
-                if (version[0] == _controler.DatVersion)
+                if (actualDatVersion == _controler.DatVersion)
                 {
                     MessageBox.Show(Parameter.Lang.GetTranslate("DataBaseUpToDate"), string.Format("{0} {1}", Parameter.Lang.GetTranslate("DataBaseUpToDatePopupTitle"), _controler.DatVersion), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    File.Delete("ADVANsCEne_NDScrc_Version.txt");
                 }
                 else
                 {
                     UpdateDatabase();
                 }
             }
-            else
+            catch (Exception exception)
             {
-                DownloadDatVersion();
+                MessageBox.Show(exception.Message, Parameter.Lang.GetTranslate("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            */
-            #endregion
         }
 
         /// <summary>

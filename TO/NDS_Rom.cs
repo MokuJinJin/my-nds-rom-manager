@@ -3,6 +3,7 @@
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
+
 namespace NdsCRC_III.TO
 {
     using System;
@@ -11,8 +12,8 @@ namespace NdsCRC_III.TO
     using System.IO;
     using System.Xml.Serialization;
     using Utils.Configuration;
-    using Utils.Directories;
-    
+    using Utils.Directory;
+
     /// <summary>
     /// Class of NDS Rom
     /// </summary>

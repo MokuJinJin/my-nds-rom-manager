@@ -11,12 +11,12 @@ namespace NdsCRC_III.BusinessService
     using System.ComponentModel;
     using System.IO;
     using System.Linq;
-    using NdsCRC_III.DAL;
-    using NdsCRC_III.TO;
+    using DAL;
     using SevenZip;
+    using TO;
     using Utils;
     using Utils.Configuration;
-    using Utils.Directories;
+    using Utils.Directory;
 
     /// <summary>
     /// Type advance

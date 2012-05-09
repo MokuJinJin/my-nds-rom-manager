@@ -3,15 +3,16 @@
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
+
 namespace NdsCRC_III.BusinessService
 {
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
-    using NdsCRC_III.DAL;
-    using NdsCRC_III.TO;
+    using DAL;
+    using TO;
     using Utils.Configuration;
-    using Utils.Directories;
+    using Utils.Directory;
 
     /// <summary>
     /// Worker for Downloading all image and nfo
