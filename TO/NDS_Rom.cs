@@ -345,7 +345,7 @@ namespace NdsCRC_III.TO
                 {
                     i = Bitmap.FromFile(this.ImgIconPath);
                 }
-                catch (System.Exception)
+                catch (Exception)
                 {
                     // throw;
                 }

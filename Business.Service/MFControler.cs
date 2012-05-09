@@ -3,13 +3,15 @@
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
+
 namespace NdsCRC_III.BusinessService
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.IO;
     using System.Linq;
-
+    using System.Windows.Data;
     using Equin.ApplicationFramework;
     using NdsCRC_III.DAL;
     using NdsCRC_III.TO;
@@ -71,6 +73,14 @@ namespace NdsCRC_III.BusinessService
         }
 
         #region Property
+
+        /// <summary>
+        /// DataBase for WPF
+        /// </summary>
+        public ICollectionView DataBase
+        {
+            get { return CollectionViewSource.GetDefaultView(DataAcessLayer.NdsAdvanScene); }
+        }
 
         /// <summary>
         /// Date of the creation of the Advanscene database
