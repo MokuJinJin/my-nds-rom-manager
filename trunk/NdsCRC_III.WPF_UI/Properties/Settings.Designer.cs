@@ -22,5 +22,14 @@ namespace NdsCRC_III.WPF_UI.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("E:\\-=NDS=-\\NdsCRC III")]
+        public string StartupPath {
+            get {
+                return ((string)(this["StartupPath"]));
+            }
+        }
     }
 }

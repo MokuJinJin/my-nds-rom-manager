@@ -3,18 +3,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <DataGrid ItemsSource="{Binding DataBase}" AutoGenerateColumns="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding DataBase}" AutoGenerateColumns="False" Grid.Column="0" AlternatingRowBackground="Gainsboro"  AlternationCount="2">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Icon" Width="SizeToCells" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding ImgIconPath}" />
+                            <Image Source="{Binding Path=ImgIconPath}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Rom Title" IsReadOnly="True" Binding="{Binding Title}" />
+                <DataGridTextColumn Header="#" IsReadOnly="True" Binding="{Binding Path=RomNumber}" />
+                <DataGridTextColumn Header="Rom Title" IsReadOnly="True" Binding="{Binding Path=Title}" />
             </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Height="384" Source="{Binding Path=ImgInGamePath}" Grid.Column="0"/>
+                        <Image Height="384" Source="{Binding Path=ImgCoverPath}" Grid.Column="1"/>
+                    </Grid>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
         </DataGrid>
-        <!--<DataGrid ItemsSource="{Binding DataBase}" />-->
+        <DataGrid ItemsSource="{Binding DataBase}" Grid.Column="1"/>
     </Grid>
 </Window>
