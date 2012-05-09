@@ -1,14 +1,19 @@
 <Configuration>
   <RecentFiles>
     <RecentFiles>
-      <File id="C6612BE8-18EF-4B8D-85C7-A0228B6BF339/f:MFControler.cs" caret="6912" fromTop="13" />
-      <File id="F2C95455-459E-41D2-9628-7FF76EF2ACF0/f:DAL.cs" caret="1778" fromTop="22" />
-      <File id="593B1F78-D7E1-4BD9-B7A5-8AE5BD04C5DA/f:MainForm.cs" caret="2491" fromTop="13" />
-      <File id="F2C95455-459E-41D2-9628-7FF76EF2ACF0/f:NDSAdvanScene.cs" caret="1819" fromTop="13" />
-      <File id="C6612BE8-18EF-4B8D-85C7-A0228B6BF339/f:BW_Diff.cs" caret="2735" fromTop="13" />
-      <File id="593B1F78-D7E1-4BD9-B7A5-8AE5BD04C5DA/f:Program.cs" caret="877" fromTop="13" />
+      <File id="593B1F78-D7E1-4BD9-B7A5-8AE5BD04C5DA/f:Program.cs" caret="853" fromTop="9" />
+      <File id="358D1BC5-72DE-4ED8-993F-8B8EBDB03D49/f:Html.cs" caret="364" fromTop="13" />
+      <File id="593B1F78-D7E1-4BD9-B7A5-8AE5BD04C5DA/f:MainForm.cs" caret="20174" fromTop="12" />
+      <File id="C6612BE8-18EF-4B8D-85C7-A0228B6BF339/f:MFControler.cs" caret="8150" fromTop="9" />
     </RecentFiles>
-    <RecentEdits />
+    <RecentEdits>
+      <File id="358D1BC5-72DE-4ED8-993F-8B8EBDB03D49/f:Html.cs" caret="1068" fromTop="21" />
+      <File id="358D1BC5-72DE-4ED8-993F-8B8EBDB03D49/f:Html.cs" caret="77" fromTop="5" />
+      <File id="358D1BC5-72DE-4ED8-993F-8B8EBDB03D49/f:Html.cs" caret="364" fromTop="13" />
+      <File id="593B1F78-D7E1-4BD9-B7A5-8AE5BD04C5DA/f:MainForm.cs" caret="21158" fromTop="28" />
+      <File id="593B1F78-D7E1-4BD9-B7A5-8AE5BD04C5DA/f:MainForm.cs" caret="20259" fromTop="14" />
+      <File id="593B1F78-D7E1-4BD9-B7A5-8AE5BD04C5DA/f:MainForm.cs" caret="19799" fromTop="8" />
+    </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
     <NAntPath value="" />
@@ -27,4 +32,37 @@
       <setting name="SolutionAnalysisEnabled">False</setting>
     </boolean>
   </SettingsComponent>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Qualified:@System.IO.File">
+      <Item value="ReadAllText`0" priority="22" />
+    </ItemStatistics>
+    <ItemStatistics item="CSharpCodeCompletionContext">
+      <Item value="Uri`0" priority="26" />
+      <Item value="new" priority="63" />
+      <Item value="Uri" priority="29" />
+      <Item value="uri" priority="31" />
+      <Item value="StreamReader`0" priority="31" />
+      <Item value="StreamReader" priority="28" />
+      <Item value="sr" priority="63" />
+      <Item value="Utils" priority="31" />
+      <Item value="Html`0" priority="26" />
+      <Item value="&lt;remarks&gt;&lt;/remarks&gt;" priority="25" />
+      <Item value="ActualDatVersion" priority="31" />
+      <Item value="#endregion" priority="31" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.StreamReader">
+      <Item value="ReadToEnd`0" priority="26" />
+      <Item value="Close`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Utils.Html">
+      <Item value="GetHtmlFromUri`0" priority="49" />
+    </ItemStatistics>
+    <ItemStatistics item="Doc Comment tags">
+      <Item value="&lt;remarks&gt;&lt;/remarks&gt;" priority="4" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:NdsCRC_III.BusinessService.MFControler">
+      <Item value="DatURL" priority="26" />
+      <Item value="DatVersion" priority="26" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
 </Configuration>

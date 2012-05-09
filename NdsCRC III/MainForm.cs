@@ -3,6 +3,10 @@
 //     Copyright Zed Byt Corp 2010
 // </copyright>
 //-----------------------------------------------------------------------
+
+using System.Net;
+using Utils;
+
 namespace NdsCRC_III
 {
     using System;
@@ -387,14 +391,7 @@ namespace NdsCRC_III
                 if (_controler.GetCurrentRom().IsDuplicate())
                 {
                     btnFilterDuplicate.Enabled = true;
-                    if (_controler.IsDuplicateFilterActive())
-                    {
-                        btnFilterDuplicate.Text = Parameter.Lang.GetTranslate("btnFilterDuplicate_Reset");
-                    }
-                    else
-                    {
-                        btnFilterDuplicate.Text = Parameter.Lang.GetTranslate("btnFilterDuplicate_Apply");
-                    }
+                    btnFilterDuplicate.Text = Parameter.Lang.GetTranslate(_controler.IsDuplicateFilterActive() ? "btnFilterDuplicate_Reset" : "btnFilterDuplicate_Apply");
                 }
                 else
                 {
@@ -461,7 +458,7 @@ namespace NdsCRC_III
             // http://www.advanscene.com/offline/version/ADVANsCEne_NDScrc.txt
             Download downloadXml = new Download(true);
             downloadXml.Disposed += new EventHandler(CheckDatVersion);
-
+            
             // DLXml.Show("http://www.advanscene.com/offline/datas/ADVANsCEne_NDScrc.zip", "ADVANsCEne_NDScrc.zip", "Downloading Database ...");
             downloadXml.ShowHidden(_controler.DatVersionURL, string.Format("{0}\\ADVANsCEne_NDScrc_Version.txt", Application.StartupPath), Parameter.Lang.GetTranslate("downloadTxtVersionDataBase"));
         }
@@ -473,6 +470,18 @@ namespace NdsCRC_III
         /// <param name="e">EventArgs</param>
         private void CheckDatVersion(object sender, EventArgs e)
         {
+            string actualDatVersion = Html.GetHtmlFromUri(_controler.DatVersionURL);
+            if (actualDatVersion == _controler.DatVersion)
+            {
+                MessageBox.Show(Parameter.Lang.GetTranslate("DataBaseUpToDate"), string.Format("{0} {1}", Parameter.Lang.GetTranslate("DataBaseUpToDatePopupTitle"), _controler.DatVersion), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                UpdateDatabase();
+            }
+
+            #region Commentaire
+            /*
             if (File.Exists(string.Format("{0}\\ADVANsCEne_NDScrc_Version.txt", Application.StartupPath)))
             {
                 string[] version = File.ReadAllLines("ADVANsCEne_NDScrc_Version.txt");
@@ -490,6 +499,8 @@ namespace NdsCRC_III
             {
                 DownloadDatVersion();
             }
+            */
+            #endregion
         }
 
         /// <summary>

@@ -3,76 +3,88 @@
   <project key="-864100936">
     <configuration>DEBUG;TRACE</configuration>
   </project>
-  <sourcecode name="BW_Extract.cs" parser="StyleCop.CSharp.CsParser">
+  <sourcecode name="BW_VerifyCRCFiles.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>08/31/2011 22:09:30</timestamp>
-    <milliseconds>937</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="BW_Diff.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
-    </settings>
-    <timestamp>08/31/2011 22:09:26</timestamp>
-    <milliseconds>437</milliseconds>
+    <timestamp>05/06/2012 08:49:56</timestamp>
+    <milliseconds>0</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="BW_Maj_Img_Nfo.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>09/17/2011 23:36:22</timestamp>
-    <milliseconds>62</milliseconds>
+    <timestamp>05/06/2012 08:49:56</timestamp>
+    <milliseconds>0</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="BW_VerifyCRCFiles.cs" parser="StyleCop.CSharp.CsParser">
+  <sourcecode name="BW_Diff.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>09/17/2011 23:29:14</timestamp>
-    <milliseconds>531</milliseconds>
+    <timestamp>05/06/2012 08:49:56</timestamp>
+    <milliseconds>0</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BW_Extract.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>05/06/2012 08:49:56</timestamp>
+    <milliseconds>0</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="Filters.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>09/11/2011 22:54:35</timestamp>
-    <milliseconds>796</milliseconds>
+    <timestamp>05/06/2012 08:49:56</timestamp>
+    <milliseconds>0</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="BW_Integration.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>09/17/2011 23:36:35</timestamp>
-    <milliseconds>593</milliseconds>
+    <timestamp>05/06/2012 08:49:56</timestamp>
+    <milliseconds>0</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name=".NETFramework,Version=v4.0.AssemblyAttributes.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>11/09/2011 20:49:26</timestamp>
+    <milliseconds>238</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="MFControler.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>10/02/2011 01:46:25</timestamp>
-    <milliseconds>812</milliseconds>
+    <timestamp>05/06/2012 08:52:22</timestamp>
+    <milliseconds>0</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="Settings.Designer.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>09/17/2011 22:35:18</timestamp>
-      <milliseconds>656</milliseconds>
+      <timestamp>05/06/2012 08:49:56</timestamp>
+      <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>09/15/2011 01:34:14</timestamp>
-    <milliseconds>109</milliseconds>
+    <timestamp>05/06/2012 08:49:56</timestamp>
+    <milliseconds>0</milliseconds>
     <violations />
   </sourcecode>
+  <project key="518082073">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
 </stylecopresultscache>
